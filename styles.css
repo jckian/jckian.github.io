@@ -1254,15 +1254,16 @@ body.menu-open .menu .about {
 }
 
 .case__media {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(4px, 0.5vw, 8px);
+  columns: 2;
+  column-gap: clamp(4px, 0.4vw, 7px); /* same gap as work-index .wrow__gallery */
 }
 
 .case__frame {
   overflow: hidden;
   background: var(--bg-2);
   border-radius: 2px;
+  break-inside: avoid;
+  margin-bottom: clamp(4px, 0.4vw, 7px); /* vertical rhythm matches the column gap */
 }
 
 .case__frame img,
@@ -1350,6 +1351,10 @@ body.menu-open .menu .about {
   .case__story {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .case__media {
+    columns: 1;
   }
 
   .case__aside {
