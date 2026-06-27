@@ -192,20 +192,25 @@ window.addEventListener('resize', () => {
   fitRAF = requestAnimationFrame(fitTitles);
 });
 
-/* a super-long photo (one side ≥1.9× the other) gets its own full-width row,
-   shown uncropped instead of being squeezed into a 4:3 thumbnail */
-const flagLong = (m) => {
+/* size each thumbnail to the shape of its media, so nothing is forced into a
+   landscape 4:3 crop:
+     · portrait media stands tall (spans two rows, kept vertical)
+     · a super-wide panorama (one side ≥1.9× the other) takes its own full-width row */
+const flagOrient = (m) => {
   const w = m.naturalWidth || m.videoWidth, h = m.naturalHeight || m.videoHeight;
   if (!w || !h) return;
-  if (Math.max(w, h) / Math.min(w, h) >= 1.9) m.closest('.wrow__shot')?.classList.add('wrow__shot--full');
+  const shot = m.closest('.wrow__shot');
+  if (!shot) return;
+  if (h > w) shot.classList.add('wrow__shot--tall');
+  else if (w / h >= 1.9) shot.classList.add('wrow__shot--full');
 };
 document.querySelectorAll('.wrow__gallery img').forEach(img => {
-  if (img.complete && img.naturalWidth) flagLong(img);
-  else img.addEventListener('load', () => flagLong(img));
+  if (img.complete && img.naturalWidth) flagOrient(img);
+  else img.addEventListener('load', () => flagOrient(img));
 });
 document.querySelectorAll('.wrow__gallery video').forEach(v => {
-  if (v.readyState >= 1) flagLong(v);
-  else v.addEventListener('loadedmetadata', () => flagLong(v));
+  if (v.readyState >= 1) flagOrient(v);
+  else v.addEventListener('loadedmetadata', () => flagOrient(v));
 });
 
 /* ---------- 4. CLOCK (Taipei) ---------- */
