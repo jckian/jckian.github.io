@@ -1229,32 +1229,6 @@ body.menu-open .menu .about {
   background: var(--bg-2);
 }
 
-/* compact red info box (Role / Context / Scope / Year): sits at the top of the
-   right-hand text column, above the frozen description */
-.case__meta {
-  display: flex;
-  flex-direction: column;
-  flex: none;
-  gap: 14px;
-  margin: 0 0 22px;
-  padding: clamp(16px, 1.4vw, 22px);
-  background: var(--ink);
-  color: var(--bg);
-  border-radius: 2px;
-}
-
-.case__meta .label {
-  color: var(--bg);
-  opacity: .6;
-  margin-bottom: 4px;
-}
-
-.case__meta p {
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--bg);
-}
-
 /* brief: the big intro line, full-width at the top (single column) */
 .case__brief {
   margin: 46px 0 4px;
@@ -1367,11 +1341,6 @@ body.menu-open .menu .about {
     text-align: left;
   }
 
-  .case__meta {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px 22px;
-  }
 
   .case__story {
     grid-template-columns: 1fr;

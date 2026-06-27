@@ -117,12 +117,6 @@
         <div class="case__media" id="cMedia"></div>
       </div>
       <aside class="case__aside">
-        <div class="case__meta">
-          <div><p class="label">Role</p><p id="cRole">—</p></div>
-          <div><p class="label">Context</p><p id="cClient">—</p></div>
-          <div><p class="label">Scope</p><p id="cServices">—</p></div>
-          <div><p class="label">Year</p><p id="cYear2">—</p></div>
-        </div>
         <p class="case__text" id="cBody"></p>
         <p class="case__cap" id="cCap"></p>
       </aside>
@@ -285,10 +279,6 @@
     set('cTitle', p.title);
     set('cCat', p.cat);
     set('cYear', /^\d/.test(p.year) ? "’" + p.year.slice(2) : p.year);
-    set('cRole', p.role);
-    set('cClient', p.client);
-    set('cServices', p.services);
-    set('cYear2', p.year);
 
     /* brief: just the big intro line, full-width at the top */
     document.getElementById('cBrief').innerHTML = `<p class="case__lead">${p.intro}</p>`;
