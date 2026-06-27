@@ -300,12 +300,12 @@
     const mediaEl = (src, alt, lazy) => isVid(src)
       ? `<video src="${src}" muted loop autoplay playsinline preload="metadata"></video>`
       : `<img src="${src}" alt="${esc(alt)}"${lazy ? ' loading="lazy"' : ''}>`;
-    /* cover spans both image columns on top; gallery flows two columns below */
-    const frames = [{ src: p.cover, cap: '' }].concat(p.gallery || []);
-    media.innerHTML = frames.map((f, i) => {
-      const cls = i === 0 ? 'case__frame case__frame--full' : 'case__frame';
-      return `<figure class="${cls}" data-cap="${esc(f.cap)}">${mediaEl(f.src, f.cap || (p.title + ' — cover'), i !== 0)}<figcaption>${f.cap || ''}</figcaption></figure>`;
-    }).join('');
+    /* cover spans the full media width on top; gallery flows two columns below */
+    const cover = `<figure class="case__frame case__cover">${mediaEl(p.cover, p.title + ' — cover', false)}</figure>`;
+    const cols = (p.gallery || []).map((f) =>
+      `<figure class="case__frame" data-cap="${esc(f.cap)}">${mediaEl(f.src, f.cap || p.title, true)}<figcaption>${f.cap || ''}</figcaption></figure>`
+    ).join('');
+    media.innerHTML = cover + `<div class="case__cols">${cols}</div>`;
     document.getElementById('cBody').textContent = p.body;
 
     /* swap the caption to whichever image is currently crossing the reading line */
