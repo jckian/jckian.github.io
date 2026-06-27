@@ -109,12 +109,15 @@
       <div class="case__cat"><span id="cCat">Category</span> · <span id="cYear">’00</span></div>
     </div>
 
-    <div class="case__meta">
-      <div><p class="label">Role</p><p id="cRole">—</p></div>
-      <div><p class="label">Context</p><p id="cClient">—</p></div>
-      <div><p class="label">Scope</p><p id="cServices">—</p></div>
-      <div><p class="label">Year</p><p id="cYear2">—</p></div>
-    </div>
+    <section class="case__hero">
+      <div class="case__cover" id="cCover"></div>
+      <div class="case__meta">
+        <div><p class="label">Role</p><p id="cRole">—</p></div>
+        <div><p class="label">Context</p><p id="cClient">—</p></div>
+        <div><p class="label">Scope</p><p id="cServices">—</p></div>
+        <div><p class="label">Year</p><p id="cYear2">—</p></div>
+      </div>
+    </section>
 
     <div class="case__brief" id="cBrief"></div>
 
@@ -297,13 +300,16 @@
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     const media = document.getElementById('cMedia');
     const isVid = (s) => /\.(mp4|webm|mov)$/i.test(s);
-    const frames = [{ src: p.cover, cap: '' }].concat(p.gallery || []);
-    media.innerHTML = frames.map((f, i) => {
+    /* cover sits top-left of the hero, beside the red info box */
+    document.getElementById('cCover').innerHTML = isVid(p.cover)
+      ? `<video src="${p.cover}" muted loop autoplay playsinline preload="metadata"></video>`
+      : `<img src="${p.cover}" alt="${esc(p.title)} — cover">`;
+    /* gallery flows in two columns below the hero */
+    media.innerHTML = (p.gallery || []).map((f) => {
       const el = isVid(f.src)
         ? `<video src="${f.src}" muted loop autoplay playsinline preload="metadata"></video>`
-        : `<img src="${f.src}" alt="${esc(f.cap) || p.title + ' — cover'}"${i ? ' loading="lazy"' : ''}>`;
-      const cls = 'case__frame' + (i ? '' : ' case__frame--lead'); /* cover spans full width on top */
-      return `<figure class="${cls}" data-cap="${esc(f.cap)}">${el}<figcaption>${f.cap || ''}</figcaption></figure>`;
+        : `<img src="${f.src}" alt="${esc(f.cap) || p.title}" loading="lazy">`;
+      return `<figure class="case__frame" data-cap="${esc(f.cap)}">${el}<figcaption>${f.cap || ''}</figcaption></figure>`;
     }).join('');
     document.getElementById('cBody').textContent = p.body;
 

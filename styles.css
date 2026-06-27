@@ -1212,23 +1212,46 @@ body.menu-open .menu .about {
   white-space: nowrap;
 }
 
-.case__meta {
+/* hero: cover image on the left, red info box on the right */
+.case__hero {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  margin: 50px 0;
-  padding: 30px 0;
-  border-top: var(--line-w) solid var(--line);
-  border-bottom: var(--line-w) solid var(--line);
+  grid-template-columns: 2fr 1fr;
+  gap: clamp(12px, 1.5vw, 24px);
+  align-items: start;
+  margin: 40px 0 36px;
+}
+
+.case__cover img,
+.case__cover video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+  background: var(--bg-2);
+}
+
+/* compact red info box (Role / Context / Scope / Year) */
+.case__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: clamp(18px, 1.6vw, 26px);
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 2px;
 }
 
 .case__meta .label {
-  margin-bottom: 10px;
+  color: var(--bg);
+  opacity: .6;
+  margin-bottom: 4px;
 }
 
 .case__meta p {
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--bg);
 }
 
 /* brief: the big intro line, full-width at the top (single column) */
@@ -1264,11 +1287,6 @@ body.menu-open .menu .about {
   border-radius: 2px;
   break-inside: avoid;
   margin-bottom: clamp(4px, 0.4vw, 7px); /* vertical rhythm matches the column gap */
-}
-
-/* cover (first frame): full-width banner on top, not part of the two columns */
-.case__frame--lead {
-  column-span: all;
 }
 
 .case__frame img,
@@ -1348,9 +1366,15 @@ body.menu-open .menu .about {
     text-align: left;
   }
 
+  .case__hero {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
   .case__meta {
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 22px;
+    gap: 16px 22px;
   }
 
   .case__story {
