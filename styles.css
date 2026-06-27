@@ -1266,9 +1266,9 @@ body.menu-open .menu .about {
   margin-bottom: clamp(4px, 0.4vw, 7px); /* vertical rhythm matches the column gap */
 }
 
-/* full-bleed cover hero — spans the whole content width, no text aside */
-.case__hero {
-  margin: 24px 0 0;
+/* cover spans both image columns on top, above the two-column gallery */
+.case__frame--full {
+  column-span: all;
 }
 
 .case__frame img,
