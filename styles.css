@@ -1254,20 +1254,8 @@ body.menu-open .menu .about {
 }
 
 .case__media {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(4px, 0.4vw, 7px);
-}
-
-/* cover sits on its own row spanning the full media width (across both columns) */
-.case__cover {
-  width: 100%;
-}
-
-/* gallery below the cover: two columns, same gap as work-index .wrow__gallery */
-.case__cols {
   columns: 2;
-  column-gap: clamp(4px, 0.4vw, 7px);
+  column-gap: clamp(4px, 0.4vw, 7px); /* same gap as work-index .wrow__gallery */
 }
 
 .case__frame {
@@ -1275,10 +1263,12 @@ body.menu-open .menu .about {
   background: var(--bg-2);
   border-radius: 2px;
   break-inside: avoid;
+  margin-bottom: clamp(4px, 0.4vw, 7px); /* vertical rhythm matches the column gap */
 }
 
-.case__cols .case__frame {
-  margin-bottom: clamp(4px, 0.4vw, 7px); /* vertical rhythm matches the column gap */
+/* cover (first frame): full-width banner on top, not part of the two columns */
+.case__frame--lead {
+  column-span: all;
 }
 
 .case__frame img,
@@ -1368,7 +1358,7 @@ body.menu-open .menu .about {
     gap: 20px;
   }
 
-  .case__cols {
+  .case__media {
     columns: 1;
   }
 

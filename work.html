@@ -297,15 +297,14 @@
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     const media = document.getElementById('cMedia');
     const isVid = (s) => /\.(mp4|webm|mov)$/i.test(s);
-    const mediaEl = (src, alt, lazy) => isVid(src)
-      ? `<video src="${src}" muted loop autoplay playsinline preload="metadata"></video>`
-      : `<img src="${src}" alt="${esc(alt)}"${lazy ? ' loading="lazy"' : ''}>`;
-    /* cover spans the full media width on top; gallery flows two columns below */
-    const cover = `<figure class="case__frame case__cover">${mediaEl(p.cover, p.title + ' — cover', false)}</figure>`;
-    const cols = (p.gallery || []).map((f) =>
-      `<figure class="case__frame" data-cap="${esc(f.cap)}">${mediaEl(f.src, f.cap || p.title, true)}<figcaption>${f.cap || ''}</figcaption></figure>`
-    ).join('');
-    media.innerHTML = cover + `<div class="case__cols">${cols}</div>`;
+    const frames = [{ src: p.cover, cap: '' }].concat(p.gallery || []);
+    media.innerHTML = frames.map((f, i) => {
+      const el = isVid(f.src)
+        ? `<video src="${f.src}" muted loop autoplay playsinline preload="metadata"></video>`
+        : `<img src="${f.src}" alt="${esc(f.cap) || p.title + ' — cover'}"${i ? ' loading="lazy"' : ''}>`;
+      const cls = 'case__frame' + (i ? '' : ' case__frame--lead'); /* cover spans full width on top */
+      return `<figure class="${cls}" data-cap="${esc(f.cap)}">${el}<figcaption>${f.cap || ''}</figcaption></figure>`;
+    }).join('');
     document.getElementById('cBody').textContent = p.body;
 
     /* swap the caption to whichever image is currently crossing the reading line */
