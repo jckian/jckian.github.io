@@ -1212,13 +1212,12 @@ body.menu-open .menu .about {
   white-space: nowrap;
 }
 
-/* hero: cover image on the left, red info box on the right */
-.case__hero {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: clamp(12px, 1.5vw, 24px);
-  align-items: start;
-  margin: 40px 0 36px;
+/* left column of the story: full-width cover, red info box, then 2-col gallery */
+.case__col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vw, 16px);
+  min-width: 0;
 }
 
 .case__cover img,
@@ -1230,13 +1229,14 @@ body.menu-open .menu .about {
   background: var(--bg-2);
 }
 
-/* compact red info box (Role / Context / Scope / Year) */
+/* compact red info box (Role / Context / Scope / Year): full width under the
+   cover, above the two-column gallery */
 .case__meta {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px 24px;
   margin: 0;
-  padding: clamp(18px, 1.6vw, 26px);
+  padding: clamp(16px, 1.4vw, 22px);
   background: var(--ink);
   color: var(--bg);
   border-radius: 2px;
@@ -1366,13 +1366,7 @@ body.menu-open .menu .about {
     text-align: left;
   }
 
-  .case__hero {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
   .case__meta {
-    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px 22px;
   }
