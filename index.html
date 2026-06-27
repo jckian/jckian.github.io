@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yenhsing Cheng — Architecture Portfolio</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta name="description" content="Yenhsing Cheng — Architecture as support systems for life in transition. Selected works 2022–2025." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- index.html only: red ink (#F90203), blue (#172FC7) on hover -->
+  <style>
+    :root {
+      --ink: #F90203;
+      --ink-2: #F90203;
+      --line: #F90203;
+      --accent: #172FC7;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ ENTRY / COVER (sitoh-style landing) ============ -->
+  <section class="enter" id="enter">
+    <div class="enter__bar">
+      <span class="enter__logo">Yenhsing Cheng</span>
+      <nav class="enter__nav">
+        <a href="#works" data-enter>Works</a>
+        <a href="#" data-enter-about>About</a>
+      </nav>
+    </div>
+
+    <div class="enter__meta">
+      <ul class="social enter__social">
+        <li><a href="https://www.instagram.com/_cyenh_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a></li>
+        <li><a href="https://www.linkedin.com/in/yenhsing-cheng" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3V9zm6 0h3.8v1.65h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.74V21h-4v-5.2c0-1.24-.02-2.84-1.9-2.84-1.9 0-2.2 1.36-2.2 2.76V21H9V9z"/></svg>
+        </a></li>
+        <li><a href="mailto:jckiancheng@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+        </a></li>
+      </ul>
+      <p>Taipei · Los Angeles</p>
+    </div>
+
+    <div class="enter__right">
+      <div class="enter__mark" aria-hidden="true">Arch.<br>Tech.</div>
+      <button class="enter__go" id="enterGo">
+        <span>Enter</span>
+        <svg viewBox="0 0 24 24" width="15" height="15"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+
+    <div class="enter__word-wrap">
+      <div class="enter__word" aria-label="Yenhsing Cheng" tabindex="0">
+        <div class="enter__word-track">
+          <span class="enter__word-group">Yenhsing&nbsp;Cheng&nbsp;Yenhsing&nbsp;Cheng&nbsp;</span>
+          <span class="enter__word-group" aria-hidden="true">Yenhsing&nbsp;Cheng&nbsp;Yenhsing&nbsp;Cheng&nbsp;</span>
+        </div>
+      </div>
+      <div class="enter__hello" role="tooltip">
+        <p>Hi, I'm Yenhsing, a licensed architect from Taiwan currently based in Los Angeles.</p>
+        <p>My background combines architecture, construction, BIM, and computational design. Recently, I've been exploring how AI and generative workflows can help turn ideas into buildable projects while completing my M.S. in Architectural Technologies at SCI-Arc.</p>
+        <p>Always happy to connect and collaborate.</p>
+      </div>
+    </div>
+
+    <div class="enter__foot">
+      <span class="enter__copy">© 2026 Yenhsing Cheng</span>
+    </div>
+  </section>
+
+  <!-- ============ PAGE TRANSITION ============ -->
+  <div class="pageflip" id="pageflip" aria-hidden="true">
+    <span class="pageflip__label"></span>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="head" id="head">
+    <a href="index.html" class="head__logo">Yenhsing Cheng</a>
+    <nav class="head__nav">
+      <a href="#" class="head__menu" data-about aria-expanded="false">
+        <span class="head__menu-label">About / Contact</span>
+        <span class="head__menu-ico"><i></i><i></i></span>
+      </a>
+    </nav>
+  </header>
+
+  <!-- ============ MENU OVERLAY ============ -->
+  <nav class="menu" id="menu" aria-hidden="true">
+    <div class="about">
+      <div class="about__grid">
+        <div class="about__intro">
+          <h1 class="about__statement">Hi, I'm Yenhsing.</h1>
+          <p class="about__body">
+            I'm a licensed architect from Taiwan, currently based in Los Angeles. My background spans
+            architecture, construction, BIM, and project management, with experience working on everything
+            from commercial buildings to large-scale transit projects.
+          </p>
+          <p class="about__body">
+            Lately, I've been spending a lot of time exploring the space between architecture and AI. I'm
+            interested in generative design, computational workflows, and tools that help designers move
+            faster from ideas to reality.
+          </p>
+          <p class="about__body">
+            I enjoy working with people who like making things—whether that's buildings, products, systems,
+            or new ideas. If that sounds like you, I'd love to connect!
+          </p>
+          <ul class="social about__social">
+            <li><a href="https://www.instagram.com/_cyenh_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </a></li>
+            <li><a href="https://www.linkedin.com/in/yenhsing-cheng" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3V9zm6 0h3.8v1.65h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.74V21h-4v-5.2c0-1.24-.02-2.84-1.9-2.84-1.9 0-2.2 1.36-2.2 2.76V21H9V9z"/></svg>
+            </a></li>
+            <li><a href="mailto:jckiancheng@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+            </a></li>
+          </ul>
+        </div>
+
+        <div class="about__side">
+          <div class="about__col">
+            <p class="label">Certifications &amp; Awards</p>
+            <ul class="lined">
+              <li>Licensed Architect, Taiwan (2024)</li>
+              <li>Autodesk Certified Professional, Revit Architecture</li>
+              <li>Solar Decathlon Europe 21/22 — Architecture First Prize</li>
+            </ul>
+          </div>
+          <div class="about__col">
+            <p class="label">Education</p>
+            <ul class="lined">
+              <li>M.S. Architectural Technologies — SCI-Arc, LA (2025–26)</li>
+              <li>M.Arch — NYCU, Taiwan (2021–23)</li>
+              <li>B.Arch — Taiwan Tech, Taipei (2017–21)</li>
+              <li>BIM Program — Georgia Tech (2019)</li>
+            </ul>
+          </div>
+          <div class="about__col">
+            <p class="label">Experience</p>
+            <ul class="lined">
+              <li>Project Manager — Chunghwa Post (2023–25)</li>
+              <li>BIM Engineer / Designer — Arch-Square (2024–25)</li>
+              <li>BIM Modeler — illoca, San Francisco (2024–25)</li>
+              <li>Architectural Designer — Sumtect (2020–21)</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="skills-marquee" aria-label="Skills">
+        <div class="skills-marquee__track">
+          <span class="skills-marquee__group">Revit · Navisworks · AutoCAD · ArchiCAD · SketchUp · Drone · BIM 360 · ACC · Dynamo · Rhino · Grasshopper · Blender · Lumion · Enscape · Adobe Creative Suite (InDesign, Photoshop, Illustrator) · Microsoft Office · Figma · ComfyUI · LoRA / ControlNet · Python · JavaScript · C# · Processing · OSC / HTTP communication · Claude Code · </span>
+          <span class="skills-marquee__group" aria-hidden="true">Revit · Navisworks · AutoCAD · ArchiCAD · SketchUp · Drone · BIM 360 · ACC · Dynamo · Rhino · Grasshopper · Blender · Lumion · Enscape · Adobe Creative Suite (InDesign, Photoshop, Illustrator) · Microsoft Office · Figma · ComfyUI · LoRA / ControlNet · Python · JavaScript · C# · Processing · OSC / HTTP communication · Claude Code · </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ WORKS ============ -->
+  <section id="top" class="works">
+    <span id="works" class="anchor" aria-hidden="true"></span>
+    <ol class="wlist" id="grid">
+      <li class="wrow" data-cat="visual" data-id="threshld">
+        <a href="#" class="wrow__link" data-flip>
+          <h3 class="wrow__title">THRESHLD</h3>
+          <div class="wrow__main">
+            <div class="wrow__head">
+              <p class="wrow__brief">WHIPLASH — a wearable ornament that corrects posture by inflating, and the ETFE flagship store that responds to its visitors' posture in turn. Built end-to-end with a generative pipeline (Blender MCP · ComfyUI · LoRA · ControlNet).</p>
+              <span class="wrow__cat">Generative / Product / Flagship Store</span>
+              <span class="wrow__year">2026</span>
+            </div>
+            <div class="wrow__gallery">
+              <div class="wrow__shot wrow__shot--tall"><video src="images/THRESHLD/16_9_2.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+              <div class="wrow__shot"><img src="images/THRESHLD/Product-2.png" alt="THRESHLD — product render" loading="lazy"></div>
+              <div class="wrow__shot"><video src="images/THRESHLD/timelapse_noVoice.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+              <div class="wrow__shot"><video src="images/THRESHLD/mvLYsvfeKxzzeysLGpoI3_844fd4faae1c40de9c0b257b125353bb.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+              <div class="wrow__shot"><img src="images/THRESHLD/work-02-03.png" alt="THRESHLD — interior study" loading="lazy"></div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="wrow" data-cat="landscape" data-id="01">
+        <a href="#" class="wrow__link" data-flip>
+          <h3 class="wrow__title">Orienteering</h3>
+          <div class="wrow__main">
+            <div class="wrow__head">
+              <p class="wrow__brief">A remote-island wayfinding project that turns a retired WWII outpost into a five-route sensory journey through Matsu's battlefield landscape.</p>
+              <span class="wrow__cat">Landscape / Wayfinding / Branding / Mapping</span>
+              <span class="wrow__year">2022</span>
+            </div>
+            <div class="wrow__gallery">
+              <div class="wrow__shot"><img src="images/orienteering/work-01.jpg" alt="Orienteering — aerial view of Military Outpost No.32, Xiju Island" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/work-01-01.jpg" alt="Xiju Island remapped — three landscape layers read across the terrain" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/work-01-02.jpg" alt="Map of Sight — one of five sensory orienteering routes" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/work-01-03.png" alt="Coastal viewing platform at dusk, facing the open sea" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/work-01-04.png" alt="Interior carved into the hillside, defined by stacked stone" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/work-01-05.png" alt="Arrival sequence at the retired stronghold entrance" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/work-01-06.jpg" alt="Site photograph — sandstone walls meeting the Matsu coast" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/work-01-07.jpg" alt="An existing underground tunnel within Outpost No.32" loading="lazy"></div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="wrow" data-cat="housing" data-id="02">
+        <a href="#" class="wrow__link" data-flip>
+          <h3 class="wrow__title">1 House<br>for All</h3>
+          <div class="wrow__main">
+            <div class="wrow__head">
+              <p class="wrow__brief">A net-zero, mass-timber housing prototype that fills the empty gaps of urban renewal with shared, transitional homes — built 1:1.</p>
+              <span class="wrow__cat">Housing / Mass Timber / BIM / 1:1 Build</span>
+              <span class="wrow__year">2022</span>
+            </div>
+            <div class="wrow__gallery">
+              <div class="wrow__shot"><img src="images/1-house-for-all/work-02.png" alt="1 House for All — mid-way housing inserted into urban-renewal gaps" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/1-house-for-all/work-02-01.png" alt="Competition board — Closing Gap" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/1-house-for-all/0001_conceptual_drawing.jpg" alt="Conceptual drawing — closing the urban-renewal gap" loading="lazy"></div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="wrow" data-cat="public" data-id="03">
+        <a href="#" class="wrow__link" data-flip>
+          <h3 class="wrow__title">Banqiao Station</h3>
+          <div class="wrow__main">
+            <div class="wrow__head">
+              <p class="wrow__brief">A new MRT station entrance, built in practice, where arched canopies stretch a continuous green corridor across the city.</p>
+              <span class="wrow__cat">Public / Transit / Detailing / Practice</span>
+              <span class="wrow__year">2023</span>
+            </div>
+            <div class="wrow__gallery">
+              <div class="wrow__shot"><img src="images/banqiao-station/work-03.png" alt="Banqiao Station Entrance — arched canopy and green corridor" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/banqiao-station/work-03-01.png" alt="Entrance plaza and arched canopy at grade" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/banqiao-station/work-03-02.png" alt="Night view — the loop-line colour lights the covered circulation" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/banqiao-station/work-03-03.png" alt="Arched structure forming a continuous urban green corridor" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/banqiao-station/work-03-04.png" alt="Circulation through the open, double-height ground level" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/banqiao-station/work-03-05.png" alt="Cantilevered 2 m extension with rain-screen louvers" loading="lazy"></div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="wrow" data-cat="housing" data-id="04">
+        <a href="#" class="wrow__link" data-flip>
+          <h3 class="wrow__title">Earthen</h3>
+          <div class="wrow__main">
+            <div class="wrow__head">
+              <p class="wrow__brief">Post-wildfire recovery housing wrapped in a robotically 3D-printed ceramic skin that collects and channels rainwater.</p>
+              <span class="wrow__cat">Housing / Ceramic 3D Print / Rammed Earth / Climate</span>
+              <span class="wrow__year">2025</span>
+            </div>
+            <div class="wrow__gallery">
+              <div class="wrow__shot"><img src="images/earthen/work-04-01.jpg" alt="Fired, glazed ceramic wall — earth-toned palette of the post-fire landscape" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/earthen/work-04-02.jpg" alt="3D-printed ceramic façade modules, glazed and installed" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/earthen/work-04-04.jpg" alt="Robotic 3D printing of the ceramic units" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/earthen/work-04-05.jpg" alt="Wall-chunk mock-up and ceramic unit schematics" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/earthen/work-04-06.jpg" alt="Wall, window and planter sections with rainwater channels" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/earthen/work-04-07.jpg" alt="Prototype chunk — plan and elevation at half scale" loading="lazy"></div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="wrow" data-cat="visual" data-id="05">
+        <a href="#" class="wrow__link" data-flip>
+          <h3 class="wrow__title">Dream Studio</h3>
+          <div class="wrow__main">
+            <div class="wrow__head">
+              <p class="wrow__brief">A generative-AI design competition that turns collective memory into virtual game-space through Edward Tolman's cognitive-map theory.</p>
+              <span class="wrow__cat">Generative AI / Cognitive Map / Game Design / Virtual</span>
+              <span class="wrow__year">2022</span>
+            </div>
+            <div class="wrow__gallery">
+              <div class="wrow__shot"><video src="images/dreamstudio/clips/vide_ltest1_1.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+              <div class="wrow__shot"><video src="images/dreamstudio/clips/vide_ltest1-2.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+              <div class="wrow__shot"><video src="images/dreamstudio/clips/vide_ltest1-3.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+              <div class="wrow__shot"><video src="images/dreamstudio/clips/vide_ltest1-4.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="wrow" data-cat="archive" data-id="archive">
+        <a href="#" class="wrow__link" data-flip>
+          <h3 class="wrow__title">Archive</h3>
+          <div class="wrow__main">
+            <div class="wrow__head">
+              <p class="wrow__brief">Some truly random stuff.</p>
+              <span class="wrow__cat">Scraps / Film / GIF</span>
+              <span class="wrow__year">—</span>
+            </div>
+            <div class="wrow__gallery">
+              <div class="wrow__shot"><img src="images/archive/archive-01.png" alt="Archive — assorted scraps" loading="lazy"></div>
+              <div class="wrow__shot"><video src="images/archive/SCIArcGalaFinalVideo.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+              <div class="wrow__shot"><video src="images/archive/archive-gala-opening.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="contact">
+    <div class="footer__row">
+      <div class="footer__left">
+        <a href="#" data-about>About</a>
+        <ul class="social">
+          <li><a href="https://www.instagram.com/_cyenh_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a></li>
+          <li><a href="https://www.linkedin.com/in/yenhsing-cheng" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3V9zm6 0h3.8v1.65h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.74V21h-4v-5.2c0-1.24-.02-2.84-1.9-2.84-1.9 0-2.2 1.36-2.2 2.76V21H9V9z"/></svg>
+          </a></li>
+          <li><a href="mailto:jckiancheng@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+          </a></li>
+        </ul>
+      </div>
+      <a href="#top" data-link>Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

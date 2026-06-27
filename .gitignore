@@ -1,0 +1,14 @@
+# 不上線的工作檔案
+BACKUP/
+reference/
+.claude/
+*.md
+
+# 網站沒用到的原始/高解析素材（避免超過 GitHub Pages 1GB 上限）
+images/_originals/
+images/Links/
+
+# 系統檔
+.DS_Store
+Thumbs.db
+desktop.ini

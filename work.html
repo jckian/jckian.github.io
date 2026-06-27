@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yenhsing Cheng — Work</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta name="description" content="Project case study — Yenhsing Cheng." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- PAGE TRANSITION (covers on arrival, then reveals) -->
+  <div class="pageflip cover" id="pageflip" aria-hidden="true">
+    <span class="pageflip__label"></span>
+  </div>
+
+  <!-- HEADER -->
+  <header class="head" id="head">
+    <a href="index.html#top" class="head__logo">Yenhsing Cheng</a>
+    <button class="head__menu" id="menuBtn" aria-expanded="false">
+      <span class="head__menu-label">Menu</span>
+      <span class="head__menu-ico"><i></i><i></i></span>
+    </button>
+  </header>
+
+  <!-- MENU OVERLAY -->
+  <nav class="menu" id="menu" aria-hidden="true">
+    <div class="about">
+      <div class="about__grid">
+        <div class="about__intro">
+          <h1 class="about__statement">Hi, I'm Yenhsing.</h1>
+          <p class="about__body">
+            I'm a licensed architect from Taiwan, currently based in Los Angeles. My background spans
+            architecture, construction, BIM, and project management, with experience working on everything
+            from commercial buildings to large-scale transit projects.
+          </p>
+          <p class="about__body">
+            Lately, I've been spending a lot of time exploring the space between architecture and AI. I'm
+            interested in generative design, computational workflows, and tools that help designers move
+            faster from ideas to reality.
+          </p>
+          <p class="about__body">
+            I enjoy working with people who like making things—whether that's buildings, products, systems,
+            or new ideas. If that sounds like you, I'd love to connect!
+          </p>
+          <ul class="social about__social">
+            <li><a href="https://www.instagram.com/_cyenh_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </a></li>
+            <li><a href="https://www.linkedin.com/in/yenhsing-cheng" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3V9zm6 0h3.8v1.65h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.74V21h-4v-5.2c0-1.24-.02-2.84-1.9-2.84-1.9 0-2.2 1.36-2.2 2.76V21H9V9z"/></svg>
+            </a></li>
+            <li><a href="mailto:jckiancheng@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+            </a></li>
+          </ul>
+        </div>
+
+        <div class="about__side">
+          <div class="about__col">
+            <p class="label">Certifications &amp; Awards</p>
+            <ul class="lined">
+              <li>Licensed Architect, Taiwan (2024)</li>
+              <li>Autodesk Certified Professional, Revit Architecture</li>
+              <li>Solar Decathlon Europe 21/22 — Architecture First Prize</li>
+            </ul>
+          </div>
+          <div class="about__col">
+            <p class="label">Education</p>
+            <ul class="lined">
+              <li>M.S. Architectural Technologies — SCI-Arc, LA (2025–26)</li>
+              <li>M.Arch — NYCU, Taiwan (2021–23)</li>
+              <li>B.Arch — Taiwan Tech, Taipei (2017–21)</li>
+              <li>BIM Program — Georgia Tech (2019)</li>
+            </ul>
+          </div>
+          <div class="about__col">
+            <p class="label">Experience</p>
+            <ul class="lined">
+              <li>Project Manager — Chunghwa Post (2023–25)</li>
+              <li>BIM Engineer / Designer — Arch-Square (2024–25)</li>
+              <li>BIM Modeler — illoca, San Francisco (2024–25)</li>
+              <li>Architectural Designer — Sumtect (2020–21)</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="skills-marquee" aria-label="Skills">
+        <div class="skills-marquee__track">
+          <span class="skills-marquee__group">Revit · Navisworks · AutoCAD · ArchiCAD · SketchUp · Drone · BIM 360 · ACC · Dynamo · Rhino · Grasshopper · Blender · Lumion · Enscape · Adobe Creative Suite (InDesign, Photoshop, Illustrator) · Microsoft Office · Figma · ComfyUI · Python · JavaScript · C# · Processing · OSC / HTTP communication · Claude Code · </span>
+          <span class="skills-marquee__group" aria-hidden="true">Revit · Navisworks · AutoCAD · ArchiCAD · SketchUp · Drone · BIM 360 · ACC · Dynamo · Rhino · Grasshopper · Blender · Lumion · Enscape · Adobe Creative Suite (InDesign, Photoshop, Illustrator) · Microsoft Office · Figma · ComfyUI · Python · JavaScript · C# · Processing · OSC / HTTP communication · Claude Code · </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CASE STUDY -->
+  <main class="case">
+    <a href="index.html#works" class="case__back" data-flip data-flip-label="Index">← Back to index</a>
+
+    <div class="case__head">
+      <h1 class="case__title" id="cTitle">Project</h1>
+      <div class="case__cat"><span id="cCat">Category</span> · <span id="cYear">’00</span></div>
+    </div>
+
+    <div class="case__meta">
+      <div><p class="label">Role</p><p id="cRole">—</p></div>
+      <div><p class="label">Context</p><p id="cClient">—</p></div>
+      <div><p class="label">Scope</p><p id="cServices">—</p></div>
+      <div><p class="label">Year</p><p id="cYear2">—</p></div>
+    </div>
+
+    <div class="case__brief" id="cBrief"></div>
+
+    <div class="case__story">
+      <div class="case__media" id="cMedia"></div>
+      <aside class="case__aside">
+        <p class="case__text" id="cBody"></p>
+        <p class="case__cap" id="cCap"></p>
+      </aside>
+    </div>
+  </main>
+
+  <!-- MORE PROJECTS -->
+  <nav class="case__more">
+    <p class="label">More projects</p>
+    <ul class="case__more-grid" id="cMore"></ul>
+  </nav>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__row">
+      <div class="footer__left">
+        <a href="#" data-about>About</a>
+        <ul class="social">
+          <li><a href="https://www.instagram.com/_cyenh_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a></li>
+          <li><a href="https://www.linkedin.com/in/yenhsing-cheng" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3V9zm6 0h3.8v1.65h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.74V21h-4v-5.2c0-1.24-.02-2.84-1.9-2.84-1.9 0-2.2 1.36-2.2 2.76V21H9V9z"/></svg>
+          </a></li>
+          <li><a href="mailto:jckiancheng@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+          </a></li>
+        </ul>
+      </div>
+      <a href="index.html#works">Back to index ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    /* ---- Yenhsing Cheng — selected works 2022–2025 ---- */
+    const PROJECTS = {
+      "01": {
+        title: "Orienteering", cat: "Memory / Landscape", year: "2022", tag: "Landscape",
+        role: "Architectural design & programming",
+        client: "NYCU GIA Studio · 5-person team",
+        services: "Landscape regeneration, branding",
+        intro: "Reprogramming a remote island and reusing a WWII military outpost — remapping the island's landscape to turn Matsu's battlefield culture into a journey of sensory exploration.",
+        body: "Located on Xiju Island at Taiwan's maritime edge, the project opens Former Military Outpost No.32 — a Cold War frontline carved into sandstone cliffs — for public use. The island's landscape is itself a product of military necessity, shaped by soldiers stationed here 40–50 years ago, so vegetation and ecology shift with elevation and defensive function. By remapping three distinct landscape layers — Plant (+240M), Stone (±0M) and Water (−400M) — 'Orienteering' becomes an exploring brand that guides travellers through Matsu's battlefield culture with their own body and senses. Five routes, one per sense — sight, sound, smell, taste and touch — turn the visit into a journey rather than a destination. As the stronghold retires from military duty it merges back into the earth: as one disappears, one emerges. — Instructors: Shu-Chang Kung, Ling-Li Tseng · 5 weeks, Summer 2022.",
+        cover: "images/orienteering/work-01.jpg",
+        gallery: [
+          { src: "images/orienteering/work-01-01.jpg", cap: "Xiju Island remapped — three landscape layers read across the terrain.", wide: true },
+          { src: "images/orienteering/work-01-02.jpg", cap: "Map of Sight — one of five sensory orienteering routes." },
+          { src: "images/orienteering/work-01-05.png", cap: "Arrival sequence at the retired stronghold entrance." },
+          { src: "images/orienteering/work-01-04.png", cap: "Interior carved into the hillside, defined by stacked stone." },
+          { src: "images/orienteering/work-01-03.png", cap: "Coastal viewing platform at dusk, facing the open sea." },
+          { src: "images/orienteering/work-01-06.jpg", cap: "Site photograph — sandstone walls meeting the Matsu coast." },
+          { src: "images/orienteering/work-01-07.jpg", cap: "An existing underground tunnel within Outpost No.32." }
+        ]
+      },
+      "02": {
+        title: "1 House for All", cat: "Housing / Community", year: "2022", tag: "Housing",
+        role: "Design development & BIM coordination",
+        client: "NYCU / TDIS · international competition",
+        services: "Sustainable housing, mass timber",
+        intro: "A transitional, net-zero housing system supporting collective living during urban renewal — inserting shared, mid-way housing into the gaps left by urban renewal.",
+        body: "Taiwan's average building lifespan is only 35–40 years, and urban renewal takes a decade on average — leaving demolished gaps across the city while complex ownership stalls rebuilding. '1 House for All' fills those gaps with mid-way buildings: not just a net-zero transitional house, but a social-enterprise housing and energy-sharing hub that can be replicated across different sites. Built from mass timber (CLT and GLT) with a modular, adaptable façade, the system is designed to be fast-built, fully disassembled and reused in the next construction. A shared ground floor and party-core wall let the plan flex for different residents, bringing together elderly people, families and temporary occupants, while adding e-bike and e-cargo charging to the neighbourhood. The final outcome was a 1:1 demonstration unit the team built themselves. — 30-person teamwork · 8 months, 2021F–2022S.",
+        cover: "images/1-house-for-all/work-02.png",
+        gallery: [
+          { src: "images/1-house-for-all/work-02-01.png", cap: "Competition board — ‘Closing Gap’, building design and concept.", wide: true },
+          { src: "images/1-house-for-all/0001_conceptual_drawing.jpg", cap: "Conceptual drawing — closing the urban-renewal gap." }
+        ]
+      },
+      "03": {
+        title: "Banqiao Station Entrance", cat: "Public / Practice", year: "2023", tag: "Public",
+        role: "Architectural design & coordination",
+        client: "Professional practice · MRT Banqiao Station",
+        services: "Transit infrastructure, detailing",
+        intro: "Translating design intent into buildable systems through professional practice.",
+        body: "A new entrance for Banqiao Station in New Taipei City, developed in professional practice with an outsourced team in India — where design decisions constantly had to adjust to construction constraints. Landscape motifs are translated into arched structures that prolong a natural atmosphere and form a continuous urban green corridor. An open, double-height ground level enhances spatial permeability, while the loop line's signature colour gives covered circulation and clearer entry points for daily commuters. A cantilevered 2 m extension and rain-screen louvers optimise wind and rain protection. — 885 m² · NT$29,920,000.",
+        cover: "images/banqiao-station/work-03.png",
+        gallery: [
+          { src: "images/banqiao-station/work-03-02.png", cap: "Night view — the loop-line colour lights the covered circulation.", wide: true },
+          { src: "images/banqiao-station/work-03-01.png", cap: "Entrance plaza and arched canopy at grade." },
+          { src: "images/banqiao-station/work-03-03.png", cap: "Arched structure forming a continuous urban green corridor." },
+          { src: "images/banqiao-station/work-03-04.png", cap: "Circulation through the open, double-height ground level." },
+          { src: "images/banqiao-station/work-03-05.png", cap: "Cantilevered 2 m extension with rain-screen louvers." }
+        ]
+      },
+      "04": {
+        title: "Earthen", cat: "Climate / Housing", year: "2025", tag: "Climate",
+        role: "Structural design, prototyping, glazing, robotic 3D printing",
+        client: "SCI-Arc · Herwig Baumgartner",
+        services: "Post-disaster housing, ceramic fabrication",
+        intro: "Recovery housing for wildfire-displaced communities, 3D-printed in ceramic and rammed earth — treating temporary housing as part of a longer recovery process.",
+        body: "Earthen responds to the increasing frequency of California wildfires and the prolonged displacement that follows. Rather than treating temporary housing as disposable, it frames shelter as part of a longer recovery process — a system of transitional ADUs that can be deployed quickly yet remain useful as people return to stability. Sited at 3328 N Fair Oaks Avenue in Altadena, a lot left in ruin after the Eaton Fire, it pairs housing with a community bathhouse to form a small-scale recovery infrastructure for daily life and collective healing. Using 3D-printed ceramics and rammed earth, the design explores construction that is locally grounded and thermally resilient. A robotically 3D-printed ceramic façade collects, channels and retains rainwater through algorithmic growth patterns — each module printed in clay, then glazed and fired into an earth-toned palette — reimagining the architectural skin as a ‘living’ mediator rather than a static barrier. — 7-person teamwork · 15 weeks, Fall 2025.",
+        cover: "images/earthen/work-04-01.jpg",
+        gallery: [
+          { src: "images/earthen/work-04-02.jpg", cap: "3D-printed ceramic façade modules, glazed and installed.", wide: true },
+          { src: "images/earthen/work-04-04.jpg", cap: "Robotic 3D printing of the ceramic units." },
+          { src: "images/earthen/work-04-05.jpg", cap: "Wall-chunk mock-up and ceramic unit schematics." },
+          { src: "images/earthen/work-04-06.jpg", cap: "Wall, window and planter sections with rainwater channels." },
+          { src: "images/earthen/work-04-07.jpg", cap: "Prototype chunk — plan and elevation at half scale." }
+        ]
+      },
+      "05": {
+        title: "Dream Studio", cat: "Generative AI / Game Design", year: "2022", tag: "Virtual",
+        role: "Spatial design, AI image generation, diagrams, film editing",
+        client: "NYCU competition · 5-person team",
+        services: "Generative AI, cognitive mapping, game design",
+        intro: "A generative-AI design competition that turns collective memory into virtual game-space through Edward Tolman's cognitive-map theory.",
+        body: "Dream Studio is a design competition at NYCU exploring how an AI image generator can drive program definition and design concepts. Building on Edward Tolman's 1948 theory of cognitive maps — mental, first-person representations of space built from both objective spatial features and subjective experience — the team developed a methodology that transforms collective memory into virtual spaces, generating layered conceptual experiences. Conceptual, emotional and contextual prompts are fed through neural networks (DreamStudio → Rhino → Unreal Engine) to deconstruct and recombine existing spaces into a playable virtual world. As an electronic extension of the body, the resulting space is navigated with simple keyboard and mouse, its discontinuous scales and atmospheres producing an uncanny experience distinct from physical space. — 5-person team · 10 days, Fall 2022.",
+        cover: "images/dreamstudio/work-05.png",
+        gallery: [
+          { src: "images/dreamstudio/Portfolio_260131_selected21.png", cap: "Map of the virtual space — a labyrinth of studio and drawing rooms.", wide: true },
+          { src: "images/dreamstudio/diagram.png", cap: "Cognitive-mapping methodology — from prompt to playable space.", wide: true },
+          { src: "images/dreamstudio/diagram-2.png", cap: "Pipeline by room: prompt → DreamStudio → Rhino → Unreal Engine.", wide: true },
+          { src: "images/dreamstudio/1.png", cap: "Central spine of the virtual world." },
+          { src: "images/dreamstudio/work-05-02.png", cap: "Industrial corridor frame from the virtual narrative." },
+          { src: "images/dreamstudio/work-05-03.png", cap: "Light-grid sequence dissolving one space into the next." },
+          { src: "images/dreamstudio/Gemini_Generated_Image_n17i6wn17i6wn17i%20(1).png", cap: "Stair ascending toward light through the labyrinth." },
+          { src: "images/dreamstudio/Gemini_Generated_Image_km54j7km54j7km54.png", cap: "Storage corridor opening onto a bright threshold." },
+          { src: "images/dreamstudio/Gemini_Generated_Image_s3x6ous3x6ous3x6.png", cap: "Sunlit studio interior, warm and decayed." },
+          { src: "images/dreamstudio/Gemini_Generated_Image_bitvs2bitvs2bitv.png", cap: "Fog-filled room with a single chair." },
+          { src: "images/dreamstudio/Gemini_Generated_Image_6qj0056qj0056qj0.png", cap: "Grid window glowing in a darkened cell." }
+        ]
+      },
+      "threshld": {
+        title: "THRESHLD", cat: "Generative / Product / Flagship Store", year: "2026", tag: "Generative",
+        role: "Product design, inflatable mechanism, material studies & spatial design",
+        client: "Flagship store concept · independent study",
+        services: "Generative AI workflow, wearable design, soft robotics, ETFE flagship store",
+        intro: "WHIPLASH — a wearable ornament that eases poor posture by gently inflating — and the flagship store designed around it, an ETFE architecture that responds to its users' posture just as the product does.",
+        body: "THRESHLD starts from product design and lets the architecture follow. The product, WHIPLASH, is a wearable ornament for poor posture and muscle tension: when the body slips into a wrong position, it responds by softly inflating. It runs a three-step intervention — inner 'fingers' first give a gentle Remind signal, then gradually inflate to Warn, and if still ignored, fully inflate into a rigid mode that forces the body to rest. The mechanism is triggered by the frequency and angle of movement and calibrated against range-of-motion theory, then adapted into versions for other parts of the body; before buying, customers are scanned in a body-scanning booth so each piece fits perfectly. Material studies push the inflatable aesthetic — hydro-dipping colour tests and experiments in material opacity, with a texture map applied across the orange and mint-blue parts. The flagship store carries the same idea from body to building: wrapped in a translucent ETFE skin, its inflatable façade responds to its visitors' posture — swelling whenever the people inside slip out of alignment — so the store reminds, corrects and breathes exactly as the product does. The whole project — wearable, materials and store — is built through a generative pipeline: Blender driven through an MCP agent, with ComfyUI, LoRA and ControlNet steering form, texture and image so every iteration stays consistent across product and architecture. — Product, fabrication & spatial study, 2026.",
+        cover: "images/THRESHLD/THRESHLD.mp4",
+        gallery: [
+          { src: "images/THRESHLD/16_9_2.mp4", cap: "WHIPLASH inflating as posture slips — the wearable in motion." },
+          { src: "images/THRESHLD/timelapse_noVoice.mp4", cap: "Fabrication timelapse." },
+          { src: "images/THRESHLD/mvLYsvfeKxzzeysLGpoI3_844fd4faae1c40de9c0b257b125353bb.mp4", cap: "Three-step intervention — Remind, Warn, then rigid rest." },
+          { src: "images/THRESHLD/Product-2.png", cap: "Product render — translucent inflatable ornament." },
+          { src: "images/THRESHLD/work-02-03.png", cap: "ETFE-wrapped interior — the façade breathing with the bodies inside." }
+        ]
+      },
+      "archive": {
+        title: "Archive", cat: "Scraps", year: "—", tag: "Archive",
+        role: "—", client: "—", services: "—",
+        intro: "Some truly random stuff.",
+        body: "",
+        cover: "images/archive/archive-01.png",
+        gallery: [
+          { src: "images/archive/SCIArcGalaFinalVideo.mp4", cap: "SCI-Arc Gala — final video." },
+          { src: "images/archive/archive-gala-opening.mp4", cap: "Annual gala opening film, projected on the LA Central Library façade." }
+        ]
+      }
+    };
+
+    const ids = Object.keys(PROJECTS);
+    const params = new URLSearchParams(location.search);
+    let id = params.get('p');
+    if (!PROJECTS[id]) id = ids[0];
+    const p = PROJECTS[id];
+
+    document.title = `Yenhsing Cheng — ${p.title}`;
+    const set = (el, v) => { const n = document.getElementById(el); if (n) n.textContent = v; };
+    set('cTitle', p.title);
+    set('cCat', p.cat);
+    set('cYear', /^\d/.test(p.year) ? "’" + p.year.slice(2) : p.year);
+    set('cRole', p.role);
+    set('cClient', p.client);
+    set('cServices', p.services);
+    set('cYear2', p.year);
+
+    /* brief: just the big intro line, full-width at the top */
+    document.getElementById('cBrief').innerHTML = `<p class="case__lead">${p.intro}</p>`;
+
+    /* story: images scroll on the left; on the right the description stays frozen
+       the whole way down, while the small caption swaps to the image in view */
+    const esc = (s) => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const media = document.getElementById('cMedia');
+    const isVid = (s) => /\.(mp4|webm|mov)$/i.test(s);
+    const frames = [{ src: p.cover, cap: '' }].concat(p.gallery || []);
+    media.innerHTML = frames.map((f, i) => {
+      const el = isVid(f.src)
+        ? `<video src="${f.src}" muted loop autoplay playsinline preload="metadata"></video>`
+        : `<img src="${f.src}" alt="${esc(f.cap) || p.title + ' — cover'}"${i ? ' loading="lazy"' : ''}>`;
+      return `<figure class="case__frame" data-cap="${esc(f.cap)}">${el}<figcaption>${f.cap || ''}</figcaption></figure>`;
+    }).join('');
+    document.getElementById('cBody').textContent = p.body;
+
+    /* swap the caption to whichever image is currently crossing the reading line */
+    const cap = document.getElementById('cCap');
+    const frameEls = Array.from(media.querySelectorAll('.case__frame'));
+    let currCap = -1, capRAF = 0;
+    const updateCap = () => {
+      capRAF = 0;
+      const line = window.innerHeight * 0.42;
+      let active = 0;
+      for (let i = 0; i < frameEls.length; i++) {
+        if (frameEls[i].getBoundingClientRect().top <= line) active = i;
+      }
+      if (active !== currCap) { currCap = active; cap.textContent = frameEls[active].dataset.cap || ''; }
+    };
+    window.addEventListener('scroll', () => { if (!capRAF) capRAF = requestAnimationFrame(updateCap); }, { passive: true });
+    updateCap();
+
+    /* more projects — just the other projects' titles, clickable */
+    document.getElementById('cMore').innerHTML = ids.filter(k => k !== id).map(k =>
+      `<li class="case__more-item"><a href="work.html?p=${k}" data-flip data-flip-label="${PROJECTS[k].title}">${PROJECTS[k].title}</a></li>`
+    ).join('');
+
+    /* entry position: land with the line under the title (case__head bottom border)
+       tucked right beneath the fixed header — the title scrolls up behind it. Done
+       while the flip panel still covers the view, so the jump is invisible. Re-runs
+       once after fonts settle (still under cover). */
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    const DROP = 56; /* extra scroll past the header line — larger = lands further down */
+    const alignToHeader = () => {
+      const head = document.querySelector('.case__head');
+      const headerH = document.querySelector('.head')?.offsetHeight || 64;
+      if (!head) return;
+      const y = head.getBoundingClientRect().bottom + window.scrollY - headerH + DROP;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'instant' });
+    };
+    alignToHeader();
+    /* font swap can change the title height; re-align while still covered (<700ms) */
+    document.fonts?.ready.then(() => { if (performance.now() < 700) alignToHeader(); });
+  </script>
+</body>
+</html>
