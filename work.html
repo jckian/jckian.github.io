@@ -302,7 +302,8 @@
       const el = isVid(f.src)
         ? `<video src="${f.src}" muted loop autoplay playsinline preload="metadata"></video>`
         : `<img src="${f.src}" alt="${esc(f.cap) || p.title + ' — cover'}"${i ? ' loading="lazy"' : ''}>`;
-      return `<figure class="case__frame" data-cap="${esc(f.cap)}">${el}<figcaption>${f.cap || ''}</figcaption></figure>`;
+      const cls = i === 0 ? 'case__frame case__frame--full' : 'case__frame'; /* cover spans full width on top */
+      return `<figure class="${cls}" data-cap="${esc(f.cap)}">${el}<figcaption>${f.cap || ''}</figcaption></figure>`;
     }).join('');
     document.getElementById('cBody').textContent = p.body;
 

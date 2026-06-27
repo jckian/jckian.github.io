@@ -1266,6 +1266,11 @@ body.menu-open .menu .about {
   margin-bottom: clamp(4px, 0.4vw, 7px); /* vertical rhythm matches the column gap */
 }
 
+/* cover sits on top at full width, above the two-column gallery */
+.case__frame--full {
+  column-span: all;
+}
+
 .case__frame img,
 .case__frame video {
   width: 100%;
