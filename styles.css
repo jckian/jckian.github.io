@@ -872,14 +872,11 @@ body.menu-open .menu .about {
   color: var(--ink-2);
 }
 
-/* the project's site / base, sitting on top with a blank line before the keywords */
+/* the project's site / base, sitting on top with a blank line before the keywords
+   — inherits the same typography as the keyword list */
 .wrow__site {
   display: block;
   margin-bottom: 1.4em;
-  font-size: 11px;
-  letter-spacing: .04em;
-  text-transform: none;
-  opacity: .8;
 }
 
 .wrow__year {
