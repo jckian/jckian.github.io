@@ -46,6 +46,19 @@ document.addEventListener('click', (e) => {
   setTimeout(() => { location.href = href; }, 560);
 });
 
+/* restored from the back/forward cache (e.g. pressing Back from a project):
+   the page was left with the transition panel covering the screen, and no JS
+   re-runs on a bfcache restore — so reset it here, otherwise we stay stuck on
+   the dark "loading" cover */
+window.addEventListener('pageshow', (e) => {
+  if (!e.persisted) return;
+  if (flip) {
+    if (flip.classList.contains('cover')) flip.classList.add('reveal'); // covered page → reveal
+    else flip.classList.remove('enter', 'reveal');                      // index → tuck away
+  }
+  loader?.classList.add('is-out'); // never re-show the loader on restore
+});
+
 /* ---------- 1c. ENTRY COVER (sitoh-style) → slides up into the index ---------- */
 const enter = document.getElementById('enter');
 if (enter && location.hash && location.hash !== '#top') {
