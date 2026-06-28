@@ -237,3 +237,29 @@ tick(); setInterval(tick, 1000);
 /* ---------- 5. WORKS INDEX — all rows visible at once ---------- */
 /* no scroll-reveal: every project shows immediately, so the next one isn't
    hidden until you scroll down to it. */
+
+/* ---------- 6. MEDIA PERFORMANCE ---------- */
+/* The galleries hold ~10 clips (some 20–30 MB) plus many large photos.
+   Autoplaying every video at once pegs the CPU and makes scrolling janky, so
+   only run a video while it's on screen — pause the rest and resume them as
+   they scroll back into view. Images are decoded off the main thread. */
+(() => {
+  const vids = document.querySelectorAll('.wrow__gallery video, .case__frame video, #cCover video');
+  if (vids.length && 'IntersectionObserver' in window) {
+    const vio = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        const v = en.target;
+        if (en.isIntersecting) { const p = v.play(); if (p) p.catch(() => {}); }
+        else v.pause();
+      });
+    }, { rootMargin: '150px 0px' });
+    vids.forEach((v) => {
+      v.removeAttribute('autoplay'); // playback is controlled by visibility now
+      v.pause();
+      vio.observe(v);
+    });
+  }
+  document.querySelectorAll('.wrow__gallery img, .case__frame img').forEach((img) => {
+    img.decoding = 'async';
+  });
+})();
