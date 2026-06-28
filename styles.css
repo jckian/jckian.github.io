@@ -872,6 +872,16 @@ body.menu-open .menu .about {
   color: var(--ink-2);
 }
 
+/* the project's site / base, sitting just under the keyword list */
+.wrow__site {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: none;
+  opacity: .8;
+}
+
 .wrow__year {
   grid-column: 4;
   font-family: var(--mono);
@@ -1213,6 +1223,22 @@ body.menu-open .menu .about {
   color: var(--ink-2);
   text-align: right;
   white-space: nowrap;
+}
+
+/* team / collaboration badge beside the category · year line */
+.case__team {
+  display: inline-block;
+  margin-left: .7em;
+  padding: .2em .6em;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font-size: 11px;
+  letter-spacing: .08em;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.case__team:empty {
+  display: none;
 }
 
 /* left column of the story: full-width cover, red info box, then 2-col gallery */

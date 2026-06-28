@@ -106,7 +106,7 @@
 
     <div class="case__head">
       <h1 class="case__title" id="cTitle">Project</h1>
-      <div class="case__cat"><span id="cCat">Category</span> · <span id="cYear">’00</span></div>
+      <div class="case__cat"><span id="cCat">Category</span> · <span id="cYear">’00</span><span class="case__team" id="cTeam"></span></div>
     </div>
 
     <div class="case__brief" id="cBrief"></div>
@@ -156,6 +156,7 @@
     const PROJECTS = {
       "01": {
         title: "Orienteering", cat: "Memory / Landscape", year: "2022", tag: "Landscape",
+        team: "5-Person Teamwork",
         role: "Architectural design & programming",
         client: "NYCU GIA Studio · 5-person team",
         services: "Landscape regeneration, branding",
@@ -163,21 +164,45 @@
         body: "Located on Xiju Island at Taiwan's maritime edge, the project opens Former Military Outpost No.32 — a Cold War frontline carved into sandstone cliffs — for public use. The island's landscape is itself a product of military necessity, shaped by soldiers stationed here 40–50 years ago, so vegetation and ecology shift with elevation and defensive function. By remapping three distinct landscape layers — Plant (+240M), Stone (±0M) and Water (−400M) — 'Orienteering' becomes an exploring brand that guides travellers through Matsu's battlefield culture with their own body and senses. Five routes, one per sense — sight, sound, smell, taste and touch — turn the visit into a journey rather than a destination. As the stronghold retires from military duty it merges back into the earth: as one disappears, one emerges. — Instructors: Shu-Chang Kung, Ling-Li Tseng · 5 weeks, Summer 2022.",
         cover: "images/orienteering/work-01.jpg",
         gallery: [
-          { src: "images/orienteering/work-01-01.jpg", cap: "Xiju Island remapped — three landscape layers read across the terrain.", wide: true },
-          { src: "images/orienteering/work-01-02.jpg", cap: "Map of Sight — one of five sensory orienteering routes." },
-          { src: "images/orienteering/work-01-05.png", cap: "Arrival sequence at the retired stronghold entrance." },
-          { src: "images/orienteering/work-01-04.png", cap: "Interior carved into the hillside, defined by stacked stone." },
-          { src: "images/orienteering/work-01-03.png", cap: "Coastal viewing platform at dusk, facing the open sea." },
-          { src: "images/orienteering/work-01-06.jpg", cap: "Site photograph — sandstone walls meeting the Matsu coast." },
-          { src: "images/orienteering/work-01-07.jpg", cap: "An existing underground tunnel within Outpost No.32." },
-          { src: "images/orienteering/or%20(1).png", cap: "Arrival at the carved stone gateway, terraced contours beyond." },
-          { src: "images/orienteering/or%20(8).png", cap: "The route through mist and terraced grass fields." },
-          { src: "images/orienteering/or%20(16).png", cap: "Sunset filtering into a sheltered stone chamber." },
-          { src: "images/orienteering/or%20(27).png", cap: "Golden-hour overlook — a sunken path to the open sea.", wide: true }
+          { src: "images/orienteering/西莒空照_全區拷貝2.jpg", cap: "Xiju Island from above — Outpost No.32 sits at the far western tip, threaded by the island's old military trails." },
+          { src: "images/orienteering/Portfolio_260131_selected7.png", cap: "Three landscape layers — Plant at +240M, Stone at ±0M, Water at −400M — each reinterpreting the island's defensive terrain." },
+          { src: "images/orienteering/等角_2.jpg", cap: "Isometric of the intervention — terraced green roofs and sunken courts folded back into the coastal hillside." },
+          { src: "images/orienteering/or%20(1).png", cap: "Arrival — a carved stone gateway opens onto the terraced contours of the regenerated outpost." },
+          { src: "images/orienteering/or%20(10).png", cap: "The stronghold entrance keeps the old garrison motto ‘威鎮閩疆’ on a wall set into the green berm." },
+          { src: "images/orienteering/work-01-05.png", cap: "Arrival sequence climbing into Military Site No.32." },
+          { src: "images/orienteering/or%20(3).png", cap: "A small gateway and bunker form rise from a misty wildflower plateau above the sea." },
+          { src: "images/orienteering/or%20(8).png", cap: "One of five sensory routes winds through mist and newly terraced grass." },
+          { src: "images/orienteering/or%20(9).png", cap: "Terraced contour planting and stacked-stone retaining walls re-cover the rear hillside." },
+          { src: "images/orienteering/or%20(2).png", cap: "A grass roof curves over a stone chamber buried beneath the terraces — as one disappears, another emerges." },
+          { src: "images/orienteering/or%20(5).png", cap: "A sunken bathing pool collects in the terraced fields, fed by water drained from the tunnels." },
+          { src: "images/orienteering/or%20(22).png", cap: "A stone-lined path threads through tall grasses toward a half-buried bunker." },
+          { src: "images/orienteering/or%20(24).png", cap: "Organic stairways stitch the outpost's levels together; a visitor rests on the stone landing." },
+          { src: "images/orienteering/work-01-04.png", cap: "Interiors feel carved from the mountain — stacked stone defining each functional space." },
+          { src: "images/orienteering/or%20(13).png", cap: "Inside the stone, columns and a long floor channel carry water and dim light through the chamber." },
+          { src: "images/orienteering/or%20(14).png", cap: "Late light through the openings — stacked-stone benches gather people in a sheltered hall." },
+          { src: "images/orienteering/or%20(15).png", cap: "Beams and arches frame the setting sun across a half-buried gathering space." },
+          { src: "images/orienteering/or%20(16).png", cap: "Sunset filters deep into a sheltered stone chamber." },
+          { src: "images/orienteering/or%20(4).png", cap: "A low curved parapet carries the coastal path along the cliff edge." },
+          { src: "images/orienteering/work-01-03.png", cap: "A coastal viewing platform at dusk, facing the open sea." },
+          { src: "images/orienteering/or%20(21).png", cap: "The route runs down to the water along a rock revetment as the sun drops." },
+          { src: "images/orienteering/or%20(26).png", cap: "A narrow cut between concrete walls releases onto the horizon." },
+          { src: "images/orienteering/work-04.jpg", cap: "Twilight — a single weathering-steel wall holds the edge between hillside and sea." },
+          { src: "images/orienteering/openart-4b3cfbcf766549f4b861d98a294ed682_raw.jpg", cap: "The same edge at dusk, the outpost dissolving back into the dark of the island." },
+          { src: "images/orienteering/Portfolio_260131_selected10.png", cap: "The real Xiju — abandoned stone villages, granite shores and agave-covered slopes that shaped the design." },
+          { src: "images/orienteering/site/IMG_12221.jpeg", cap: "Site — the island's deserted stone settlement above the bay." },
+          { src: "images/orienteering/site/IMG_2369.jpg", cap: "Site — the existing outpost today, stone walls and a round pillbox over the offshore rocks." },
+          { src: "images/orienteering/site/IMG_1066.jpeg", cap: "Site — a stone-capped bunker embedded in the miscanthus hillside, a radar post on the ridge." },
+          { src: "images/orienteering/site/IMG_1045.jpeg", cap: "Site — a concrete gun apron and drainage channel left by the garrison." },
+          { src: "images/orienteering/site/IMG_1070.jpeg", cap: "Site — weathered bunker blocks and the trench path along the rampart." },
+          { src: "images/orienteering/site/IMG_18277.JPG", cap: "Site — sandstone cliffs and rockfall dropping to the sea below the outpost." },
+          { src: "images/orienteering/site/IMG_2251.jpg", cap: "Site — inside a round pillbox, light slipping through a single embrasure." },
+          { src: "images/orienteering/site/IMG_2290.jpg", cap: "Site — a narrow concrete passage within the tunnel system." },
+          { src: "images/orienteering/site/IMG_2302.jpg", cap: "Site — a firing embrasure framing nothing now but the open sea." }
         ]
       },
       "02": {
         title: "1 House for All", cat: "Housing / Community", year: "2022", tag: "Housing",
+        team: "30-Person Teamwork",
         role: "Design development & BIM coordination",
         client: "NYCU / TDIS · international competition",
         services: "Sustainable housing, mass timber",
@@ -193,6 +218,7 @@
       },
       "03": {
         title: "Banqiao Station Entrance", cat: "Public / Practice", year: "2023", tag: "Public",
+        team: "3-Person Team · Professional Practice",
         role: "Architectural design & coordination",
         client: "Professional practice · MRT Banqiao Station",
         services: "Transit infrastructure, detailing",
@@ -214,6 +240,7 @@
       },
       "04": {
         title: "Earthen", cat: "Climate / Housing", year: "2025", tag: "Climate",
+        team: "7-Person Teamwork",
         role: "Structural design, prototyping, glazing, robotic 3D printing",
         client: "SCI-Arc · Herwig Baumgartner",
         services: "Post-disaster housing, ceramic fabrication",
@@ -237,6 +264,7 @@
       },
       "05": {
         title: "Dream Studio", cat: "Generative AI / Game Design", year: "2022", tag: "Virtual",
+        team: "5-Person Teamwork",
         role: "Spatial design, AI image generation, diagrams, film editing",
         client: "NYCU competition · 5-person team",
         services: "Generative AI, cognitive mapping, game design",
@@ -304,6 +332,7 @@
     set('cTitle', p.title);
     set('cCat', p.cat);
     set('cYear', /^\d/.test(p.year) ? "’" + p.year.slice(2) : p.year);
+    set('cTeam', p.team || '');
 
     /* brief: just the big intro line, full-width at the top */
     document.getElementById('cBrief').innerHTML = `<p class="case__lead">${p.intro}</p>`;
