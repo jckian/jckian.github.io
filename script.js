@@ -205,17 +205,19 @@ window.addEventListener('resize', () => {
   fitRAF = requestAnimationFrame(fitTitles);
 });
 
-/* size each thumbnail to the shape of its media, so nothing is forced into a
-   landscape 4:3 crop:
-     · portrait media stands tall (spans two rows, kept vertical)
-     · a super-wide panorama (one side ≥1.9× the other) takes its own full-width row */
+/* keep the index grid uniform: every thumbnail is the same 4:3 size, and only
+   the clearly oversized shapes break out —
+     · a big landscape (大橫式, ≥1.9× wide) takes its own full-width row
+     · a big portrait  (大直式, ≥1.4× tall) stands tall over two rows
+   mild portraits and near-square images stay in the uniform 4:3 grid. */
 const flagOrient = (m) => {
   const w = m.naturalWidth || m.videoWidth, h = m.naturalHeight || m.videoHeight;
   if (!w || !h) return;
   const shot = m.closest('.wrow__shot');
   if (!shot) return;
-  if (h > w) shot.classList.add('wrow__shot--tall');
-  else if (w / h >= 1.9) shot.classList.add('wrow__shot--full');
+  const r = w / h;
+  if (r >= 1.9) shot.classList.add('wrow__shot--full');
+  else if (r <= 0.72) shot.classList.add('wrow__shot--tall');
 };
 document.querySelectorAll('.wrow__gallery img').forEach(img => {
   if (img.complete && img.naturalWidth) flagOrient(img);
