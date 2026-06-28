@@ -50,6 +50,9 @@ body * {
 html {
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
+  /* anchored sections (Works on entry, hash jumps, the logo link) stop below
+     the fixed header instead of sliding under it */
+  scroll-padding-top: 48px;
 }
 
 body {
