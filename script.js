@@ -59,6 +59,35 @@ window.addEventListener('pageshow', (e) => {
   loader?.classList.add('is-out'); // never re-show the loader on restore
 });
 
+/* ---------- 1b-ii. WORKS GROUP FILTER + Arch.⇄Tech. switch ---------- */
+const WORK_GROUPS = {
+  arch: ['landscape', 'housing', 'public'],
+  tech: ['visual', 'event', 'archive']
+};
+const worksSwitch = document.getElementById('worksSwitch');
+/* point the switch at the OTHER group, and label it for that group */
+const setWorksSwitch = (current) => {
+  if (!worksSwitch) return;
+  const other = current === 'tech' ? 'arch' : 'tech';
+  worksSwitch.dataset.enterGroup = other;
+  worksSwitch.querySelector('.works__switch-label').textContent =
+    other === 'arch' ? 'Arch.' : 'Tech.';
+};
+const filterWorks = (g) => {
+  const cats = WORK_GROUPS[g];
+  document.querySelectorAll('.wrow').forEach((row) => {
+    row.style.display = (!cats || cats.includes(row.dataset.cat)) ? '' : 'none';
+  });
+  setWorksSwitch(g);
+};
+if (worksSwitch) {
+  worksSwitch.addEventListener('click', (e) => {
+    e.preventDefault();
+    filterWorks(worksSwitch.dataset.enterGroup);
+    document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
 /* ---------- 1c. ENTRY COVER (sitoh-style) → slides up into the index ---------- */
 const enter = document.getElementById('enter');
 if (enter && location.hash && location.hash !== '#top') {
@@ -74,6 +103,7 @@ if (enter && location.hash && location.hash !== '#top') {
     if (enter.classList.contains('is-open')) return;
     enter.classList.add('is-open');
     document.body.classList.remove('enter-lock');
+    window.__enterMedia?.();   // begin clip playback only now the cover is gone
     const dest = target || document.getElementById('works');
     if (dest) dest.scrollIntoView({ block: 'start', behavior: 'instant' });
     setTimeout(() => { enter.style.display = 'none'; }, 1050);
@@ -98,6 +128,14 @@ if (enter && location.hash && location.hash !== '#top') {
     e.preventDefault();
     openSite();
     setMenu(true);
+  });
+  /* Arch. / Tech. marks enter the site with the works filtered to that group */
+  enter.querySelectorAll('[data-enter-group]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      filterWorks(a.getAttribute('data-enter-group'));
+      openSite(document.getElementById('works'));
+    });
   });
 }
 
@@ -205,11 +243,11 @@ window.addEventListener('resize', () => {
   fitRAF = requestAnimationFrame(fitTitles);
 });
 
-/* keep the index grid uniform: every thumbnail is the same 4:3 size, and only
-   the clearly oversized shapes break out —
-     · a big landscape (大橫式, ≥1.9× wide) takes its own full-width row
-     · a big portrait  (大直式, ≥1.4× tall) stands tall over two rows
-   mild portraits and near-square images stay in the uniform 4:3 grid. */
+/* keep the index grid uniform: every thumbnail is the same 4:3 size at a fixed
+   spacing. Only a genuinely long landscape (大橫式, ≥1.9× wide) breaks out to its
+   own full-width row. Everything else — including portrait photos and vertical
+   videos — stays in the uniform 4:3 cell and is centre-cropped to fit, so the
+   row height and gaps never change. */
 const flagOrient = (m) => {
   const w = m.naturalWidth || m.videoWidth, h = m.naturalHeight || m.videoHeight;
   if (!w || !h) return;
@@ -217,7 +255,6 @@ const flagOrient = (m) => {
   if (!shot) return;
   const r = w / h;
   if (r >= 1.9) shot.classList.add('wrow__shot--full');
-  else if (r <= 0.72) shot.classList.add('wrow__shot--tall');
 };
 document.querySelectorAll('.wrow__gallery img').forEach(img => {
   if (img.complete && img.naturalWidth) flagOrient(img);
@@ -247,11 +284,16 @@ tick(); setInterval(tick, 1000);
    they scroll back into view. Images are decoded off the main thread. */
 (() => {
   const vids = document.querySelectorAll('.wrow__gallery video, .case__frame video, #cCover video');
+  /* while the entry splash covers the index, the work clips are technically in
+     the viewport, so the observer would start decoding several at once (incl. the
+     big ones) behind the cover — that stutters the intro marquee and reads as a
+     ghosted/doubled screen. Keep everything paused until the site is entered. */
+  let entered = !document.body.classList.contains('enter-lock');
   if (vids.length && 'IntersectionObserver' in window) {
     const vio = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
         const v = en.target;
-        if (en.isIntersecting) { const p = v.play(); if (p) p.catch(() => {}); }
+        if (en.isIntersecting && entered) { const p = v.play(); if (p) p.catch(() => {}); }
         else v.pause();
       });
     }, { rootMargin: '150px 0px' });
@@ -260,6 +302,14 @@ tick(); setInterval(tick, 1000);
       v.pause();
       vio.observe(v);
     });
+    /* called when the entry cover slides away — start playing whatever's in view */
+    window.__enterMedia = () => {
+      if (entered) return;
+      entered = true;
+      vids.forEach((v) => { vio.unobserve(v); vio.observe(v); });
+    };
+  } else {
+    window.__enterMedia = () => {};
   }
   document.querySelectorAll('.wrow__gallery img, .case__frame img').forEach((img) => {
     img.decoding = 'async';

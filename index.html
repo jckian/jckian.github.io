@@ -10,13 +10,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <!-- index.html only: red ink (#F90203), blue (#172FC7) on hover -->
+  <!-- index.html only: black ink (#000000), red (#F90203) on hover -->
   <style>
     :root {
-      --ink: #F90203;
-      --ink-2: #F90203;
-      --line: #F90203;
-      --accent: #172FC7;
+      --ink: #000000;
+      --ink-2: #000000;
+      --line: #000000;
+      --accent: #F90203;
     }
   </style>
 </head>
@@ -24,14 +24,6 @@
 
   <!-- ============ ENTRY / COVER (sitoh-style landing) ============ -->
   <section class="enter" id="enter">
-    <div class="enter__bar">
-      <span class="enter__logo">Yenhsing Cheng</span>
-      <nav class="enter__nav">
-        <a href="#works" data-enter>Works</a>
-        <a href="#" data-enter-about>About</a>
-      </nav>
-    </div>
-
     <div class="enter__meta">
       <ul class="social enter__social">
         <li><a href="https://www.instagram.com/_cyenh_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
@@ -40,15 +32,22 @@
         <li><a href="https://www.linkedin.com/in/yenhsing-cheng" target="_blank" rel="noopener" aria-label="LinkedIn">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3V9zm6 0h3.8v1.65h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.74V21h-4v-5.2c0-1.24-.02-2.84-1.9-2.84-1.9 0-2.2 1.36-2.2 2.76V21H9V9z"/></svg>
         </a></li>
+        <li><a href="https://github.com/jckian" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+        </a></li>
         <li><a href="mailto:jckiancheng@gmail.com" aria-label="Email">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
         </a></li>
       </ul>
       <p>Taipei · Los Angeles</p>
+      <span class="enter__copy">© 2026 Yenhsing Cheng</span>
     </div>
 
     <div class="enter__right">
-      <div class="enter__mark" aria-hidden="true">Arch.<br>Tech.</div>
+      <div class="enter__mark">
+        <a href="#works" class="enter__mark-link" data-enter-group="arch">Arch<span class="enter__dot">.</span></a><br>
+        <a href="#works" class="enter__mark-link" data-enter-group="tech">Tech<span class="enter__dot">.</span></a>
+      </div>
       <button class="enter__go" id="enterGo">
         <span>Enter</span>
         <svg viewBox="0 0 24 24" width="15" height="15"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -69,9 +68,6 @@
       </div>
     </div>
 
-    <div class="enter__foot">
-      <span class="enter__copy">© 2026 Yenhsing Cheng</span>
-    </div>
   </section>
 
   <!-- ============ PAGE TRANSITION ============ -->
@@ -116,6 +112,9 @@
             </a></li>
             <li><a href="https://www.linkedin.com/in/yenhsing-cheng" target="_blank" rel="noopener" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3V9zm6 0h3.8v1.65h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.74V21h-4v-5.2c0-1.24-.02-2.84-1.9-2.84-1.9 0-2.2 1.36-2.2 2.76V21H9V9z"/></svg>
+            </a></li>
+            <li><a href="https://github.com/jckian" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
             </a></li>
             <li><a href="mailto:jckiancheng@gmail.com" aria-label="Email">
               <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
@@ -167,6 +166,24 @@
   <section id="top" class="works">
     <span id="works" class="anchor" aria-hidden="true"></span>
     <ol class="wlist" id="grid">
+      <li class="wrow" data-cat="visual" data-id="voro">
+        <a href="#" class="wrow__link" data-flip>
+          <h3 class="wrow__title">VORO</h3>
+          <div class="wrow__main">
+            <div class="wrow__head">
+              <p class="wrow__brief">An interactive 3D design system that integrates program, massing and structure into a single early-stage workflow — resolving a brief into a coherent, BIM-ready model in real time.</p>
+              <span class="wrow__cat">Computational Design / Generative / Design Tech / Real-Time 3D</span>
+              <span class="wrow__year">2026</span>
+            </div>
+            <div class="wrow__gallery">
+              <div class="wrow__shot"><video src="images/VORO/VORO-video.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><video src="images/VORO/clips/rapid_demo.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><video src="images/VORO/clips/testing_SPEED.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><video src="images/VORO/clips/tower-record_16_9.mp4" muted loop playsinline preload="none"></video></div>
+            </div>
+          </div>
+        </a>
+      </li>
       <li class="wrow" data-cat="visual" data-id="threshld">
         <a href="#" class="wrow__link" data-flip>
           <h3 class="wrow__title">THRESHLD</h3>
@@ -177,10 +194,11 @@
               <span class="wrow__year">2026</span>
             </div>
             <div class="wrow__gallery">
-              <div class="wrow__shot"><video src="images/THRESHLD/16_9_2.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+              <div class="wrow__shot wrow__shot--tall"><video src="images/THRESHLD/16_9_2.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><video src="images/THRESHLD/index-1.mp4" muted loop playsinline preload="none"></video></div>
               <div class="wrow__shot"><img src="images/THRESHLD/Product-2.png" alt="THRESHLD — product render" loading="lazy"></div>
-              <div class="wrow__shot"><video src="images/THRESHLD/timelapse_noVoice.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
-              <div class="wrow__shot"><video src="images/THRESHLD/mvLYsvfeKxzzeysLGpoI3_844fd4faae1c40de9c0b257b125353bb.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+              <div class="wrow__shot"><video src="images/THRESHLD/timelapse_noVoice.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><video src="images/THRESHLD/mvLYsvfeKxzzeysLGpoI3_844fd4faae1c40de9c0b257b125353bb.mp4" muted loop playsinline preload="none"></video></div>
               <div class="wrow__shot"><img src="images/THRESHLD/work-02-03.png" alt="THRESHLD — interior study" loading="lazy"></div>
             </div>
           </div>
@@ -196,18 +214,21 @@
               <span class="wrow__year">2022</span>
             </div>
             <div class="wrow__gallery">
-              <div class="wrow__shot"><img src="images/orienteering/work-01.jpg" alt="Orienteering — aerial view of Military Outpost No.32, Xiju Island" loading="lazy"></div>
-              <div class="wrow__shot"><img src="images/orienteering/work-01-05.png" alt="Arrival sequence at the retired stronghold entrance" loading="lazy"></div>
-              <div class="wrow__shot"><img src="images/orienteering/work-01-04.png" alt="Interior carved into the hillside, defined by stacked stone" loading="lazy"></div>
-              <div class="wrow__shot"><img src="images/orienteering/work-01-03.png" alt="Coastal viewing platform at dusk, facing the open sea" loading="lazy"></div>
-              <div class="wrow__shot"><img src="images/orienteering/or%20(1).png" alt="Arrival at the carved stone gateway, terraced contours beyond" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/rendering/1%20(1).jpg" alt="Aerial view of the regenerated Outpost No.32 along the coast" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/rendering/1%20(12).png" alt="A gateway and round bunker on a misty wildflower plateau" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/rendering/1%20(8).png" alt="A stone-lined path through tall grasses to a half-buried bunker" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/rendering/1%20(4).png" alt="A sheltered stone hall at sunset, columns and gathering steps" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/rendering/1%20(5).png" alt="An arched stone chamber framing the setting sun" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/rendering/1%20(7).png" alt="A coastal path along the rock revetment at sunset" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/rendering/1%20(13).png" alt="A coastal viewing platform at dusk facing the open sea" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/orienteering/rendering/1%20(14).png" alt="A misty terraced landscape with a sunken pool" loading="lazy"></div>
             </div>
           </div>
         </a>
       </li>
       <li class="wrow" data-cat="housing" data-id="02">
         <a href="#" class="wrow__link" data-flip>
-          <h3 class="wrow__title">1 House<br>for All</h3>
+          <h3 class="wrow__title">1 House for All</h3>
           <div class="wrow__main">
             <div class="wrow__head">
               <p class="wrow__brief">A net-zero, mass-timber housing prototype that fills the empty gaps of urban renewal with shared, transitional homes — built 1:1.</p>
@@ -215,9 +236,7 @@
               <span class="wrow__year">2022</span>
             </div>
             <div class="wrow__gallery">
-              <div class="wrow__shot"><img src="images/1-house-for-all/work-02.png" alt="1 House for All — mid-way housing inserted into urban-renewal gaps" loading="lazy"></div>
-              <div class="wrow__shot"><img src="images/1-house-for-all/Portfolio_260131_selected16.png" alt="Plans and section — shared ground floor, dwelling units and rooftop day-care" loading="lazy"></div>
-              <div class="wrow__shot"><img src="images/1-house-for-all/construction%20system.png" alt="Construction system — mass-timber wrapped in a reusable steel-framed skin" loading="lazy"></div>
+              <div class="wrow__shot wrow__shot--span"><img src="images/1-house-for-all/work-02.png" alt="1 House for All — mid-way housing inserted into urban-renewal gaps" loading="lazy"></div>
             </div>
           </div>
         </a>
@@ -256,6 +275,10 @@
               <span class="wrow__year">2025</span>
             </div>
             <div class="wrow__gallery">
+              <div class="wrow__shot"><video src="images/earthen/clips/1-RENDER.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><video src="images/earthen/clips/2-ASSEMBLE.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><video src="images/earthen/clips/3-PRINT.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><video src="images/earthen/clips/Video%20Project%2022.mp4" muted loop playsinline preload="none"></video></div>
               <div class="wrow__shot"><img src="images/earthen/work-04-01.jpg" alt="Fired, glazed ceramic wall — earth-toned palette of the post-fire landscape" loading="lazy"></div>
               <div class="wrow__shot"><img src="images/earthen/DSC03168.JPG" alt="Fired ceramic façade — printed clay glazed into an earth-toned palette" loading="lazy"></div>
               <div class="wrow__shot"><img src="images/earthen/DSC03170.JPG" alt="Glaze detail — reactive whites and chrome pooling between printed layers" loading="lazy"></div>
@@ -266,7 +289,7 @@
       </li>
       <li class="wrow" data-cat="visual" data-id="05">
         <a href="#" class="wrow__link" data-flip>
-          <h3 class="wrow__title">Dream Studio</h3>
+          <h3 class="wrow__title">DreamStudio</h3>
           <div class="wrow__main">
             <div class="wrow__head">
               <p class="wrow__brief">A generative-AI design competition that turns collective memory into virtual game-space through Edward Tolman's cognitive-map theory.</p>
@@ -274,10 +297,50 @@
               <span class="wrow__year">2022</span>
             </div>
             <div class="wrow__gallery">
-              <div class="wrow__shot"><video src="images/dreamstudio/clips/vide_ltest1_1.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
-              <div class="wrow__shot"><video src="images/dreamstudio/clips/vide_ltest1-2.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
-              <div class="wrow__shot"><video src="images/dreamstudio/clips/vide_ltest1-3.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
-              <div class="wrow__shot"><video src="images/dreamstudio/clips/vide_ltest1-4.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+              <div class="wrow__shot"><video src="images/dreamstudio/clips/vide_ltest1_1.mp4?v=20260701" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><video src="images/dreamstudio/clips/vide_ltest1-2.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><video src="images/dreamstudio/clips/vide_ltest1-3.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><video src="images/dreamstudio/clips/vide_ltest1-4.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><img src="images/dreamstudio/index/1.png" alt="DreamStudio — generative game-space still" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/dreamstudio/index/work-05-02.png" alt="DreamStudio — cognitive-map virtual environment" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/dreamstudio/index/Gemini_Generated_Image_s3x6ous3x6ous3x6.png" alt="DreamStudio — AI-generated memory landscape" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/dreamstudio/index/Gemini_Generated_Image_bitvs2bitvs2bitv.png" alt="DreamStudio — AI-generated memory landscape" loading="lazy"></div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="wrow" data-cat="visual" data-id="hiyou">
+        <a href="#" class="wrow__link" data-flip>
+          <h3 class="wrow__title">HiYou</h3>
+          <div class="wrow__main">
+            <div class="wrow__head">
+              <p class="wrow__brief">AI Icebreaker for Real-World Connections.</p>
+              <span class="wrow__cat">AI / Interactive Installation / Computer Vision / Real-Time</span>
+              <span class="wrow__year">2026</span>
+            </div>
+            <div class="wrow__gallery">
+              <div class="wrow__shot wrow__shot--tall2 wrow__shot--zoom"><video src="images/hi-you/clips/HiYou.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot wrow__shot--tall2"><video src="images/hi-you/clips/L-Acoustics%20VID.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot wrow__shot--tall2"><video src="images/hi-you/clips/composite_slideshow.mp4" muted loop playsinline preload="none"></video></div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="wrow" data-cat="event" data-id="sciarc-gala">
+        <a href="#" class="wrow__link" data-flip>
+          <h3 class="wrow__title">SCI-Arc Gala</h3>
+          <div class="wrow__main">
+            <div class="wrow__head">
+              <p class="wrow__brief">A series of AI-generated videos projected on the garden entrance of the DTLA Public Library, using custom-developed pipelines for the Fall 2025 SCI-Arc Gala.</p>
+              <span class="wrow__cat"><span class="wrow__site">Downtown Los Angeles</span>Film / Installation</span>
+              <span class="wrow__year">2025</span>
+            </div>
+            <div class="wrow__gallery">
+              <div class="wrow__shot wrow__shot--tall"><video src="images/sciarc-gala/SCIArcGalaFinalVideo.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot wrow__shot--tall"><video src="images/sciarc-gala/archive-gala-opening.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><img src="images/sciarc-gala/heroshot+exp.png" alt="SCI-Arc Gala 2025 — a night in downtown Los Angeles" loading="lazy"></div>
+              <div class="wrow__shot wrow__shot--tall"><img src="images/sciarc-gala/Gemini_Generated_Image_8b8nua8b8nua8b8n.png" alt="Gala night — student work projected across the downtown façade" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/sciarc-gala/Gemini_Generated_Image_vrft60vrft60vrft.png" alt="Projected drawings washing over the old stone" loading="lazy"></div>
             </div>
           </div>
         </a>
@@ -292,21 +355,21 @@
               <span class="wrow__year">—</span>
             </div>
             <div class="wrow__gallery">
-              <div class="wrow__shot"><img src="images/archive/archive-01.png" alt="Archive — assorted scraps" loading="lazy"></div>
-              <div class="wrow__shot"><video src="images/archive/SCIArcGalaFinalVideo.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
-              <div class="wrow__shot"><video src="images/archive/archive-gala-opening.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
-              <div class="wrow__shot"><img src="images/archive/heroshot+exp.png" alt="SCI-Arc Gala 2025 — a night in downtown Los Angeles" loading="lazy"></div>
-              <div class="wrow__shot"><img src="images/archive/Gemini_Generated_Image_8b8nua8b8nua8b8n.png" alt="Gala night — student work projected across the downtown façade" loading="lazy"></div>
-              <div class="wrow__shot"><img src="images/archive/Gemini_Generated_Image_8fvg1i8fvg1i8fvg.png" alt="Projection mapping — the historic tower turned into a canvas" loading="lazy"></div>
-              <div class="wrow__shot"><img src="images/archive/Gemini_Generated_Image_vrft60vrft60vrft.png" alt="Projected drawings washing over the old stone" loading="lazy"></div>
-              <div class="wrow__shot"><video src="images/archive/HiYou.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
-              <div class="wrow__shot"><img src="images/archive/0922%2011模型_190925_0040.jpg" alt="Plywood space-frame — a tetrahedral structural model" loading="lazy"></div>
-              <div class="wrow__shot"><img src="images/archive/work-04-03.jpg" alt="3D-printed module — a petal aperture seen from above" loading="lazy"></div>
+              <div class="wrow__shot"><video src="images/archive/kaleidoscope.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><video src="images/archive/clips/Video%20Project%2016.mp4" muted loop playsinline preload="none"></video></div>
+              <div class="wrow__shot"><img src="images/archive/1_1%20MOCKUP.jpg" alt="1:1 transit-pavilion mock-up at Gongguan Station" loading="lazy"></div>
+              <div class="wrow__shot"><img src="images/archive/archive-01.png" alt="Transformable Puzzle — auxetic tiling folded through a sequence of forms" loading="lazy"></div>
             </div>
           </div>
         </a>
       </li>
     </ol>
+    <div class="works__foot">
+      <a href="#works" class="works__switch" id="worksSwitch" data-enter-group="tech">
+        <span class="works__switch-label">Tech.</span>
+        <span class="works__switch-arw" aria-hidden="true">→</span>
+      </a>
+    </div>
   </section>
 
   <!-- ============ FOOTER ============ -->
@@ -320,6 +383,9 @@
           </a></li>
           <li><a href="https://www.linkedin.com/in/yenhsing-cheng" target="_blank" rel="noopener" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3V9zm6 0h3.8v1.65h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.74V21h-4v-5.2c0-1.24-.02-2.84-1.9-2.84-1.9 0-2.2 1.36-2.2 2.76V21H9V9z"/></svg>
+          </a></li>
+          <li><a href="https://github.com/jckian" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
           </a></li>
           <li><a href="mailto:jckiancheng@gmail.com" aria-label="Email">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>

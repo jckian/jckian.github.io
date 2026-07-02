@@ -7,13 +7,13 @@
 :root {
   --bg: #ffffff;
   --bg-2: #ededed;
-  /* default scheme (work.html + about.html): red ink, blue on hover */
-  --ink: #F90203;
-  --ink-2: #F90203;
-  --line: #F90203;
+  /* default scheme (work.html + about.html): black ink, red on hover */
+  --ink: #000000;
+  --ink-2: #000000;
+  --line: #000000;
   --line-w: 2px;
   /* one knob for every divider line's thickness */
-  --accent: #172FC7;
+  --accent: #F90203;
 
   --sans: "Inter", system-ui, -apple-system, sans-serif;
   /* "mono" now resolves to the same sans-serif — kept as a var so the existing
@@ -44,7 +44,7 @@
    both light and dark backgrounds); hotspot sits at the arrow tip */
 body,
 body * {
-  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M3 2 L3 20 L8 15.5 L11.5 22 L14 21 L10.5 14.8 L17 14.8 Z' fill='%23172FC7' stroke='%23ffffff' stroke-width='1.3' stroke-linejoin='round'/></svg>") 3 2, auto;
+  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M3 2 L3 20 L8 15.5 L11.5 22 L14 21 L10.5 14.8 L17 14.8 Z' fill='%23F90203' stroke='%23ffffff' stroke-width='1.3' stroke-linejoin='round'/></svg>") 3 2, auto;
 }
 
 html {
@@ -316,7 +316,28 @@ body.enter-lock {
   line-height: .9;
   writing-mode: vertical-rl;
   text-orientation: sideways;
-  pointer-events: none;
+  pointer-events: none;            /* only the two labels below are clickable */
+}
+/* Arch. → architecture works · Tech. → tech / digital-design works */
+.enter__mark-link {
+  pointer-events: auto;
+  transition: color .25s;
+}
+.enter__mark-link:hover,
+.enter__mark-link:focus-visible {
+  color: var(--accent);
+}
+
+/* the two dots and the Enter button take turns flashing red then back to black */
+@keyframes coverCycle {
+  0%, 28% { color: var(--accent); }
+  40%, 100% { color: var(--ink); }
+}
+.enter__dot {
+  animation: coverCycle 2.4s var(--ease) infinite;
+}
+.enter__mark-link[data-enter-group="tech"] .enter__dot {
+  animation-delay: .8s;
 }
 
 .enter__go {
@@ -331,12 +352,21 @@ body.enter-lock {
   letter-spacing: .12em;
   text-transform: uppercase;
   transition: background .35s var(--ease), color .35s, border-color .35s;
+  animation: coverCycle 2.4s var(--ease) 1.6s infinite;
 }
 
 .enter__go:hover {
   background: var(--ink);
   color: var(--bg);
   border-color: var(--ink);
+  animation: none;               /* let the hover swap win over the red pulse */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enter__dot,
+  .enter__go {
+    animation: none;
+  }
 }
 
 .enter__go svg {
@@ -378,7 +408,7 @@ body.enter-lock {
   .enter__word-track { animation: none; }
 }
 
-/* Blue intro: a vertical line draws upward at the marquee's top-left, then blue text runs out */
+/* Red intro: a vertical line draws upward at the marquee's top-left, then red text runs out */
 .enter__hello {
   position: absolute;
   left: clamp(20px, 3.5vw, 48px);
@@ -395,7 +425,7 @@ body.enter-lock {
   transition: opacity .2s ease, visibility .2s;
   pointer-events: none;
 }
-/* the blue line that draws upward (bottom-to-top) */
+/* the red line that draws upward (bottom-to-top) */
 .enter__hello::before {
   content: "";
   position: absolute;
@@ -435,14 +465,7 @@ body.enter-lock {
   height: 100%;
 }
 
-.enter__foot {
-  display: contents;
-}
-
 .enter__copy {
-  position: absolute;
-  right: clamp(20px, 3.5vw, 48px);
-  bottom: clamp(20px, 2.6vw, 34px);
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: .08em;
@@ -462,10 +485,6 @@ body.enter-lock {
   .enter__word {
     font-size: 17vw;
     bottom: 70px;
-  }
-
-  .enter__copy {
-    bottom: 28px;
   }
 }
 
@@ -528,10 +547,10 @@ body.enter-lock {
   color: var(--accent);
 }
 
-/* while the About overlay is open, the header (logo + Works toggle) turns blue to match it */
+/* while the About overlay is open, the header (logo + Works toggle) turns black to match it */
 body.menu-open .head__logo,
 body.menu-open .head__menu {
-  color: #172FC7;
+  color: #000000;
 }
 
 /* match the top-left "Yenhsing Cheng" logo typography */
@@ -571,7 +590,7 @@ body.menu-open .head__menu-ico i:nth-child(2) {
   position: fixed;
   inset: 0;
   z-index: 90;
-  background: #172FC7;   /* About panel: blue background, white text */
+  background: #000000;   /* About panel: black background, white text */
   color: var(--bg);
   padding: clamp(64px, 9vh, 96px) var(--pad) clamp(14px, 2vh, 24px);
   display: flex;
@@ -792,6 +811,36 @@ body.menu-open .menu .about {
   margin: 0 auto;
 }
 
+/* Arch. ⇄ Tech. cross-link — sits at the bottom-right of the works index,
+   jumping to the other group's view */
+.works__foot {
+  margin-top: 28px;
+  text-align: right;
+}
+.works__switch {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 56px);
+  letter-spacing: -.02em;
+  line-height: .9;
+  transition: color .25s;
+}
+.works__switch:hover,
+.works__switch:focus-visible {
+  color: var(--accent);
+}
+.works__switch-arw {
+  font-weight: 400;
+  transition: transform .25s;
+}
+.works__switch:hover .works__switch-arw,
+.works__switch:focus-visible .works__switch-arw {
+  transform: translateX(6px);
+}
+
 /* vertical works index — Ryan-Miyoshi-style row:
    super-large project name on the left; brief + meta on top of the right,
    a row of representative images below */
@@ -894,6 +943,12 @@ body.menu-open .menu .about {
   gap: clamp(4px, 0.4vw, 7px);
 }
 
+/* exactly two equal columns — used for HiYou's two side-by-side videos */
+.wrow__gallery--duo {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
 .wrow__shot {
   aspect-ratio: 4/3;
   overflow: hidden;
@@ -909,10 +964,38 @@ body.menu-open .menu .about {
   display: block;
 }
 
-/* a tall/vertical feature shot spanning two rows of the gallery grid */
+/* a leftmost feature clip that spans two rows. Its height is locked to exactly
+   two normal 4:3 cells plus the gap between them — the neighbouring 4:3 shots
+   size the two rows, and the media is absolutely positioned so it can't inflate
+   them; object-fit: cover then centre-crops the clip to fill. */
 .wrow__shot--tall {
   grid-row: span 2;
   aspect-ratio: auto;
+  position: relative;
+}
+
+.wrow__shot--tall img,
+.wrow__shot--tall video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* a standalone double-height clip for a row with no 4:3 neighbours to size
+   against (e.g. HiYou's all-video row): fixed to twice a normal 4:3 cell via a
+   2:3 box, centre-cropped to fill. */
+.wrow__shot--tall2 {
+  aspect-ratio: 2 / 3;
+}
+
+/* zoom the clip in from its centre without changing the frame; overflow:hidden
+   on .wrow__shot clips the overspill */
+.wrow__shot--zoom video,
+.wrow__shot--zoom img {
+  transform: scale(1.15);
+  transform-origin: center;
 }
 
 /* a super-long photo (extreme aspect, flagged by JS) takes its own full-width row,
@@ -932,6 +1015,20 @@ body.menu-open .menu .about {
   height: auto;
   max-width: 100%;
   max-height: 80vh;
+  object-fit: contain;
+}
+
+/* a single feature image spanning the full gallery width, edges aligned with the
+   other rows' thumbnail strips, shown uncropped at its natural aspect ratio */
+.wrow__shot--span {
+  grid-column: 1 / -1;
+  aspect-ratio: auto;
+}
+
+.wrow__shot--span img,
+.wrow__shot--span video {
+  width: 100%;
+  height: auto;
   object-fit: contain;
 }
 
@@ -1301,6 +1398,50 @@ body.menu-open .menu .about {
   display: none;
 }
 
+/* a frame that spans the full width of the media column (its own row) */
+.case__frame--full {
+  column-span: all;
+}
+
+/* a frame whose body-level note sits beside the image, at body font size */
+.case__frame--noted {
+  column-span: all;
+  overflow: visible;
+  background: transparent;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: clamp(12px, 1.5vw, 24px);
+  align-items: start;
+  margin-bottom: clamp(10px, 1vw, 18px);
+}
+
+.case__frame--noted img,
+.case__frame--noted video {
+  border-radius: 2px;
+}
+
+/* two (or more) images sitting side by side within a noted frame */
+.case__note-imgs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: clamp(4px, 0.4vw, 7px);
+  align-items: start;
+}
+
+.case__frame--noted figcaption.case__note {
+  display: block;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 20px;
+}
+
+@media (max-width: 560px) {
+  .case__frame--noted {
+    grid-template-columns: 1fr;
+  }
+}
+
 .case__aside {
   position: sticky;
   top: 96px;
@@ -1314,6 +1455,49 @@ body.menu-open .menu .about {
   color: var(--ink);
   font-size: 15px;
   line-height: 20px;
+  white-space: pre-line;
+}
+
+/* ARCHIVE — bespoke two-column layout: clip + intro on the right, the long
+   photo full-width below it, then the two mock-ups (combined width = clip) with
+   their intro stacked under the first. */
+.arch {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: clamp(16px, 2.2vw, 34px);
+  row-gap: clamp(4px, 0.4vw, 7px);
+  align-items: start;
+  margin: 44px 0 90px;
+}
+/* left column stacks video → long photo → mock-ups; each intro sits on its own
+   row in the right column, so the transit intro lands beside the mock-ups
+   rather than running straight under the Kaleidoscope one */
+.arch__video   { grid-column: 1; grid-row: 1; margin: 0; }
+.arch__intro--a{ grid-column: 2; grid-row: 1; }
+.arch__long    { grid-column: 1; grid-row: 2; margin: 0; }
+.arch__mockups { grid-column: 1; grid-row: 3; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(4px, 0.4vw, 7px); }
+.arch__intro--b{ grid-column: 2; grid-row: 3; }
+.arch__video video,
+.arch__long img,
+.arch__mockups img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+  background: var(--bg-2);
+}
+.arch__intro {
+  margin: 0;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 20px;
+}
+@media (max-width: 720px) {
+  .arch { grid-template-columns: 1fr; }
+  .arch__video, .arch__intro--a, .arch__long, .arch__mockups, .arch__intro--b {
+    grid-column: 1;
+    grid-row: auto;
+  }
 }
 
 .case__cap {

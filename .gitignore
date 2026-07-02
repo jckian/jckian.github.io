@@ -4,6 +4,25 @@ reference/
 .claude/
 *.md
 
+# AI 工具本機設定/skill 快取，非網站內容
+.agents/
+.augment/
+.codebuddy/
+.codex/
+.continue/
+.cursor/
+.factory/
+.gemini/
+.github/
+.kilocode/
+.kiro/
+.opencode/
+.qoder/
+.roo/
+.trae/
+.warp/
+.windsurf/
+
 # 網站沒用到的原始/高解析素材（避免超過 GitHub Pages 1GB 上限）
 images/_originals/
 images/Links/

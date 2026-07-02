@@ -1,0 +1,49 @@
+This project is based on the theory of Froebel
+Gifts and starts from the main rules, which
+include "transformable", "construction", "new
+rule", "make imagination." In addition, I break the
+barrier of simply playing with automatic control
+mechanisms. As a result, the way we play with
+toys becomes interactive. The purpose of this
+project is to create a constructive toy in a simple
+pattern.
+Inspired by the chequered tiling pattern, which
+was adapted in the logo of the Tokyo 2020
+Olympics, I continuously demonstrate the
+transforming method and the motion trail. Then,
+I develop a set of Transformable Puzzles and
+an interactive installation, Kaleidoscope, which
+can automatically transform into different forms
+when the spectator gets closer and returns to
+the waiting state when the spectators leave.
+As a result, the way we play with toys becomes
+interactive.
+
+Kaleidoscope is an installation auto-controlled by Arduino and driven by a motor set in
+the base. The distance between spectators and the device decides the direction of motor
+rotation which leads to opening or closing the shell above. As a result, the visual impact is
+similar to a blossoming flower. In addition, I set some pieces of glass on the inner sides of
+the shells and turn the light on during the moving process; therefore, if the spectators view
+the installation from the top, it would look like a transforming kaleidoscope.
+
+To achieve the auxetic effect of tiling, I figured
+out that the most challenging point to overcome
+is the joint which should be strong enough to
+open and close repeatedly. I use the hinge with
+a screw as the connection. Then, I found that the
+moving trail would be limited since the screw met
+the nearest side of the puzzle. Hence, I set a pair
+of void spaces on each side for the screw.
+
+To make the installation interact with viewers, I
+used Arduino to control the motor automatically.
+The open/close state depends on the distance
+and the viewing angle of viewers. Therefore,
+when the viewer gets closer to the installation
+[if(0<distance<=50)], the motor will turn
+clockwise and make a blossoming visual impact
+and vice versa. When the spectator is leaving
+[if(50<distance<=100)], the motor will turn
+counter-clockwise. Finally, return to the closing
+state and wait for the next viewer to figure it
+out.
