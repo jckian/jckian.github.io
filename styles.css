@@ -328,18 +328,6 @@ body.enter-lock {
   color: var(--accent);
 }
 
-/* the two dots and the Enter button take turns flashing red then back to black */
-@keyframes coverCycle {
-  0%, 28% { color: var(--accent); }
-  40%, 100% { color: var(--ink); }
-}
-.enter__dot {
-  animation: coverCycle 2.4s var(--ease) infinite;
-}
-.enter__mark-link[data-enter-group="tech"] .enter__dot {
-  animation-delay: .8s;
-}
-
 .enter__go {
   display: inline-flex;
   align-items: center;
@@ -352,21 +340,12 @@ body.enter-lock {
   letter-spacing: .12em;
   text-transform: uppercase;
   transition: background .35s var(--ease), color .35s, border-color .35s;
-  animation: coverCycle 2.4s var(--ease) 1.6s infinite;
 }
 
 .enter__go:hover {
   background: var(--ink);
   color: var(--bg);
   border-color: var(--ink);
-  animation: none;               /* let the hover swap win over the red pulse */
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .enter__dot,
-  .enter__go {
-    animation: none;
-  }
 }
 
 .enter__go svg {
