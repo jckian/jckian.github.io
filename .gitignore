@@ -31,3 +31,6 @@ images/Links/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# 2026-09-20 取代舊站後留在本機的舊素材（950MB，隨時可從 git 歷史還原）
+images_old/
