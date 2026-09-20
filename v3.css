@@ -232,6 +232,20 @@ a { color: inherit; text-decoration: none; }
 }
 .feed__cap-year { display: block; color: var(--cap); }
 
+/* THRESHLD carries a second reading, the store built from the same idea. The label
+   sits above the portrait clip and lines up with its right edge, so it names the
+   other half of the project without covering any footage. */
+.feed__tag {
+  margin: 0 0 8px;
+  color: var(--cap);
+  font-size: clamp(9px, .8vw, 11px);
+  font-weight: 500;
+  letter-spacing: .06em;
+  line-height: 1.4;
+  text-align: right;
+  text-transform: uppercase;
+}
+
 /* deterministic placement: every project owns a separate row, alternating across
    the grid without ever becoming a side-by-side pair. */
 /* n=0: the lead entry opens full-viewport and full-bleed, with the fixed
