@@ -619,6 +619,38 @@ function initIndexWheelSlides() {
 }
 
 /* ---- video performance: play only while in the viewport ---- */
+function playInlineVideo(v) {
+  if (!v) return;
+  /* iOS Safari checks the DOM properties as well as the HTML attributes. */
+  v.muted = true;
+  v.defaultMuted = true;
+  v.playsInline = true;
+  v.setAttribute("muted", "");
+  v.setAttribute("playsinline", "");
+  v.setAttribute("webkit-playsinline", "");
+
+  const attempt = () => {
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});
+  };
+  attempt();
+  /* Safari can reject the first attempt while a lazy source is still loading. */
+  if (v.readyState < 3) v.addEventListener("canplay", attempt, { once: true });
+}
+
+function videoIsOnScreen(v) {
+  if (!v || v.offsetParent === null) return false;
+  const r = v.getBoundingClientRect();
+  return r.bottom > -150 && r.top < innerHeight + 150 && r.right > 0 && r.left < innerWidth;
+}
+
+function refreshIndexVideos() {
+  document.querySelectorAll("video[data-lazyplay]").forEach((v) => {
+    if (document.visibilityState !== "hidden" && videoIsOnScreen(v)) playInlineVideo(v);
+    else v.pause();
+  });
+}
+
 function initVideoObserver() {
   const vids = document.querySelectorAll("video[data-lazyplay]");
   const responsiveVids = [...vids].filter((v) => v.dataset.portraitSrc && v.dataset.landscapeSrc);
@@ -627,16 +659,11 @@ function initVideoObserver() {
     responsiveVids.forEach((v) => {
       const nextSrc = portraitQuery.matches ? v.dataset.portraitSrc : v.dataset.landscapeSrc;
       if (!nextSrc || v.getAttribute("src") === nextSrc) return;
-      const resume = !v.paused;
+      const resume = videoIsOnScreen(v);
       v.pause();
       v.setAttribute("src", nextSrc);
       v.load();
-      if (resume) {
-        v.addEventListener("loadeddata", () => {
-          const p = v.play();
-          if (p && p.catch) p.catch(() => {});
-        }, { once: true });
-      }
+      if (resume) playInlineVideo(v);
     });
   };
   syncResponsiveSources();
@@ -644,17 +671,24 @@ function initVideoObserver() {
   else if (portraitQuery.addListener) portraitQuery.addListener(syncResponsiveSources);
   vids.forEach(applyClipConfig);
   if (!vids.length || !("IntersectionObserver" in window)) {
-    vids.forEach((v) => { const p = v.play(); if (p && p.catch) p.catch(() => {}); });
+    refreshIndexVideos();
     return;
   }
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       const v = e.target;
-      if (e.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+      if (e.isIntersecting) playInlineVideo(v);
       else v.pause();
     });
   }, { rootMargin: "150px 0px", threshold: 0.1 });
   vids.forEach((v) => io.observe(v));
+
+  addEventListener("pageshow", refreshIndexVideos);
+  addEventListener("orientationchange", () => requestAnimationFrame(refreshIndexVideos));
+  document.addEventListener("visibilitychange", refreshIndexVideos);
+  /* Low Power Mode may wait for a gesture before allowing inline playback. */
+  addEventListener("pointerdown", refreshIndexVideos, { passive: true, once: true });
+  addEventListener("touchstart", refreshIndexVideos, { passive: true, once: true });
 }
 
 /* ---- fade-in on scroll ---- */

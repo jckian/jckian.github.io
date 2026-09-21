@@ -425,49 +425,8 @@ a { color: inherit; text-decoration: none; }
 .feed.is-filtered .feed__media {
   aspect-ratio: 4 / 3;
 }
-/* tech index: two rows. NEXA opens on its own, landscape. The row below starts
-   with VORO, also landscape, since both clips carry burned-in horizontal text
-   that a vertical crop would cut in half, then five vertical 9:16 cards.
-   --tcard is one vertical card; --twide is a landscape card of the SAME media
-   height (16/9 squared), so every caption in the row sits on one line. Card
-   width tracks viewport height, so both rows fit on a screen. */
-.feed.is-filtered[data-group="tech"] {
-  --tgap: clamp(12px, 1.4vw, 22px);
-  --tcard: clamp(88px, 13.5vh, 145px);
-  --twide: calc(var(--tcard) * 256 / 81);
-  display: grid;
-  grid-template-columns: var(--twide) repeat(5, var(--tcard));
-  justify-content: center;
-  align-content: center;
-  align-items: start;
-  column-gap: var(--tgap);
-  row-gap: clamp(16px, 3vh, 30px);
-}
-.feed.is-filtered[data-group="tech"] .feed__item.is-match {
-  width: 100%;
-  max-width: none;
-}
-.feed.is-filtered[data-group="tech"] .feed__media {
-  aspect-ratio: 9 / 16;
-}
-/* top row, NEXA alone, landscape and centred over the row below */
-.feed.is-filtered[data-group="tech"] .feed__item[data-n="0"] {
-  grid-area: 1 / 1 / 2 / -1;
-  justify-self: center;
-  width: calc(var(--tcard) * 5.4);
-}
-/* the row below: VORO on the left, landscape, then the vertical cards */
-.feed.is-filtered[data-group="tech"] .feed__item[data-n="3"]  { grid-area: 2 / 1 / 3 / 2; }
-.feed.is-filtered[data-group="tech"] .feed__item[data-n="6"]  { grid-area: 2 / 2 / 3 / 3; }
-.feed.is-filtered[data-group="tech"] .feed__item[data-n="5"]  { grid-area: 2 / 3 / 3 / 4; }
-.feed.is-filtered[data-group="tech"] .feed__item[data-n="8"]  { grid-area: 2 / 4 / 3 / 5; }
-.feed.is-filtered[data-group="tech"] .feed__item[data-n="9"]  { grid-area: 2 / 5 / 3 / 6; }
-.feed.is-filtered[data-group="tech"] .feed__item[data-n="11"] { grid-area: 2 / 6 / 3 / 7; }
-/* the two 16:9 clips keep their native shape, no crop */
-.feed.is-filtered[data-group="tech"] .feed__item[data-n="0"] .feed__media,
-.feed.is-filtered[data-group="tech"] .feed__item[data-n="3"] .feed__media {
-  aspect-ratio: 16 / 9;
-}
+/* Tech follows the Arch index: one row of equal landscape cards. */
+.feed.is-filtered[data-group="tech"] .feed__item[data-n="3"]  { display: none; }
 /* one THRESHLD card is enough in the index, the flagship-store card stays on
    the home collage, where both still read as separate pieces of the project */
 .feed.is-filtered[data-group="tech"] .feed__item[data-n="10"] { display: none; }
@@ -506,6 +465,21 @@ a { color: inherit; text-decoration: none; }
 .feed.is-filtered .feed__item[data-n="0"] .feed__cap-cat,
 .feed.is-filtered .feed__item[data-n="0"] .feed__cap-year { color: var(--cap); }
 .feed.is-filtered .feed__scroll { display: none; }
+.feed__portfolio-download { display: none; }
+.feed.is-filtered[data-group="arch"] {
+  flex-wrap: wrap;
+  align-content: center;
+}
+.feed.is-filtered[data-group="arch"] .feed__portfolio-download {
+  display: block;
+  flex: 0 0 100%;
+  margin-top: 8px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.45;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 /* while filtered, the index is the whole page, hide the about + footer below
    it (and their divider lines) */
 .feed.is-filtered ~ .about3,
@@ -960,6 +934,7 @@ body.is-leaving .foot3 { opacity: 0; transition: opacity .3s ease; }
 .aboutview.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; }
 @media (prefers-reduced-motion: reduce) { .aboutview { transition: none; } }
 .aboutview__inner {
+  position: relative;
   display: flex;
   align-items: flex-start;
   gap: 48px;
@@ -976,20 +951,14 @@ body.is-leaving .foot3 { opacity: 0; transition: opacity .3s ease; }
   text-transform: uppercase;
 }
 .aboutview__body { font-size: 13px; line-height: 1.7; margin: 0 0 14px; }
-.aboutview__availability {
-  margin: 22px 0 0;
-  color: var(--cap);
-  font-size: 11px;
-  line-height: 1.5;
-}
-.aboutview__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 20px;
-  margin-top: 14px;
-  font-size: 11px;
-}
-.aboutview__actions a {
+.aboutview__download {
+  position: fixed;
+  left: calc(var(--edge) + 48px);
+  top: calc(var(--head-h) + clamp(28px, 6vh, 72px));
+  z-index: 2;
+  width: calc(var(--content-left) - 72px);
+  font-size: 13px;
+  line-height: 1.45;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -1000,14 +969,6 @@ body.is-leaving .foot3 { opacity: 0; transition: opacity .3s ease; }
 }
 .aboutview__cols ul { list-style: none; margin: 0; padding: 0; }
 .aboutview__cols li { font-size: 13px; line-height: 1.45; padding: 3px 0; }
-.aboutview__experience { display: grid; gap: 14px; }
-.aboutview__experience li { padding: 0; }
-.aboutview__experience strong,
-.aboutview__experience span,
-.aboutview__experience small { display: block; }
-.aboutview__experience strong { font-size: 12px; font-weight: 500; }
-.aboutview__experience span { color: var(--cap); font-size: 11px; }
-.aboutview__experience small { max-width: 58ch; margin-top: 2px; font-size: 11px; line-height: 1.45; }
 /* contact icons, pinned to the left gutter and fixed, so they stay put while
    the about text scrolls. Visibility is tied to the panel's open state (the
    fixed element would otherwise ignore the panel's clip-path reveal). */
@@ -1033,6 +994,13 @@ body.is-leaving .foot3 { opacity: 0; transition: opacity .3s ease; }
 
 /* narrow screens: the left gutter disappears, so return icons to the flow */
 @media (max-width: 720px) {
+  .aboutview__download {
+    position: static;
+    width: auto;
+    order: 1;
+  }
+  .aboutview__main { order: 2; }
+  .skills-marquee { order: 3; }
   .aboutview__social {
     position: static; opacity: 1; pointer-events: auto;
     flex-direction: row; gap: 16px; margin: 40px 0 0;
@@ -1106,11 +1074,7 @@ body.is-leaving .foot3 { opacity: 0; transition: opacity .3s ease; }
   }
   /* filtered index on small screens: wrap to 2-up instead of one cramped row */
   .feed.is-filtered { flex-wrap: wrap; min-height: 0; align-items: stretch; }
-  .feed.is-filtered .feed__item.is-match,
-  .feed.is-filtered[data-group="tech"] .feed__item.is-match { flex: 1 1 42%; max-width: none; }
-  /* the tech index's two-row grid is a desktop layout, here it wraps like the rest
-     (the cards stay vertical and the second THRESHLD stays hidden) */
-  .feed.is-filtered[data-group="tech"] { display: flex; }
+  .feed.is-filtered .feed__item.is-match { flex: 1 1 42%; max-width: none; }
 
   /* about overlay stacks the marquee below the text */
   .aboutview__inner { flex-direction: column; gap: 28px; }
