@@ -50,7 +50,6 @@
       const hero = (heroPlaylist && heroPlaylist[0]) ||
         (useHDHero && p.coverHD) || HERO_OVERRIDE_V3[id] || p.cover;
       const site = SITES_V3[id] || '';
-      const isTeamwork = /\bteam\b/i.test(p.team || '');
       const infoRow = (label, value) => value ? `
         <div class="case3__info-row">
           <dt>${esc(label)}</dt>
@@ -61,7 +60,7 @@
           ${infoRow('Period', p.period || p.year)}
           ${infoRow('Location', site)}
           ${infoRow(p.orgLabel || 'Studio', p.client)}
-          ${infoRow('Role', isTeamwork ? p.role : '')}
+          ${infoRow('Role', p.role)}
           ${infoRow('Team', p.team)}
           ${infoRow('Award', p.award)}
         </dl>`;
