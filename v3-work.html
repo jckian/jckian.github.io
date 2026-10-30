@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Spectral:ital,wght@1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="v3.css?v=20260917-17" />
+  <link rel="stylesheet" href="v3.css?v=20260917-22" />
 </head>
 
 <body>
@@ -29,7 +29,7 @@
 
   <main class="case3" id="case"></main>
 
-  <script src="v3.js?v=20260917-8"></script>
+  <script src="v3.js?v=20260917-10"></script>
   <script>
     (function () {
       const esc = (s) => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;')
@@ -62,19 +62,27 @@
           ${infoRow(p.orgLabel || 'Studio', p.client)}
           ${infoRow('Role', p.role)}
           ${infoRow('Team', p.team)}
+          ${infoRow('Advisor', p.advisor)}
+          ${infoRow('Architect', p.architect)}
+          ${infoRow('Software & Tool', p.tools)}
           ${infoRow('Award', p.award)}
         </dl>`;
 
-      const mediaOf = (src, alt) => isVidV3(src)
-        ? `<video src="${src}" poster="${posterForV3(src)}" muted loop playsinline preload="none" data-lazyplay></video>`
+      /* gallery clips normally autoplay muted in the background; a figure marked
+         controls:true is a full film instead, so it waits for the viewer and
+         carries a scrub bar (no data-lazyplay, which would force it to play) */
+      const mediaOf = (src, alt, controls) => isVidV3(src)
+        ? (controls
+          ? `<video class="case3__player" src="${src}" poster="${posterForV3(src)}" controls playsinline preload="metadata"></video>`
+          : `<video src="${src}" poster="${posterForV3(src)}" muted loop playsinline preload="none" data-lazyplay></video>`)
         : `<img src="${src}" alt="${esc(alt) || esc(p.title)}" loading="lazy">`;
-      const figInner = (f) => `<figure class="case3__figure">${mediaOf(f.src, f.cap)}</figure>`;
-      const figWide = (f) => `<figure class="case3__figure case3__figure--wide reveal">${mediaOf(f.src, f.cap)}</figure>`;
+      const figInner = (f) => `<figure class="case3__figure">${mediaOf(f.src, f.cap, f.controls)}</figure>`;
+      const figWide = (f) => `<figure class="case3__figure case3__figure--wide reveal">${mediaOf(f.src, f.cap, f.controls)}</figure>`;
       /* portrait video with still photos stacked on its left */
       const figDuo = (f) => `
         <div class="case3__duo${f.even ? ' case3__duo--even' : ''} reveal">
           <div class="case3__duo-left">${f.left.map((l) => figInner(l)).join('')}</div>
-          <figure class="case3__figure case3__figure--portrait">${mediaOf(f.src, f.cap)}</figure>
+          <figure class="case3__figure case3__figure--portrait">${mediaOf(f.src, f.cap, f.controls)}</figure>
         </div>`;
 
       /* hero */

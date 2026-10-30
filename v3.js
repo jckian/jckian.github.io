@@ -13,111 +13,95 @@ const PROJECTS_V3 = {
     client: "SCI-Arc · independent study",
     services: "Generative design, computational massing, structural synthesis, real-time 3D",
     intro: "VORO is a browser-based design tool that develops program, massing, and structure together. It gives designers early feedback on spatial and structural decisions before the project moves into detailed modelling.",
-    body: "VORO translates a design brief into a structured, buildable model. Given a precedent and a site constraint, the system generates a floor-by-floor program, evaluates it against massing typologies (cube, tower, slab, courtyard), and resolves a corresponding structural system: internal frame with curtain wall, structural skin, or structural foam. All outputs are visualized and iterated in a real-time 3D browser environment.\n\nThe system operates through two coordinated layers.\n\nCHAT interprets natural language inputs. A precedent and site condition are translated into a structured spatial logic based on analyzed case studies, producing a programmatic framework.\n\nINDEX simulates this framework within the site context, generating massing, assigning structural systems, and producing live performance metrics including GFA, FAR, program distribution, and floor-by-floor breakdowns. Each iteration outputs a coherent, BIM-ready model, eliminating the disconnect between concept and documentation in early design stages.\n\nUnlike conventional workflows where program, form, and structure are developed sequentially, VORO evaluates them simultaneously. This enables immediate feedback between spatial intent and buildable geometry, producing design proposals that are structurally and programmatically consistent from the first iteration.",
+    body: "VORO translates a design brief into a structured, buildable model. Given a precedent and a site constraint, the system generates a floor-by-floor program, evaluates it against massing typologies (cube, tower, slab, courtyard), and resolves a corresponding structural system: internal frame with curtain wall, structural skin, or structural foam. All outputs are visualized and iterated in a real-time 3D browser environment.\n\nThe system operates through two coordinated layers.\n\nCHAT interprets natural language inputs. A precedent and site condition are translated into a structured spatial logic based on analyzed case studies, producing a programmatic framework.\n\nINDEX simulates this framework within the site context, generating massing, assigning structural systems, and producing live performance metrics including GFA, FAR, program distribution, and floor-by-floor breakdowns. Each iteration outputs a coherent, BIM-ready model, closing the gap between concept and documentation in early design.\n\nUnlike conventional workflows where program, form, and structure are developed sequentially, VORO evaluates them simultaneously. The result is immediate feedback between spatial intent and buildable geometry, so proposals stay structurally and programmatically consistent from the first iteration.",
     cover: "images/VORO/VORO-video.mp4",
     coverHD: "images/VORO/VORO-video-1080.mp4",
     coverFit: "contain",          /* 16:9 UI capture, cropping it loses the panels */
     repo: "https://github.com/jckian/VORO",
     gallery: []
   },
+  "throwshade": {
+    title: "ThrowShade", cat: "Social App / Hackathon Build", year: "2026", tag: "Product",
+    cover: "images/throwshade/ThrowShade-Landscape-69s.mp4",
+    coverHD: "images/throwshade/ThrowShade-Landscape-69s-1080.mp4",
+    coverFit: "contain",          /* 16:9 pitch film, cropping it loses the type */
+    repo: "https://github.com/eesha-on-jupiter/ThrowShade",
+    gallery: []
+  },
   "01": {
     title: "Orienteering", cat: "Memory / Landscape", year: "2022", tag: "Landscape",
-    period: "Summer 2022 · 5 weeks", status: "Academic project · design proposal", orgLabel: "Studio",
+    period: "February to August 2022", status: "Academic project · design proposal", orgLabel: "Studio",
     team: "5-person team",
-    role: "Led project reprogramming and identity development, integrating spatial experience, landscape strategy, visual communication, and tectonic design within a five-person team.",
-    client: "NYCU GIA Studio",
+    advisor: "Shu-Chang Kung, Ling-Li Tseng",
+    role: "Led programming and brand identity development, integrating spatial experience, landscape, visual identity, and structural and tectonic strategies.",
+    client: "NYCU Graduate Institute of Architecture",
     services: "Landscape regeneration, branding",
-    intro: "Xiju's military sites once formed a dispersed network of surveillance and defense. Rather than preserving these structures as isolated monuments, the project reorganizes them as five orienteering routes based on sight, sound, smell, taste, and touch. Stronghold No. 32 becomes the starting point of that network, so movement between village, ridgeline, coastline, and military remains turns the island from a collection of destinations into a continuous sensory journey. Across the site, planting gradually overtakes former defensive surfaces while paths frame changing conditions of exposure, enclosure, wind, and mist. The project does not reconstruct a singular historical image; it lets the military terrain recede into an everyday landscape experienced through movement and weather.",
-    body: "Xiju sits at Taiwan's maritime edge, roughly an hour by boat from Nangan and Beigan. That distance has shaped its ecology and its culture, and the island reads as an island inside an island, with spatial and social conditions unlike the rest of the Matsu archipelago.\n\nFormer Military Outpost No. 32 holds the westernmost tip, on hilly ground where sandstone cliffs drop into the sea. The landscape here was made by military necessity, laid down by soldiers stationed on the island 40 to 50 years ago, so vegetation and ecology still change with elevation and with the defensive job each level once had.\n\nThe project treats that inheritance as structure rather than ruin. The outpost already carries a sectional logic of protection, enclosure and layered material. That logic is kept and given new work to do: drainage, insulation and half-buried rooms set into the terrain. Military construction becomes landscape infrastructure.\n\nThree layers organise the proposal. Plant at +240M, where new planting reinterprets Matsu's military landscape and covers the rear hillside with newly formed terrain. Stone at ±0M, where stacked stone separates the programmes so the rooms feel cut out of the mountain. Water at −400M, where water is drained into the tunnel system to form public and private bathing spaces, which also settles the damp that has always sat inside the rock.\n\nAbove all of it, 'Orienteering' works as a brand for the island. Five routes, one each for sight, sound, smell, taste and touch, take travellers through Matsu's battlefield culture on their own legs. The visit becomes a journey rather than a destination, and no two visits have to read the same way. As the stronghold retires from military duty it merges back into the earth. As one disappears, one emerges.\n\nInstructors: Shu-Chang Kung, Ling-Li Tseng. 5 weeks, Summer 2022.",
-    cover: "images/orienteering/冷戰島嶼重生%20-%20馬祖戰地轉譯.mp4",
-    coverHD: "images/orienteering/冷戰島嶼重生%20-%20馬祖戰地轉譯-1080.mp4",
-    coverSpeed: 2,
+    intro: "Xiju's military sites once formed a dispersed network of surveillance and defense. Rather than preserving these structures as isolated monuments, we reorganize them as five orienteering routes based on sight, sound, smell, taste, and touch. Stronghold No. 32 becomes the starting point and orientation base of this network. Movement between village, ridgeline, coastline, and military remains transforms the island from a collection of destinations into a continuous sensory journey to rediscover the senses they often overlook.",
+    body: "Stronghold No. 32 is read not as a single building, but as a vertical system embedded within the coastal terrain. Surface bunkers occupy exposed ridges, semi-subterranean living quarters are concealed within the slope, and underground tunnels extend toward the shoreline.\n\nThe inherited vertical section is translated into three landscape operations. New planting extends the profile of the hillside, turning military camouflage into a process of ecological succession. Stacked stone defines terraces, thresholds, and retaining edges while maintaining the material character of the island. Existing drainage routes are redirected through the underground system to manage moisture and create new bathing spaces.\n\nThe ground-level landscape is organized as a sequence rather than a collection of isolated rooms. From the arrival trail, visitors move through planted terraces and reused bunkers toward viewing platforms and coastal bathing spaces. Each zone is defined by a change in slope, material, visibility, or proximity to water, allowing everyday circulation and visitor exploration to overlap without producing a single prescribed route.\n\nThe project uses the site's changing elevation to transform movement into a bodily experience. A planted roof extends the terrain across the former bunker, while a stepped interior connects the arrival level with the tunnel below. Along the passage, metal frames remain aligned with a fixed sea-level datum as the floor rises and falls. The changing distance between the body, ground, and datum makes ascent and descent perceptible, turning the former military structure into a continuous public journey.\n\nAdvisors: Shu-Chang Kung and Ling-Li Tseng. Five-person team, February to August 2022.",
+    cover: "images/orienteering/work-01-hero.webp",
     gallery: [
-      { src: "images/orienteering/Portfolio_260131_selected10%20-%20Copy.webp", cap: "The real Xiju. Abandoned stone villages, granite shores and agave on the slopes. Very few people come out this far, and that emptiness is the material the project works with.", wide: true },
-      { src: "images/orienteering/Portfolio_260131_selected7.webp", cap: "Three landscape layers, Plant at +240M, Stone at ±0M and Water at −400M. The divisions are not arbitrary. Vegetation and ecology on Xiju already vary with elevation and with the defensive job each level once had." },
-      { src: "images/orienteering/1%20(1).webp", cap: "Arrival. Terraced contour planting curves down a misty hillside toward the buried outpost. The approach is long on purpose, so the weather and the ground register before the building does." },
-      { src: "images/orienteering/1%20(2)-png.webp", cap: "The stronghold entrance keeps the old garrison motto on a wall set into the green berm." },
-      { src: "images/orienteering/1%20(11).webp", cap: "Grass-covered terraces fold over a stone chamber buried in the slope. The old section still protects and encloses, but now it carries drainage and insulation instead of a garrison. As one disappears, another emerges." },
-      { src: "images/orienteering/1%20(3).webp", cap: "Interiors feel carved from the mountain. Stacked stone sets one programme apart from the next, and a long floor channel takes water down into the tunnels, which is also how the damp inside the rock gets handled." },
-      { src: "images/orienteering/1%20(6).webp", cap: "Late light reaches deep into a sheltered stone hall of columns and stepped seating." },
-      { src: "images/orienteering/1%20(9).webp", cap: "Organic stone stairways stitch the outpost's levels together; a visitor rests on the landing." },
-      { src: "images/orienteering/1%20(10).webp", cap: "A narrow cut between concrete walls releases onto the sea and the setting sun. Sound and salt reach you before the view does." },
-      { src: "images/orienteering/1%20(2).webp", cap: "Twilight. A single weathering-steel wall holds the edge between hillside and sea." },
-      { src: "images/orienteering/site/IMG_12221.webp", cap: "Site: the island's deserted stone settlement above the bay. Xiju belongs to Juguang Township, about an hour from Nangan and Beigan." },
-      { src: "images/orienteering/site/IMG_2369.webp", cap: "Site: the existing outpost today, stone walls and a round pillbox over the offshore rocks." },
-      { src: "images/orienteering/site/IMG_1066.webp", cap: "Site: a stone-capped bunker embedded in the miscanthus hillside, a radar post on the ridge." },
-      { src: "images/orienteering/site/IMG_1045.webp", cap: "Site: a concrete gun apron and drainage channel left by the garrison." },
-      { src: "images/orienteering/site/IMG_1070.webp", cap: "Site: weathered bunker blocks and the trench path along the rampart." },
-      { src: "images/orienteering/site/IMG_18277.webp", cap: "Site: sandstone cliffs and rockfall dropping to the sea below the outpost." },
-      { src: "images/orienteering/site/IMG_2251.webp", cap: "Site: inside a round pillbox, light slipping through a single embrasure." },
-      { src: "images/orienteering/site/IMG_2290.webp", cap: "Site: a narrow concrete passage within the tunnel system." },
-      { src: "images/orienteering/site/IMG_2302.webp", cap: "Site: a firing embrasure framing nothing now but the open sea." }
+      /* the film moved out of the hero band: at 6:40 it is something you sit and watch,
+         so it gets a scrub bar here instead of looping silently behind the title */
+      { src: "images/orienteering/冷戰島嶼重生%20-%20馬祖戰地轉譯.mp4", cap: "Project film. Five sensory routes across Xiju, from the village to Stronghold No. 32.", wide: true, controls: true },
+      { src: "images/orienteering/rendering/1%20(1).webp", cap: "Stronghold No. 32 from the air. Planted terraces extend the hillside profile across the former bunker and down to the shoreline.", wide: true },
+      { src: "images/orienteering/2026/sheet-five-senses.webp", cap: "From a defense network to five sensory routes. Island-scale reprogramming with Stronghold No. 32 as the orientation base.", wide: true },
+      { src: "images/orienteering/2026/sheet-three-terrains.webp", cap: "Reading Stronghold No. 32 as three interlocking terrains. Planting extends the surface, stone stabilizes the embedded layer, and water activates the tunnels.", wide: true },
+      { src: "images/orienteering/2026/landscape-plan.webp", cap: "A continuous landscape from arrival to shore. Ground floor landscape plan.", wide: true },
+      { src: "images/orienteering/2026/section-descent.webp", cap: "Descending through the former military terrain. A fixed sea-level datum holds while the tunnel floor rises and falls.", wide: true },
+      { src: "images/orienteering/2026/concealed-terrain.webp", cap: "Concealed terrain. Mist over the reconstructed ground where the bunker once stood.", wide: true },
+      { src: "images/orienteering/2026/re-entering.webp", cap: "Re-entering the landscape. The stronghold merges back into the earth as the new route opens.", wide: true }
     ]
   },
   "02": {
     title: "1 House for All", cat: "Housing / Community", year: "2022", tag: "Housing",
-    period: "Fall 2021 – Spring 2022", status: "International competition · 1:1 demonstration unit", orgLabel: "Studio",
+    period: "August 2021 to April 2022", status: "International competition · 1:1 demonstration unit", orgLabel: "Studio",
     team: "30-person team",
-    award: "Solar Decathlon Europe 21/22, Architecture First Prize",
-    role: "Contributed to design development and BIM coordination, integrating the mass-timber structure, modular façade, shared service core, and full-scale prototype documentation.",
+    award: "1st Prize in Architecture, Solar Decathlon Europe 21/22",
+    role: "Led BIM coordination and developed the modular facade, party-wall systems, and woodwork for the full-scale ADU prototype.",
     client: "NYCU / TDIS · international competition",
     services: "Sustainable housing, mass timber",
-    intro: "Taipei's urban-renewal process often takes more than a decade, leaving cleared properties vacant and residents in prolonged uncertainty. House for All treats these temporary gaps as sites for stable mid-way housing rather than as periods of inactivity. Modular units provide housing while contributing shared energy, mobility, and community services to the surrounding neighborhood, and as redevelopment advances they can be disassembled, relocated, and adapted to another site. A reversible kit of timber, CLT, and GLT components separates long-life foundations and frames from shorter-life partitions, insulated walls, and facades, so each layer can be repaired, replaced, or relocated independently. The environmental strategy reduces demand before producing energy, pairing an airtight envelope and heat-recovery ventilation with roof-mounted solar thermal and photovoltaic systems.",
-    body: "Taiwan's average building lifespan is only 35-40 years, and urban renewal takes a decade on average, which leaves demolished gaps across the city while complex ownership stalls rebuilding. '1 House for All' fills those gaps with mid-way buildings. Each one is a net-zero transitional house and also a social-enterprise housing and energy-sharing hub, and the model can be replicated across different sites. Built from mass timber (CLT and GLT) with a modular, adaptable façade, the system is designed to be fast-built, fully disassembled and reused in the next construction. A shared ground floor and party-core wall let the plan flex for different residents, bringing together elderly people, families and temporary occupants, while adding e-bike and e-cargo charging to the neighbourhood. The final outcome was a 1:1 demonstration unit the team built themselves. 30-person teamwork · 8 months, 2021F-2022S.",
+    intro: "House for All is a modular mid-way housing system designed for the temporary gaps created by Taipei's prolonged urban renewal process. The proposal combines reversible mass-timber construction, shared neighborhood services, and low-energy systems in a prototype that can be assembled, inhabited, disassembled, and reused.",
+    body: "Taipei's urban-renewal process often takes more than a decade, leaving cleared properties vacant and residents in prolonged uncertainty. House for All treats these temporary gaps as sites for stable mid-way housing rather than as periods of inactivity.\n\nModular units provide stable accommodation while contributing shared energy, mobility, and community services to the surrounding neighborhood. As redevelopment advances, the buildings can be disassembled, relocated, and adapted to another site, allowing housing to support communities through change rather than waiting for stability.\n\nThe building uses a reversible kit of timber, CLT, and GLT components designed for rapid assembly, disassembly, and reuse. Long-life foundations and structural frames are separated from shorter-life partitions, insulated walls, and facades, so each layer can be repaired, replaced, or relocated independently. The section connects shared neighborhood spaces at ground level, homes above, and a rooftop day care center, bringing social interaction, everyday living, and care together across generations.\n\nThe environmental strategy begins by reducing loads through an airtight, insulated envelope, controlled glazing, and heat-recovery ventilation. Roof-mounted solar thermal and photovoltaic systems then supply hot water and electricity, while an energy-management system shifts battery charging away from peak demand. The grid remains as a backup, so the prototype can operate as a resilient neighborhood-scale energy system.\n\nThe work ended in a completed 1:1 ADU prototype built for Solar Decathlon Europe 2021/22. 30-person team, August 2021 to April 2022.",
     cover: "images/1-house-for-all/work-02.webp",
     gallery: [
-      { src: "images/1-house-for-all/building%20life%20cycle.webp", cap: "Building life cycle. Each layer is designed to be replaced on its own timeline.", wide: true },
-      { src: "images/1-house-for-all/Portfolio_260131_selected16.webp", cap: "Plans and section: shared ground floor, dwelling units and a rooftop day care.", wide: true },
-      { src: "images/1-house-for-all/construction%20system.webp", cap: "Construction system: mass timber (CLT and GLT) wrapped in a reusable steel-framed skin.", wide: true },
-      { src: "images/1-house-for-all/pipeline%20plan.webp", cap: "Energy systems: water, active and passive climate control sharing one core.", wide: true }
+      { src: "images/1-house-for-all/2026/sheet-network.webp", cap: "A distributed housing network built to move. Temporary sites, community living in section, and the lifespan of each building layer.", wide: true },
+      { src: "images/1-house-for-all/2026/sheet-energy.webp", cap: "Reducing demand before producing energy. Water and electricity, active control, passive control, and the disassembly logic of each material.", wide: true },
+      { src: "images/1-house-for-all/2026/built-full-scale.webp", cap: "Built at full scale. The completed 1:1 ADU prototype for Solar Decathlon Europe 2021/22.", wide: true }
     ]
   },
   "03": {
-    title: "Banqiao Station", cat: "Public / Practice", year: "2023", tag: "Public",
-    period: "2023", status: "Professional project · design development", orgLabel: "Practice",
+    title: "Banqiao Station Entrance", cat: "Public / Practice", year: "2025", tag: "Public",
+    period: "October 2024 to August 2025", status: "Professional project · schematic design to construction detailing", orgLabel: "Practice",
     team: "3-person team",
-    role: "Contributed to schematic design and construction detailing, including code review, consultant coordination, coordination with an external documentation team, and development of the entrance, canopy, and envelope systems.",
-    client: "Professional practice · MRT Banqiao Station",
+    architect: "Shi-Shuin Chen",
+    role: "Developed schematic design and construction detailing, contributing to code compliance, project coordination with an international outsourced team, and communication with consultants.",
+    client: "Square-Arch Architect · MRT Banqiao Station",
     services: "Transit infrastructure, detailing",
-    intro: "The lifted entrance volume preserves visibility and pedestrian continuity, while the branching canopy creates a sheltered public edge. The ground floor extends the surrounding landscape into the station and keeps the ground open and elevated, so the entrance reads as a visible civic threshold rather than a service door. Envelope section studies set the louver extension and the 30 degree shielding angle that keep wind-driven rain off the ground-level entrance. The work ran from schematic design through construction detailing, within the constraints of a live project.",
-    body: "A new entrance for Banqiao Station in New Taipei City, developed in professional practice with an outsourced team in India, where design decisions constantly had to adjust to construction constraints. Landscape motifs are translated into arched structures that prolong a natural atmosphere and form a continuous urban green corridor. An open, double-height ground level enhances spatial permeability, while the loop line's signature colour gives covered circulation and clearer entry points for daily commuters. A cantilevered 2 m extension and rain-screen louvers optimise wind and rain protection. 885 m² · NT$29,920,000.",
+    intro: "The entrance is conceived as a continuation of the adjacent landscape rather than an isolated transit object. Branching canopy columns reinterpret tree structures, while the elevated station volume creates a clear, double-height public ground beneath. Pedestrian routes remain visible across the site, and the warm-colored circulation core acts as an orientation device connecting the sidewalk, concourse, and upper station level.",
+    body: "The adjacent green belt continues into a branching structural canopy, linking landscape, circulation, and the station frontage. Lifting the enclosed station volume preserves cross-site movement and creates a visible, weather-protected public threshold beneath.\n\nThe entrance envelope is developed as a layered environmental system. A two-metre cantilever projects beyond the glazed edge to reduce exposure to wind-driven rain, while vertical metal fins and horizontal louvers extend the weather barrier without enclosing the public ground below. These repeated members provide shade, drainage, and protection while translating the branching landscape motif into a buildable architectural system.\n\nThe work ran from schematic design through construction detailing on a live project, with code compliance checks, coordination with an international outsourced documentation team, and direct communication with consultants. 885 m² · NT$29,920,000. Three-person team, October 2024 to August 2025.\n\nPhotograph and intellectual property rights belong to the original architecture firm.",
     cover: "images/banqiao-station/work-03.webp?v=20260921",
     gallery: [
-      { src: "images/banqiao-station/work-03-02.webp?v=20260921", cap: "Night view. The loop line colour lights the covered circulation.", wide: true },
-      { src: "images/banqiao-station/work-03-01.webp", cap: "Entrance plaza and arched canopy at grade." },
-      { src: "images/banqiao-station/work-03-03.webp", cap: "Arched structure forming a continuous urban green corridor." },
-      { src: "images/banqiao-station/work-03-04.webp", cap: "Circulation through the open, double-height ground level." },
-      { src: "images/banqiao-station/work-03-05.webp?v=20260921", cap: "Cantilevered 2 m extension with rain-screen louvers." },
-      { src: "images/banqiao-station/%E5%9C%BA%E6%99%AF%2010.webp", cap: "Night view beneath the lit canopy, stairs descending to the concourse.", wide: true },
-      { src: "images/banqiao-station/fl1_plan.webp", cap: "Ground floor plan: entrance, escalator core and landscaped forecourt.", wide: true },
-      { src: "images/banqiao-station/section.webp", cap: "Long section. The metal-clad roof lifts over a double-height concourse.", wide: true },
-      { src: "images/banqiao-station/escalator-section.webp", cap: "Escalator section. Circulation threads between street and platform.", wide: true },
-      { src: "images/banqiao-station/escalator-section-2.webp", cap: "Detailed section through the station's underground level and escalator.", wide: true }
+      { src: "images/banqiao-station/work-03-02.webp?v=20260921", cap: "The public threshold beneath the lifted station volume, with branching columns carrying the canopy.", wide: true },
+      { src: "images/banqiao-station/2026/sheet-green-belt.webp", cap: "Extending the green belt into the station. Ground floor plan, entrance elevation, and the Revit BIM escalator section.", wide: true },
+      { src: "images/banqiao-station/2026/sheet-envelope.webp", cap: "Layered envelope for rain and wind. The extended weather canopy, maximum louver extension, and rain-screen louvers.", wide: true }
     ]
   },
   "04": {
     title: "Earthen", cat: "Climate / Housing", year: "2025", tag: "Climate",
-    period: "Fall 2025 · 15 weeks", status: "Academic research · half-scale prototype", orgLabel: "Studio",
+    period: "September to December 2025", status: "Academic research · half-scale prototype", orgLabel: "Studio",
     team: "7-person team",
-    role: "Developed and tested the envelope system through structural design, robotic ceramic printing, glaze studies, assembly details, and half-scale prototype fabrication.",
-    client: "SCI-Arc · Herwig Baumgartner",
+    advisor: "Herwig Baumgartner",
+    role: "Led structural development of the envelope system, including robotic ceramic printing, glaze studies, assembly detailing, rammed-earth testing, and fabrication of the half-scale prototype.",
+    client: "SCI-Arc",
     services: "Post-disaster housing, ceramic fabrication",
-    intro: "Developed in response to post-wildfire displacement in Southern California, Earthen proposes a transitional ADU system combining rammed earth with robotically printed ceramic components. The envelope works as a living water-distribution system rather than a static barrier: printed ridges capture rainfall, carved channels redirect it, concealed irrigation lines feed planting pockets, and excess water returns to the ground. The ceramic units also act as permanent formwork, with rammed earth compacted inside them in successive lifts while steel reinforcement and irrigation lines are integrated into the assembly. Each unit is robotically printed, glazed, and fired before stacking, and layered glazes pool along the printed ridges to produce controlled variation across the finished surface.",
-    body: "Earthen responds to the increasing frequency of California wildfires and the prolonged displacement that follows. Rather than treating temporary housing as disposable, it frames shelter as part of a longer recovery process, a system of transitional ADUs that can be deployed quickly yet remain useful as people return to stability. Sited at 3328 N Fair Oaks Avenue in Altadena, a lot left in ruin after the Eaton Fire, it pairs housing with a community bathhouse to form a small-scale recovery infrastructure for daily life and collective healing. Using 3D-printed ceramics and rammed earth, the design explores construction that is locally grounded and thermally resilient. A robotically 3D-printed ceramic façade collects, channels and retains rainwater through algorithmic growth patterns. Each module is printed in clay, then glazed and fired into an earth-toned palette, so the architectural skin works as a ‘living’ mediator rather than a static barrier. 7-person teamwork · 15 weeks, Fall 2025.",
-    cover: "images/earthen/work-04-01.webp",
+    intro: "Developed in response to post-wildfire displacement in Southern California, Earthen proposes a transitional ADU system that combines rammed earth with robotically printed ceramic components. Rather than functioning as a static barrier, the envelope operates as a living water-distribution system: printed ridges capture rainfall, integrated channels direct its movement, planting pockets retain moisture, and concealed irrigation lines return excess water to the ground.",
+    body: "The ceramic units establish the geometry of the wall and remain in place as permanent formwork for compacted earth. Steel reinforcement and irrigation lines are integrated within the assembly, bringing environmental performance, fabrication, and structural logic into a single composite system. Specialized ceramic units wrap around windows and planting openings, maintaining the continuity of both the wall structure and its hydrological network.\n\nEach ceramic unit is robotically printed, glazed, and fired before being stacked into vertical courses. Reinforcing bars align the modules and tie the ceramic shell to the foundation and window frames. Rammed earth is compacted within the printed formwork in successive lifts, producing a composite assembly that accommodates openings, irrigation lines, and localized planting pockets.\n\nThe site is a lot on N Fair Oaks Avenue in Altadena left in ruin after the Eaton Fire, where housing is paired with a community bathhouse to form a small piece of recovery infrastructure for daily life. The envelope was tested as a half-scale composite wall prototype.\n\nAdvisor: Herwig Baumgartner. Seven-person team, September to December 2025.",
+    cover: "images/earthen/window%20upper.webp",
     gallery: [
-      { src: "images/earthen/DSC03168.webp", cap: "Fired ceramic façade. Printed clay glazed into an earth-toned palette.", wide: true },
-      { src: "images/earthen/DSC03170.webp", cap: "Glaze detail. Reactive whites and chrome pool between the printed layers." },
-      { src: "images/earthen/work-04-04.webp", cap: "Robotic 3D printing of the ceramic units." },
-      { src: "images/earthen/work-04-05.webp", cap: "Wall-chunk mock-up of the printed ceramic skin." },
-      { src: "images/earthen/window%20lower.webp", cap: "Installed mock-up. The window sill meets the printed ceramic wall." },
-      { src: "images/earthen/window%20upper.webp", cap: "Installed mock-up. The window head and the rainwater channel above." },
-      { src: "images/earthen/work-04-07.webp", cap: "Prototype chunk, plan and elevation at half scale." },
-      { src: "images/earthen/Ceramic%20Unit%20Schematics.webp", cap: "Ceramic unit schematics, the catalogue of printed modules at body scale.", wide: true },
-      { src: "images/earthen/facade%20zone.webp", cap: "Façade performance zones. Extrusions and pockets channel and hold rainwater." },
-      { src: "images/earthen/glazing.webp", cap: "Glaze study. Chrome, palladium, reactive white and edge colours layered to melt and pool." },
-      { src: "images/earthen/wall%20section.webp", cap: "Wall section. Glazing carried on rammed earth and 3D-printed ceramic." },
-      { src: "images/earthen/window%20detail.webp", cap: "Window and planter details, with irrigation feeding the succulent pockets." }
+      { src: "images/earthen/DSC03170.webp", cap: "Glazed ceramic units stacked into a vertical course. Layered glazes pool along the printed ridges.", wide: true },
+      { src: "images/earthen/2026/sheet-water-wall.webp", cap: "A wall that collects, holds, and releases water. Collect, channel, retain, release, with the hybrid assembly and the full-scale wall module.", wide: true },
+      { src: "images/earthen/2026/sheet-fabrication.webp", cap: "Fabrication, compaction, and assembly. Robotic ceramic printing, glazing and firing, then stacking and compaction.", wide: true },
+      { src: "images/earthen/2026/full-wall.webp", cap: "The finished half-scale wall." }
     ]
   },
   "05": {
@@ -128,7 +112,7 @@ const PROJECTS_V3 = {
     client: "NYCU competition",
     services: "Generative AI, cognitive mapping, game design",
     intro: "DreamStudio uses AI-generated images as source material for a playable environment built in Rhino and Unreal Engine. The project translates participants' spatial memories into a shared, navigable world.",
-    body: "DreamStudio is a design competition at NYCU exploring how an AI image generator can drive program definition and design concepts. Building on Edward Tolman's 1948 theory of cognitive maps, the mental, first-person representations of space built from both objective spatial features and subjective experience, the team developed a methodology that transforms collective memory into virtual spaces, generating layered conceptual experiences. Conceptual, emotional and contextual prompts are fed through neural networks (DreamStudio → Rhino → Unreal Engine) to deconstruct and recombine existing spaces into a playable virtual world. As an electronic extension of the body, the resulting space is navigated with simple keyboard and mouse, its discontinuous scales and atmospheres producing an uncanny experience distinct from physical space. 5-person team · 10 days, Fall 2022.",
+    body: "DreamStudio is a design competition at NYCU that explores how an AI image generator can drive program definition and design concepts. It builds on Edward Tolman's 1948 theory of cognitive maps, the first-person mental representations of space formed from both objective spatial features and subjective experience.\n\nFrom that starting point the team developed a method that turns collective memory into virtual space. Conceptual, emotional and contextual prompts are fed through neural networks, moving from DreamStudio to Rhino to Unreal Engine, to deconstruct and recombine existing spaces into a playable world.\n\nThe resulting space is navigated with a keyboard and mouse, and its discontinuous scales and atmospheres produce an experience distinct from physical space.\n\nFive-person team, 10 days, Fall 2022.",
     cover: "images/dreamstudio/work-05.webp",
     /* hero cycles through the four walkthrough clips instead of a still */
     coverPlaylist: [
@@ -159,27 +143,30 @@ const PROJECTS_V3 = {
   },
   "threshld": {
     title: "THRESHLD", cat: "Generative / Product / Flagship Store", year: "2026", tag: "Generative",
-    period: "2026", status: "Academic project · working prototypes", orgLabel: "Type", team: "Independent work",
-    role: "Developed the end-to-end workflow from site capture and point-cloud processing to AI-generated massing, architectural rationalization, product prototyping, visualization, and fabrication studies.",
-    client: "Flagship store concept · independent study",
+    period: "February to April 2026", status: "Academic project · working prototypes", orgLabel: "Studio", team: "Independent work",
+    advisor: "M. Casey Rehm, Garrett Santo",
+    tools: "Blender MCP, Rhino MCP, Grasshopper, Python, Houdini, ComfyUI (Flux 2 and Hunyuan3D), hydro dip",
+    role: "Developed the workflow from site capture and point-cloud processing to AI-generated massing, architectural rationalization, product prototyping, visualization, and fabrication studies.",
+    client: "SCI-Arc",
     services: "Generative AI workflow, wearable design, soft robotics, ETFE flagship store",
-    intro: "The project begins with a 3D scan of the existing site. The captured point cloud is cleaned, registered, and processed into a spatial reference model that preserves the surrounding building fabric, setbacks, and street conditions, and AI-generated masses are positioned within this measured context as spatial propositions rather than finished architecture. Selected forms are translated into operations of stacking, inflation, rotation, and overlap, then rationalized through a regular timber frame, with translucent enclosures forming display rooms and suspended galleries above an open ground-floor threshold. The wearable collar built on the same logic responds when neck flexion exceeds a set range of motion, moving from a tactile reminder to inflation that limits movement, and finally to a stiffened collar that guides the neck back toward neutral.",
-    body: "THRESHLD starts from product design and lets the architecture follow. The product, THRESHLD, is a wearable ornament for poor posture and muscle tension: when the body slips into a wrong position, it responds by softly inflating. It runs a three-step intervention. Inner 'fingers' first give a gentle Remind signal, then gradually inflate to Warn, and if still ignored, fully inflate into a rigid mode that forces the body to rest. The mechanism is triggered by the frequency and angle of movement and calibrated against range-of-motion theory, then adapted into versions for other parts of the body; before buying, customers are scanned in a body-scanning booth so each piece fits perfectly. Material studies push the inflatable aesthetic, with hydro-dipping colour tests and experiments in material opacity, with a texture map applied across the orange and mint-blue parts. The flagship store carries the same idea from body to building: wrapped in a translucent ETFE skin, its inflatable façade responds to its visitors' posture, swelling whenever the people inside slip out of alignment, so the store reminds, corrects and breathes exactly as the product does. The whole project, from wearable to materials to store, is built through a generative pipeline: Blender driven through an MCP agent, with ComfyUI, LoRA and ControlNet steering form, texture and image so every iteration stays consistent across product and architecture. Product, fabrication & spatial study, 2026.",
+    intro: "This wearable collar responds when neck flexion exceeds a predefined range-of-motion threshold. Rather than issuing a single alert, it provides three escalating levels of physical feedback. Soft internal fingers first create a tactile reminder; if the posture is maintained, internal chambers inflate to reduce movement; at full inflation, the collar stiffens and guides the neck back toward a neutral position. The system transforms posture correction from passive notification into immediate bodily feedback.",
+    body: "The collar works in three stages. When neck flexion first exceeds the range-of-motion threshold, soft internal fingers contact the neck to provide a subtle physical reminder. If the incorrect posture is maintained, the internal air chambers gradually inflate, reducing the available range of movement. At full inflation the collar becomes structurally rigid, limiting further flexion and guiding the neck back toward a neutral position. The longer the incorrect posture is held, the stronger the physical feedback becomes.\n\nBuilding on that posture-to-pressure mechanism, the flagship store scales pneumatic response from the body to the building envelope. The design begins with a 3D scan of the existing site. The resulting point cloud is cleaned, registered, and processed into a spatial reference model that preserves the surrounding building fabric, setbacks, and street conditions. Within this measured context, customer posture and movement are treated as directional inputs for a field of ETFE cushions.\n\nAI-assisted studies explore the operations of stacking, inflation, rotation, and overlap, while selected forms are rationalized through a regular timber frame. Translucent enclosures form display rooms and suspended galleries, and an open ground-floor threshold connects the retail interior with the street. Changes in cushion pressure alter the facade's depth, translucency, and silhouette, making interior activity perceptible from the street.\n\nAdvisors: M. Casey Rehm and Garrett Santo. Built with Blender MCP, Rhino MCP, Grasshopper, Python, Houdini, ComfyUI (Flux 2 and Hunyuan3D), and hydro dipping. February to April 2026.",
     cover: "images/THRESHLD/THRESHLD.mp4",
     coverHD: "images/THRESHLD/THRESHLD-1080.mp4",
     gallery: [
       { src: "images/THRESHLD/16_9_2.mp4", cap: "The wearable in motion, inflating as posture slips.",
         left: [
-          { src: "images/THRESHLD/Product-2.webp", cap: "Product render of the translucent inflatable ornament." },
-          { src: "images/THRESHLD/work-02-03.webp", cap: "ETFE-wrapped interior. The façade breathes with the bodies inside." }
+          { src: "images/THRESHLD/work-02-03.webp", cap: "Flagship store interior. Timber frame, suspended galleries and the scanning booth beyond." }
         ] },
+      { src: "images/THRESHLD/2026/sheet-collar.webp", cap: "Inflatable cervical posture-feedback collar. Tactile cue, progressive inflation, then stabilizing constraint.", wide: true },
+      { src: "images/THRESHLD/2026/sheet-store.webp", cap: "Site capture, AI generation, and architectural rationalization, with the ground-floor organization.", wide: true },
       { src: "images/THRESHLD/timelapse_noVoice.mp4", cap: "Fabrication timelapse." },
-      { src: "images/THRESHLD/mvLYsvfeKxzzeysLGpoI3_844fd4faae1c40de9c0b257b125353bb.mp4", cap: "Three-step intervention: Remind, Warn, then rigid rest." }
+      { src: "images/THRESHLD/mvLYsvfeKxzzeysLGpoI3_844fd4faae1c40de9c0b257b125353bb.mp4", cap: "Three-step intervention: remind, warn, then rigid rest." }
     ]
   },
   "archive": {
     title: "Archive", cat: "Early Experiments", year: "Various", tag: "Archive",
-    period: "2019–2021", status: "Academic studies · full-scale prototypes", orgLabel: "Type", team: "Individual + team work",
+    period: "2019 to 2021", status: "Academic studies · full-scale prototypes", orgLabel: "Type", team: "Individual + team work",
     role: "Developed interaction logic, physical prototypes, and structural tests across responsive installations and full-scale pavilion studies.", client: "Independent + academic studies", services: "",
     intro: "Two early studies in responsive structures and full-scale prototyping. Kaleidoscope is an Arduino-controlled kinetic installation that unfolds when a viewer approaches. The Gongguan transit pavilion was developed through a full-scale mock-up and structural load testing.",
     body: "",
@@ -201,7 +188,7 @@ const PROJECTS_V3 = {
     client: "SCI-Arc · AT Studio 1",
     services: "Real-time computer vision, speech recognition, generative portrait, interactive installation",
     intro: "HiYou is a live installation designed to help strangers meet. A Unity front end and Python back end analyse facial and vocal cues from a short interaction, match participants, and generate a composite portrait that helps them find each other in the room. The system runs locally and was tested with participants at L-Acoustics.",
-    body: "HiYou is a real-time interactive installation that transforms passersby into participants through AI-powered social interaction. Using a live camera feed, the system detects people, tracks their attention, and begins the experience after a three-second gaze.\n\nParticipants can answer a short series of spoken questions, which are transcribed using OpenAI Whisper. The system then analyzes facial features with MediaPipe Face Mesh (468 landmarks), together with behavioral metrics including head movement, eye activity, smile intensity, rhythm, and pitch variation.\n\nHiYou compares these visual and behavioral characteristics with other participants collected during the event to find the closest match. It generates a composite portrait blending the two faces and guides participants to meet each other in the physical space.\n\nBuilt with a Unity front end and a Python back end, the installation uses HTTP and OSC/UDP for real-time communication. The entire pipeline runs locally with MediaPipe, Whisper, and ArcFace, enabling fast, offline operation without cloud services.",
+    body: "HiYou is a real-time installation that turns passersby into participants. Using a live camera feed, the system detects people, tracks their attention, and begins the experience after a three-second gaze.\n\nParticipants can answer a short series of spoken questions, which are transcribed using OpenAI Whisper. The system then analyzes facial features with MediaPipe Face Mesh (468 landmarks), together with behavioral metrics including head movement, eye activity, smile intensity, rhythm, and pitch variation.\n\nHiYou compares these visual and behavioral characteristics with other participants collected during the event to find the closest match. It generates a composite portrait blending the two faces and guides participants to meet each other in the physical space.\n\nBuilt with a Unity front end and a Python back end, the installation uses HTTP and OSC/UDP for real-time communication. The entire pipeline runs locally with MediaPipe, Whisper, and ArcFace, so the installation stays fast and works offline, without cloud services.",
     cover: "images/hi-you/HiYou.mp4",
     coverPortrait: true,
     repo: "https://github.com/jckian/HiYou",
@@ -218,7 +205,7 @@ const PROJECTS_V3 = {
     team: "3-person team",
     role: "Developed image sequences, motion transitions, and projection-ready outputs with M. Casey Rehm for the building-scale installation.",
     client: "SCI-Arc · M. Casey Rehm", services: "",
-    intro: "For the 2025 SCI-Arc Gala, I worked with M. Casey Rehm on image sequences, motion transitions, and projection output for the Los Angeles Central Library façade. Architectural drawings and generated imagery were edited into a continuous film for the building-scale installation.",
+    intro: "The 2025 SCI-Arc Gala projected a continuous film across the Los Angeles Central Library façade. Image sequences, motion transitions, and projection output were developed with M. Casey Rehm, editing architectural drawings and generated imagery into one building-scale piece.",
     body: "",
     cover: "images/sciarc-gala/SCIArcGalaFinalVideo.mp4",
     coverPortrait: true,
@@ -238,7 +225,7 @@ const PROJECTS_V3 = {
 /* ---- v3-only additions ---- */
 
 /* display / prev-next order (matches index.html), independent of object key order */
-const ORDER_V3 = ["03", "04", "voro", "02", "hiyou", "threshld", "01", "sciarc-gala", "05", "archive"];
+const ORDER_V3 = ["03", "04", "voro", "02", "hiyou", "threshld", "01", "sciarc-gala", "05", "throwshade", "archive"];
 
 /* right-column location text on case pages (§4 of the plan) */
 const SITES_V3 = {
@@ -251,6 +238,7 @@ const SITES_V3 = {
   "05": "Virtual space",
   "hiyou": "Los Angeles",
   "sciarc-gala": "Downtown Los Angeles",
+  "throwshade": "",
   "archive": ""
 };
 
@@ -258,7 +246,7 @@ const SITES_V3 = {
 const CAT_V3 = {
   "voro": "visual", "threshld": "visual", "01": "landscape", "02": "housing",
   "03": "public", "04": "housing", "05": "visual", "hiyou": "visual",
-  "sciarc-gala": "event", "archive": "archive"
+  "sciarc-gala": "event", "throwshade": "platform", "archive": "archive"
 };
 const GROUPS_V3 = { arch: ["landscape", "housing", "public"], tech: ["platform", "visual", "event", "archive"] };
 
