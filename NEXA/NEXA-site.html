@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXA · Program Distribution Agent</title>
+  <!-- A square file on purpose. The tab slot is square and the browser stretches whatever it is
+       given to fill it, so the 437x246 logo came out squeezed narrow and tall. This is the same
+       mark set at 84% width inside a 128px transparent square, so it lands in the tab whole. -->
+  <link rel="icon" type="image/png" href="NEXA/NEXA-favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Title = Momo Trust Display, Body = FF Mark. Neither is a Google/webfont; if the .otf/.woff are added to the
+       project they can be @font-face self-hosted. Until then the stacks fall back to the closest free faces:
+       Fredoka (rounded geometric ≈ Momo Trust Display) and Poppins (geometric ≈ FF Mark / Mark Pro). -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* dark theme */
+      --bg: #000000;
+      --bg-2: #0A0A0E;
+      --bg-3: #171A25;
+      --text: #F0F0FA;
+      --text-mid: rgba(245, 245, 245, 0.60);
+      --text-lo: rgba(245, 245, 245, 0.36);
+      --line: rgba(245, 245, 245, 0.12);
+      --line-2: rgba(245, 245, 245, 0.06);
+      --blue: #172FC7;
+      --blue-lite: #4863F5;
+      --orange: #E67033;
+      --yellow: #EEC341;
+      /* Title = Momo Trust Display, Body = FF Mark. The real files are not in the project and the copy of
+         "FF Mark" installed on this machine is an OBLIQUE style — naming it first slants all body text — so
+         Poppins (closest free upright match) leads. Drop a real FF Mark .woff2 in and @font-face it to reclaim
+         the true face, then move 'FF Mark' to the front. Fredoka stands in for Momo Trust Display (rounded). */
+      --font-body: 'Poppins', 'FF Mark', 'Mark Pro', 'Montserrat', Helvetica, Arial, sans-serif;
+      --font-display: 'Momo Trust Display', 'Fredoka', 'Poppins', 'Montserrat', sans-serif;
+      /* the same mono the wizard runs on, so the site and the tool read as one product */
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* SpaceX sets its headings at a line-height BELOW the font size (54 on 60, 76 on 80).
+       That tight lock-up is most of what reads as 'engineered' rather than 'designed'. */
+    h1, h2, h3, h4, .statement { font-family: var(--font-display); line-height: 0.96; letter-spacing: 0.008em; }
+    p { text-wrap: pretty; }
+
+    a { color: var(--blue-lite); text-decoration: none; }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       PANEL DECK
+       One section = one viewport = one slide of the midterm deck. Full-bleed
+       media behind, copy anchored bottom-left, one action. The page is scrolled
+       a panel at a time rather than read as a continuous document.
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    html { scroll-snap-type: y mandatory; }
+    /* Snapping is only safe while every panel is exactly one viewport tall. The moment a
+       panel is allowed to grow past that, a mandatory snap traps the reader inside it, so
+       the narrow and short breakpoints below drop back to proximity. */
+    @media (max-width: 760px), (max-height: 620px) { html { scroll-snap-type: y proximity; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-snap-type: none; } }
+
+    .panel {
+      position: relative;
+      height: 100svh;
+      min-height: 540px;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .panel-media { position: absolute; inset: 0; z-index: 0; }
+    .panel-media img,
+    .panel-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* No scrim anywhere. The renders are shown at full strength and nothing is laid over them.
+       On the night renders the white copy sits straight on the image and reads. On the light
+       ones it cannot, and without a scrim the only honest answer is not to overlap at all:
+       a `split` panel does not overlap them at all. It is a row: copy on the left half, image
+       on the right half at full height. A band across the top left the bottom of the panel
+       empty and black, which read as a mistake rather than as space.
+
+       The image column is filled with `cover`. It is the one place cropping is accepted,
+       because a half-width column is taller than any of these frames and `contain` would put
+       a small picture back in the middle of a large empty half. */
+    .panel.split { flex-direction: row; align-items: stretch; }
+    /* one third copy, two thirds image */
+    .panel.split .panel-media {
+      position: relative; inset: auto; order: 2;
+      flex: 2 1 66.667%; min-width: 0; overflow: hidden;
+    }
+    .panel.split .panel-media img,
+    .panel.split .panel-media video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+    }
+    /* the two halves used to meet on a hard vertical seam. The black runs on into the image
+       and fades out across the first third of it, so the panel reads as one frame. */
+    .panel.split .panel-media::after {
+      content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(to right, var(--bg) 0%, rgba(0, 0, 0, 0.72) 12%, rgba(0, 0, 0, 0.28) 26%, transparent 42%);
+    }
+    .panel.split .panel-copy {
+      order: 1; flex: 1 1 33.333%; min-width: 0;
+      max-width: none; margin: 0;
+      display: flex; align-items: center;
+      padding: clamp(80px, 12vh, 130px) clamp(24px, 3.4vw, 56px) clamp(40px, 7vh, 80px) clamp(20px, 5vw, 60px);
+    }
+    .panel.split .panel-copy .wide,
+    .panel.split .panel-copy .inner { max-width: none; width: 100%; }
+    .panel.split .panel-copy .wide h2.statement { font-size: clamp(1.25rem, 2vw, 1.8rem); }
+    .panel.split .panel-copy .wide > p,
+    .panel.split .panel-copy .inner > p { max-width: 48ch; }
+    /* a third of the frame takes one column, not two */
+    .panel.split .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 18px); }
+    .panel.split .specs { gap: clamp(10px, 1.4vh, 16px); }
+    .panel.split .specs .grp { gap: clamp(10px, 1.4vw, 20px); }
+    .panel.split .specs .grp > div { min-width: 96px; }
+
+    /* under a certain width there is no half to give, so it stacks: image first, copy under */
+    @media (max-width: 860px) {
+      .panel.split { flex-direction: column; }
+      .panel.split .panel-media { order: 1; flex: 1 1 auto; min-height: 0; }
+      .panel.split .panel-copy {
+        order: 2; flex: 0 0 auto; align-items: flex-end;
+        padding: clamp(20px, 3vh, 34px) clamp(20px, 5vw, 60px) clamp(40px, 7vh, 80px);
+      }
+    }
+
+    /* a panel that is only a clip. No copy, so nothing has to be kept legible over it and
+       nothing has to be cropped for it: the video sits in the middle of the frame at its own
+       aspect, inset far enough that the black around it reads as a mat, corners taken off. */
+    .panel.video-only { align-items: center; justify-content: center; }
+    .panel.video-only .panel-media {
+      position: absolute; inset: 0; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: clamp(56px, 9vh, 110px) clamp(20px, 5vw, 60px) clamp(40px, 7vh, 80px);
+    }
+    .panel.video-only .panel-media video {
+      width: auto; height: auto; max-width: 100%; max-height: 100%;
+      object-fit: contain;
+      border-radius: clamp(12px, 1.4vw, 24px);
+    }
+
+    .panel-copy {
+      position: relative; z-index: 3;
+      width: 100%; max-width: 1400px; margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 60px) clamp(84px, 12vh, 140px);
+    }
+    .panel-copy .wide { max-width: 62ch; }
+    /* a wide panel carries a data block under its copy, so the headline has to be reined in
+       or the whole column grows tall enough to run under the nav bar */
+    .panel-copy .wide h2.statement { font-size: clamp(1.7rem, 3.4vw, 2.9rem); }
+    .panel-copy .wide > p { max-width: 52ch; }
+
+    .panel h2.statement { font-size: clamp(1.9rem, 4.8vw, 4rem); margin-bottom: clamp(10px, 1.6vh, 18px); }
+    .panel-copy p { color: var(--text); font-size: clamp(0.92rem, 1.1vw, 1.04rem); max-width: 46ch; }
+
+    /* ---------- actions ---------- */
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(18px, 2.8vh, 32px); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 14px; font-family: var(--mono);
+      font-size: 11px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--text); border: 1px solid rgba(245, 245, 245, 0.5); background: transparent;
+      padding: 13px 26px; white-space: nowrap;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    .btn::after { content: '→'; font-size: 13px; line-height: 1; opacity: 0.85; transition: transform 0.25s ease; }
+    .btn.noarrow::after { content: none; }
+    .btn:hover::after { transform: translateX(3px); }
+    .btn:hover, .btn:focus-visible { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .btn.fill { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .btn.fill:hover, .btn.fill:focus-visible { background: var(--blue-lite); border-color: var(--blue-lite); }
+
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       NAV — a bar that stays out of the way, and a menu that takes the screen
+       ═══════════════════════════════════════════════════════════════════════ */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: clamp(16px, 3vh, 28px) clamp(20px, 5vw, 60px);
+      pointer-events: none;
+    }
+    #nav > * { pointer-events: auto; }
+    /* No bar and no gradient behind it. On a split panel the right half of the nav crosses a
+       bright image, so there the type inverts against whatever is under it instead of being
+       given a background to sit on. Only there: `difference` over the green performance render
+       turns the links magenta, so the blend is switched on by script, per panel. */
+    #nav.blend { mix-blend-mode: difference; }
+    #nav .brand { display: flex; align-items: center; gap: 10px; transition: opacity 0.3s ease; }
+    /* the cover sets the wordmark large; the bar does not need to say it again right above it */
+    #nav.at-cover .brand { opacity: 0; pointer-events: none; }
+    #nav .brand img { height: 18px; width: auto; display: block; }
+    #nav .brand span { font-family: var(--mono); font-weight: 500; font-size: 13px; letter-spacing: 0.24em; color: var(--text); }
+    #nav .right { display: flex; align-items: center; gap: clamp(18px, 3vw, 38px); }
+    #nav .quick { display: flex; gap: clamp(18px, 3vw, 38px); }
+    #nav .quick a {
+      font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--text); opacity: 0.72; transition: opacity 0.2s ease;
+    }
+    #nav .quick a:hover { opacity: 1; }
+    /* while inverting, the links go to full strength: a 0.72 white composites to a mid grey
+       first, and the difference against a near-white image then lands on a mid grey too */
+    #nav.blend .quick a { opacity: 1; }
+    @media (max-width: 1000px) { #nav .quick { display: none; } }
+
+    #menu-open {
+      display: flex; flex-direction: column; justify-content: center; gap: 5px;
+      width: 30px; height: 22px; background: none; border: 0; cursor: pointer; padding: 0;
+    }
+    #menu-open i { display: block; height: 1.5px; background: var(--text); transition: transform 0.3s ease; }
+    #menu-open:hover i:nth-child(2) { transform: scaleX(0.6); transform-origin: left; }
+
+    /* ---------- full-screen menu ---------- */
+    #menu {
+      position: fixed; inset: 0; z-index: 80;
+      background: rgba(10, 11, 18, 0.985);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      display: flex; flex-direction: column;
+      padding: clamp(16px, 3vh, 28px) clamp(20px, 5vw, 60px) clamp(20px, 3.4vh, 34px);
+      opacity: 0; visibility: hidden; transition: opacity 0.35s ease, visibility 0.35s;
+      overflow-y: auto;
+    }
+    #menu.open { opacity: 1; visibility: visible; }
+    #menu .menu-top { display: flex; align-items: center; justify-content: space-between; flex: 0 0 auto; }
+    #menu .menu-top .brand { display: flex; align-items: center; gap: 10px; }
+    #menu .menu-top .brand img { height: 18px; width: auto; }
+    #menu .menu-top .brand span { font-family: var(--mono); font-weight: 500; font-size: 13px; letter-spacing: 0.24em; }
+    #menu-close { background: none; border: 0; cursor: pointer; padding: 0; width: 30px; height: 22px; position: relative; }
+    #menu-close i { position: absolute; left: 0; top: 50%; width: 30px; height: 1.5px; background: var(--text); }
+    #menu-close i:first-child { transform: rotate(45deg); }
+    #menu-close i:last-child { transform: rotate(-45deg); }
+
+    #menu ol { list-style: none; margin: auto 0; counter-reset: m; max-width: 1400px; width: 100%; }
+    #menu ol li { counter-increment: m; border-top: 1px solid var(--line-2); }
+    #menu ol li:last-child { border-bottom: 1px solid var(--line-2); }
+    #menu ol a {
+      display: flex; align-items: baseline; gap: clamp(14px, 2.6vw, 34px);
+      padding: clamp(5px, 1.1vh, 12px) 0;
+      color: var(--text); text-transform: uppercase;
+      font-family: var(--font-display); font-weight: 100; letter-spacing: -0.005em;
+      font-size: clamp(1.1rem, 2.6vw, 2rem); line-height: 1.1;
+      opacity: 0.6; transition: opacity 0.22s ease, padding-left 0.28s cubic-bezier(.16,1,.3,1);
+    }
+    #menu ol a:hover, #menu ol a:focus-visible { opacity: 1; padding-left: clamp(8px, 1.6vw, 20px); }
+    #menu ol a::before {
+      content: counter(m, decimal-leading-zero);
+      font-family: var(--mono); font-size: 11px; font-weight: 400;
+      letter-spacing: 0.16em; color: var(--text-lo); flex: 0 0 auto;
+    }
+    #menu .menu-foot {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+      max-width: 1400px; width: 100%; flex: 0 0 auto;
+    }
+    #menu .menu-foot p { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-lo); }
+
+    /* ---------- scroll hint, hero only ---------- */
+    .scroll-hint {
+      position: absolute; z-index: 3; left: 50%; transform: translateX(-50%);
+      bottom: clamp(20px, 3.4vh, 36px);
+      display: flex; flex-direction: column; align-items: center; gap: 9px;
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-lo);
+    }
+    .scroll-hint span { display: block; width: 1px; height: 32px; background: linear-gradient(to bottom, var(--text-lo), transparent); }
+    @media (prefers-reduced-motion: no-preference) {
+      .scroll-hint span { animation: hint 2.2s cubic-bezier(.6,0,.4,1) infinite; transform-origin: top; }
+      @keyframes hint { 0% { transform: scaleY(0); } 45% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       HERO — the only centred panel, and the only one that offers the prompt
+       ═══════════════════════════════════════════════════════════════════════ */
+    /* The cover is the one panel that centres: mark, wordmark and line stack in the middle of
+       the frame. The clip runs at half strength so it reads as a near-black ground, and the
+       lock-up sits on it in flat white. No blend, no invert: one state, held the whole time. */
+    #hero { align-items: center; isolation: isolate; }
+    #hero .panel-copy { padding-top: 0; padding-bottom: 0; text-align: center; }
+    #hero .panel-media { opacity: 0.3; }
+    /* the white mark, sitting above the wordmark at about twice its size */
+    #hero .hero-mark {
+      display: block; margin: 0 auto clamp(14px, 2.4vh, 28px);
+      width: auto; height: clamp(64px, 10vw, 170px);
+    }
+    /* Set like the panel statements: same display face at their weight and tracking, not the
+       hairline it used to be. Only the size stays the cover's own. */
+    #hero h1 {
+      font-family: var(--font-display); text-transform: uppercase;
+      font-size: clamp(2.6rem, 6.4vw, 5.4rem); line-height: 0.96; letter-spacing: 0.008em;
+      margin-bottom: clamp(8px, 1.4vh, 16px);
+    }
+    #hero h1 span { color: var(--text); }
+    #hero .panel-copy .inner { max-width: min(560px, 62vw); margin: 0 auto; }
+    #hero .lead { color: var(--text); font-size: clamp(0.9rem, 1.05vw, 1.02rem); margin: 0 auto; }
+
+
+    /* The assembly clip is framed a little left of centre, so its crop window is pulled back
+       to put the massing in the middle of the image column. Same size, different window.
+       Measured, not guessed: the ink centroid across 57 frames of the source sits at 45.3%
+       of the frame, and 35% is the crop offset that lands it on the column centre. */
+    #system .panel-media video { object-position: 35% center; }
+
+    /* Positioning is an argument, not a picture: full width, centred, on black.
+       The render sits at half opacity over that black, which halves its luminance rather than
+       laying anything on top of it. The copy is centred and the frame's brightest surfaces are
+       centred too, so at full strength the paragraph and the stat captions did not hold. */
+    #market .panel-media { background: var(--bg); }
+    #market .panel-media img { opacity: 0.5; }
+    #market { align-items: center; justify-content: center; text-align: center; }
+    #market .panel-copy { padding-bottom: 0; }
+    #market .panel-copy .wide { max-width: min(1080px, 84vw); margin: 0 auto; }
+    #market .panel-copy .wide > p { max-width: 62ch; margin: 0 auto; }
+    #market .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: clamp(24px, 4vh, 44px); }
+    #market .stats div { text-align: center; }
+
+    /* One statement, centred on the render, nothing else on the panel. */
+    #shift { align-items: center; justify-content: center; text-align: center; }
+    #shift .panel-copy { padding-bottom: 0; }
+    #shift .panel-copy .inner { max-width: min(1100px, 82vw); margin: 0 auto; }
+    #shift h2.statement { font-size: clamp(1.7rem, 4vw, 3.4rem); margin: 0; }
+
+    /* The close carries the court render full bleed. Same treatment as the market panel: the
+       image sits at half opacity over black, which halves its luminance instead of laying a
+       scrim over it. The copy is centred and so is the floodlit court, so at full strength the
+       paragraph and the buttons would not hold. */
+    #closing .panel-media { background: var(--bg); }
+    #closing .panel-media img { opacity: 0.5; }
+    #closing { align-items: center; justify-content: center; text-align: center; }
+    #closing .panel-copy { padding-bottom: 0; }
+    #closing .panel-copy .inner { margin: 0 auto; }
+    #closing .panel-copy p { margin: 0 auto; max-width: 52ch; }
+    #closing .actions { justify-content: center; }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       PANEL EXTRAS — the few places a panel carries more than a line of copy
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    /* the lifecycle loop, redrawn from the deck's system diagram */
+    /* The workflow owns the top half of its panel and the copy owns the bottom. They used to
+       share the whole frame, which put the copy column straight over the Brief node and the
+       return arrow. Two bands, no overlap. */
+    /* same column flexbox as a split panel, for the same reason */
+    #loop { flex-direction: column; align-items: stretch; }
+    .loop-graph {
+      position: relative; z-index: 2; flex: 1 1 auto; min-height: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: clamp(58px, 9vh, 96px) clamp(20px, 5vw, 60px) 0;
+      pointer-events: none;
+    }
+    #loop .panel-copy { flex: 0 0 auto; padding-top: clamp(22px, 3.4vh, 40px); padding-bottom: clamp(44px, 7vh, 84px); }
+    /* No width cap on a headline anywhere. It runs to the edge of its column and wraps there,
+       so the right-hand edge is set by the layout rather than by a ch value that left a gap.
+       Only the running paragraphs stay measured, because those are read line by line.
+ */
+    .loop-graph svg { width: min(1180px, 100%); height: auto; max-height: 100%; overflow: visible; }
+    /* Colour carries the argument, the way it does in the deck: blue is what stays, orange is
+       what is re-plugged, and the yellow envelope is the part the agent does. Nothing is
+       decorated that does not mean something. */
+    .loop-graph .node { fill: #0A0A0E; stroke: var(--line); stroke-width: 1; }
+    .loop-graph .node.long { stroke: rgba(72, 99, 245, 0.75); }
+    .loop-graph .node.short { stroke: rgba(230, 112, 51, 0.75); }
+    .loop-graph .node.proc { stroke: rgba(238, 195, 65, 0.6); }
+    .loop-graph .nlabel { fill: var(--text); font-family: var(--font-body); font-size: 11.5px; font-weight: 500; }
+    .loop-graph .nsub { fill: var(--text-lo); font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.18em; }
+    .loop-graph .link { stroke: rgba(245, 245, 245, 0.28); stroke-width: 1; fill: none; }
+    .loop-graph .link.long { stroke: rgba(72, 99, 245, 0.8); }
+    .loop-graph .link.short { stroke: rgba(230, 112, 51, 0.8); }
+    .loop-graph .link.back { stroke: rgba(230, 112, 51, 0.85); stroke-dasharray: 5 4; }
+    .loop-graph .link.watch { stroke: rgba(245, 245, 245, 0.22); stroke-dasharray: 2 4; }
+    .loop-graph .band { fill: none; stroke: rgba(238, 195, 65, 0.28); stroke-dasharray: 4 5; }
+    .loop-graph .bandlabel { fill: rgba(238, 195, 65, 0.75); font-family: var(--mono); font-size: 8px; letter-spacing: 0.24em; }
+    .loop-graph .looplabel { fill: rgba(230, 112, 51, 0.9); font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.2em; }
+    @media (prefers-reduced-motion: reduce) { .loop-graph circle animateMotion { display: none; } }
+    @media (max-width: 860px) { .loop-graph { display: none; } }
+
+    /* the kit specs, straight off the deck's technical tables. Four of them, so the column
+       they sit in is widened below rather than left to wrap three-and-one. */
+    /* widths for these two are set by the split rule above; nothing to override here */
+    .specs { display: flex; flex-direction: column; gap: clamp(12px, 1.8vh, 22px); margin-top: clamp(14px, 2.2vh, 26px); }
+    .specs .grp { border-top: 2px solid var(--h, var(--blue-lite)); padding-top: 10px; display: flex; flex-wrap: wrap; gap: clamp(14px, 2.4vw, 34px); }
+    .specs .grp > div { min-width: 124px; flex: 1 1 0; }
+    .specs .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text); margin-bottom: 4px; }
+    .specs b { display: block; font-size: clamp(0.92rem, 1.2vw, 1.06rem); font-weight: 600; color: var(--text); }
+    .specs .sub { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; color: var(--text); }
+
+    /* the market numbers */
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 3vw, 44px); margin-top: clamp(16px, 2.6vh, 30px); }
+    .stats div { border-top: 1px solid var(--line); padding-top: 12px; }
+    .stats b {
+      display: block; font-family: var(--font-display); font-weight: 100;
+      font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.05; margin-bottom: 6px;
+    }
+    .stats span { font-family: var(--mono); font-size: 10.5px; line-height: 1.6; color: var(--text); display: block; }
+    /* the comparison stat is a whole phrase, not one figure, so it gets its own size
+       rather than breaking mid-range */
+    .stats .tight b { font-size: clamp(1.05rem, 2vw, 1.6rem); white-space: nowrap; }
+    .stats .tight small { font-size: 0.62em; color: var(--text-lo); }
+    @media (max-width: 900px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       FOOTER — its own snap stop, deliberately short
+       ═══════════════════════════════════════════════════════════════════════ */
+    #footer {
+      scroll-snap-align: end;
+      background: var(--bg-2); border-top: 1px solid var(--line-2);
+      padding: clamp(44px, 8vh, 84px) clamp(20px, 5vw, 60px) clamp(22px, 3.4vh, 36px);
+    }
+    #footer .fx { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: clamp(26px, 5vw, 56px); }
+    #footer .brand { display: flex; align-items: center; gap: 10px; }
+    #footer .brand img { height: 18px; width: auto; }
+    #footer .brand span { font-family: var(--mono); font-weight: 500; font-size: 13px; letter-spacing: 0.24em; }
+    #footer .base {
+      max-width: 1400px; margin: clamp(30px, 5vh, 56px) auto 0; padding-top: 20px;
+      border-top: 1px solid var(--line-2);
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; color: var(--text-lo);
+    }
+    #footer .base b { color: var(--text-mid); font-weight: 600; }
+
+    /* ---------- entrance: copy rises as its panel arrives ---------- */
+    @media (prefers-reduced-motion: no-preference) {
+      /* the children of .inner / .wide, never those containers themselves: `is-in` lands on
+         the container, so hiding it too would leave it stuck at opacity 0 forever */
+      .js-anim .panel-copy .inner > *,
+      .js-anim .panel-copy .wide > *,
+      .js-anim .loop-graph {
+        opacity: 0; transform: translateY(24px);
+        transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+        will-change: opacity, transform;
+      }
+      /* !important because the hide rule above is deliberately more specific than any
+         short reveal selector: `.js-anim .panel-copy .inner > *` beats `.js-anim .is-in > *`
+         and the copy stays at opacity 0 forever */
+      .js-anim .is-in > *,
+      .js-anim .loop-graph.is-in { opacity: 1 !important; transform: none !important; }
+      .js-anim .is-in > *:nth-child(2) { transition-delay: .07s; }
+      .js-anim .is-in > *:nth-child(3) { transition-delay: .14s; }
+      .js-anim .is-in > *:nth-child(4) { transition-delay: .21s; }
+      .js-anim .is-in > *:nth-child(5) { transition-delay: .28s; }
+    }
+  </style>
+</head>
+
+<body>
+  <script>document.documentElement.classList.add('js-anim');</script>
+
+  <div id="nav">
+    <a class="brand" href="#hero" aria-label="NEXA, back to top">
+      <img src="NEXA/NEXA-logo-mask.png" alt="" />
+      <span>NEXA</span>
+    </a>
+    <div class="right">
+      <div class="quick">
+        <a href="program-input.html">Tool</a>
+        <a href="NEXA-system.html">Kit</a>
+      </div>
+      <button id="menu-open" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <i></i><i></i><i></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- The whole contents page, one screen. Numbering is the deck's running order. -->
+  <div id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+    <div class="menu-top">
+      <div class="brand">
+        <img src="NEXA/NEXA-logo-mask.png" alt="" />
+        <span>NEXA</span>
+      </div>
+      <button id="menu-close" aria-label="Close menu"><i></i><i></i></button>
+    </div>
+    <ol>
+      <li><a href="#hero">Adaptive building platform</a></li>
+      <li><a href="#mismatch">The mismatch</a></li>
+      <li><a href="#loop">One lifecycle, not one delivery</a></li>
+      <li><a href="#performance">Use · performance</a></li>
+      <li><a href="#exhibition">Use · exhibition</a></li>
+      <li><a href="#retail">Use · retail</a></li>
+      <li><a href="#system">One system, fully demountable</a></li>
+      <li><a href="#shift">The shift</a></li>
+      <li><a href="#market">The tool the market does not have</a></li>
+      <li><a href="#closing">Build once, evolve continuously</a></li>
+    </ol>
+    <div class="menu-foot">
+      <p>SCI-Arc SP26 · Yenhsing Cheng</p>
+      <a class="btn fill" href="program-input.html">Launch the agent</a>
+    </div>
+  </div>
+
+  <!-- ═══ 01 · cover ═══════════════════════════════════════════════════════════════ -->
+  <section class="panel" id="hero">
+    <div class="panel-media">
+      <video id="scenario-video" src="NEXA/deck/scenario-260730.mp4" poster="NEXA/deck/scenario-poster.jpg"
+             autoplay muted loop playsinline preload="auto"></video>
+    </div>
+    <div class="panel-copy">
+      <div class="inner">
+        <img class="hero-mark" src="NEXA/NEXA-logo-mask.png" alt="" />
+        <h1>NEX<span>A</span></h1>
+        <p class="lead">Adaptive building platform<br>for buildings that evolve with use</p>
+      </div>
+    </div>
+    <div class="scroll-hint">Scroll<span></span></div>
+  </section>
+
+  <!-- ═══ 02 · the argument ════════════════════════════════════════════════════════ -->
+  <!-- The clip makes the argument on its own, so the panel carries no copy. -->
+  <section class="panel video-only" id="mismatch">
+    <div class="panel-media">
+      <video src="NEXA/deck/nexa-wide-16x9-v4.mp4#t=2" poster="NEXA/deck/nexa-wide-16x9-v4-poster.jpg"
+             autoplay muted loop playsinline preload="metadata"></video>
+    </div>
+  </section>
+
+  <!-- ═══ 03 · the platform ════════════════════════════════════════════════════════ -->
+  <section class="panel" id="loop">
+    <div class="panel-media"></div>
+    <div class="loop-graph" aria-hidden="true">
+      <svg viewBox="0 0 1180 320" role="img">
+        <defs>
+          <marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L8,4 L0,8 z" fill="context-stroke"/>
+          </marker>
+        </defs>
+
+        <!-- what the agent itself does -->
+        <rect class="band" x="140" y="14" width="640" height="250" rx="10"/>
+        <text class="bandlabel" x="156" y="252">NEXA</text>
+
+        <!-- brief in -->
+        <path class="link" marker-end="url(#ah)" d="M112,88 H164"/>
+        <!-- lifespan splits the brief in two -->
+        <path class="link long"  marker-end="url(#ah)" d="M288,88 H316 Q328,88 328,76 V64 H352"/>
+        <path class="link short" marker-end="url(#ah)" d="M288,88 H316 Q328,88 328,100 V112 H352"/>
+        <!-- each stream through zoning -->
+        <path class="link long"  marker-end="url(#ah)" d="M464,64 H492 Q504,64 504,76 V88 H528"/>
+        <path class="link short" marker-end="url(#ah)" d="M464,112 H492 Q504,112 504,100 V88 H528"/>
+        <!-- zoning resolves into the two kinds of matter -->
+        <path class="link long"  marker-end="url(#ah)" d="M652,88 H680 Q692,88 692,76 V64 H716"/>
+        <path class="link short" marker-end="url(#ah)" d="M652,88 H680 Q692,88 692,100 V112 H716"/>
+        <!-- both land in the built version -->
+        <path class="link long"  marker-end="url(#ah)" d="M828,64 H856 Q868,64 868,76 V88 H892"/>
+        <path class="link short" marker-end="url(#ah)" d="M828,112 H856 Q868,112 868,100 V88 H892"/>
+        <!-- the version changes use -->
+        <path class="link short" marker-end="url(#ah)" d="M986,112 V172"/>
+        <!-- and the loop returns to the brief -->
+        <path class="link back" marker-end="url(#ah)" d="M892,206 H60 V88 H108"/>
+        <text class="looplabel" x="384" y="224">NEXT ARCHITECTURE</text>
+        <!-- the twin watches what is standing -->
+        <path class="link watch" d="M986,142 H1104 V88 H1084"/>
+
+        <circle r="3" fill="#4863F5"><animateMotion dur="2.6s" repeatCount="indefinite" path="M112,88 H164"/></circle>
+        <circle r="3" fill="#E67033"><animateMotion dur="4.6s" begin="1.2s" repeatCount="indefinite" path="M892,206 H60 V88 H108"/></circle>
+
+        <g><rect class="node" x="16" y="68" width="96" height="40" rx="6"/><text class="nlabel" x="32" y="85">Brief</text><text class="nsub" x="32" y="99">PROGRAM · AREA · SITE</text></g>
+        <g><rect class="node proc" x="164" y="64" width="124" height="48" rx="6"/><text class="nlabel" x="180" y="85">Lifespan</text><text class="nsub" x="180" y="99">ANALYSE</text></g>
+        <g><rect class="node long"  x="352" y="44" width="112" height="40" rx="6"/><text class="nlabel" x="366" y="61">Long-duration</text><text class="nsub" x="366" y="75">50–100 YRS</text></g>
+        <g><rect class="node short" x="352" y="92" width="112" height="40" rx="6"/><text class="nlabel" x="366" y="109">Short-duration</text><text class="nsub" x="366" y="123">2–15 YRS</text></g>
+        <g><rect class="node proc" x="528" y="64" width="124" height="48" rx="6"/><text class="nlabel" x="544" y="85">Structural</text><text class="nsub" x="544" y="99">ZONING</text></g>
+        <g><rect class="node long"  x="716" y="44" width="112" height="40" rx="6"/><text class="nlabel" x="730" y="61">Permanent</text><text class="nsub" x="730" y="75">STRUCTURE</text></g>
+        <g><rect class="node short" x="716" y="92" width="112" height="40" rx="6"/><text class="nlabel" x="730" y="109">Relocatable</text><text class="nsub" x="730" y="123">UNITS</text></g>
+        <g><rect class="node" x="892" y="64" width="188" height="48" rx="6"/><text class="nlabel" x="908" y="85">Architecture</text><text class="nsub" x="908" y="99">VERSION 0</text></g>
+        <g><rect class="node short" x="892" y="172" width="188" height="68" rx="6"/><text class="nlabel" x="908" y="197">Refresh · turnover</text><text class="nlabel" x="908" y="215">conversion · reuse</text><text class="nsub" x="908" y="231">THE USE CHANGES</text></g>
+        <g><rect class="node" x="1084" y="64" width="84" height="48" rx="6"/><text class="nlabel" x="1098" y="85">Digital</text><text class="nlabel" x="1098" y="101">twin</text></g>
+      </svg>
+    </div>
+    <div class="panel-copy">
+      <div class="inner">
+        <h2 class="statement">One lifecycle, not one delivery.</h2>
+        <p>The brief is sorted by how long each program has to last. Long becomes permanent structure, short becomes relocatable units, and the loop runs again whenever the use changes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 04-06 · what the same frame holds ═══════════════════════════════════════ -->
+  <section class="panel" id="performance">
+    <div class="panel-media"><img src="NEXA/scenario/performance.jpg" alt="The frame occupied as a performance venue, crowd under stage lighting" loading="lazy" /></div>
+    <div class="panel-copy">
+      <div class="inner">
+        <h2 class="statement">The same frame, as a performance venue.</h2>
+        <p>Units pull back, decks become galleries and the plan opens to a crowd. Nothing structural moves to do it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="exhibition">
+    <div class="panel-media"><img src="NEXA/scenario/exhibition.jpg" alt="The same frame occupied as exhibition and pop-up store space" loading="lazy" /></div>
+    <div class="panel-copy">
+      <div class="inner">
+        <h2 class="statement">The same frame, as exhibition and pop-up.</h2>
+        <p>The same bays take galleries and short tenancies, re-plugged on a two to three year cycle instead of a fifty year one.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="retail">
+    <div class="panel-media"><img src="NEXA/scenario/retail.jpg" alt="The same frame occupied as retail, units fitted out as shops" loading="lazy" /></div>
+    <div class="panel-copy">
+      <div class="inner">
+        <h2 class="statement">The same frame, as retail.</h2>
+        <p>Shopfronts arrive as units and leave as units. The floor plate they sit on was never rebuilt for them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 10 · the kit ═════════════════════════════════════════════════════════════ -->
+  <section class="panel split" id="system">
+    <div class="panel-media">
+      <video src="NEXA/assembly_animation_v5_lineart.mp4" poster="NEXA/assembly-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="panel-copy">
+      <div class="wide">
+        <h2 class="statement">One system, fully demountable. Drop in, slide, lock.</h2>
+        <p>Everything that is not structure arrives as a unit and leaves as one. No wet trades, no cutting.</p>
+        <div class="specs">
+          <div class="grp" style="--h: var(--blue-lite)">
+            <div>
+              <div class="k">Frame 01</div>
+              <b>8'-6&Prime; &times; 8'-6&Prime;</b>
+              <span class="sub">H 17' &middot; aluminium</span>
+            </div>
+            <div>
+              <div class="k">Frame 02</div>
+              <b>8'-6&Prime; &times; 17'</b>
+              <span class="sub">H 8'-6&Prime; &middot; aluminium</span>
+            </div>
+          </div>
+          <div class="grp" style="--h: var(--orange)">
+            <div>
+              <div class="k">Infill</div>
+              <b>8'-6&Prime; &times; 17'</b>
+              <span class="sub">window &middot; notched deck &middot; base frame</span>
+            </div>
+          </div>
+          <div class="grp" style="--h: var(--yellow)">
+            <div>
+              <div class="k">Connection</div>
+              <b>Notched rail</b>
+              <span class="sub">slotted rail &middot; hidden levelling screws</span>
+            </div>
+          </div>
+        </div>
+        <div class="actions"><a class="btn" href="NEXA-system.html">Kit of parts</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ the shift ════════════════════════════════════════════════════════════════ -->
+  <section class="panel" id="shift">
+    <div class="panel-media"><img src="NEXA/scenario/evolution.jpg" alt="A NEXA block at dusk, offices, lounges and an event floor occupied at once behind a media wall" loading="lazy" /></div>
+    <div class="panel-copy">
+      <div class="inner">
+        <h2 class="statement">NEXA shifts the focus from building once to building for evolution.</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 11 · positioning ═════════════════════════════════════════════════════════ -->
+  <section class="panel" id="market">
+    <div class="panel-media"><img src="NEXA/scenario/runway.jpg" alt="A fashion show running through a NEXA frame, the audience seated in the glazed bays either side of a grass runway" loading="lazy" /></div>
+    <div class="panel-copy">
+      <div class="wide">
+        <h2 class="statement">The tool the market does not have yet.</h2>
+        <p>Modular builders optimise construction. Material passports record it. Digital twins monitor it. None of them can reconfigure a building. NEXA runs the whole lifecycle.</p>
+        <div class="stats">
+          <div><b>$4.2B</b><span>Building digital twin market 2026, 44% CAGR in APAC</span></div>
+          <div><b>$100B+</b><span>Global modular construction market 2026</span></div>
+          <div><b>80,000+</b><span>US office-to-residential units in the conversion pipeline</span></div>
+          <div class="tight"><b>2&ndash;3 <small>vs</small> 50&ndash;100</b><span>Years of F&amp;B program against years of structural frame</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 12 · close ═══════════════════════════════════════════════════════════════ -->
+  <section class="panel" id="closing">
+    <div class="panel-media"><img src="NEXA/scenario/closing-court.jpg" alt="A NEXA frame at night around a floodlit court, a game running with the upper floors occupied above it" loading="lazy" /></div>
+    <div class="panel-copy">
+      <div class="inner">
+        <h2 class="statement">Build once<br>Evolve continuously</h2>
+        <p>Hand NEXA a brief and a site. It resolves into a buildable massing, and re-solves every time the program changes.</p>
+        <div class="actions">
+          <a class="btn fill" href="program-input.html">Launch the agent</a>
+          <a class="btn noarrow" href="#hero">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="fx">
+      <div class="brand">
+        <img src="NEXA/NEXA-logo-mask.png" alt="" />
+        <span>NEXA</span>
+      </div>
+    </div>
+    <div class="base">
+      <span><b>Thank you.</b></span>
+      <span><b>NEXA</b> &middot; SCI-Arc SP26 &middot; Yenhsing Cheng &middot; Prototype build</span>
+    </div>
+  </footer>
+
+  <script>
+    // ── full-screen menu ────────────────────────────────────────────────────────────
+    // The bar carries a logo and a hamburger and nothing else, so the panels behind it
+    // stay whole. Everything else lives in here.
+    (function () {
+      var menu = document.getElementById('menu');
+      var openBtn = document.getElementById('menu-open');
+      var closeBtn = document.getElementById('menu-close');
+      var lastFocus = null;
+
+      function open() {
+        lastFocus = document.activeElement;
+        menu.hidden = false;
+        // one frame between unhiding and the class, or the opacity transition never runs
+        requestAnimationFrame(function () { menu.classList.add('open'); });
+        openBtn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        var first = menu.querySelector('a');
+        if (first) first.focus({ preventScroll: true });
+      }
+      function close() {
+        menu.classList.remove('open');
+        openBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        // stay in the DOM until the fade finishes, then go back out of the tab order
+        setTimeout(function () { if (!menu.classList.contains('open')) menu.hidden = true; }, 360);
+        if (lastFocus) lastFocus.focus({ preventScroll: true });
+      }
+      openBtn.addEventListener('click', open);
+      closeBtn.addEventListener('click', close);
+      // any jump closes it: the menu is a contents page, not a panel
+      menu.querySelectorAll('a[href^="#"]').forEach(function (a) { a.addEventListener('click', close); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && menu.classList.contains('open')) close();
+      });
+    })();
+
+
+    // ── what the bar does depends on the panel under it ────────────────────────────
+    // `blend`: a split panel puts a bright image behind the right half of the bar, and
+    //   `difference` keeps the links legible there. Left on globally it tints them magenta
+    //   over the green performance render, so it is switched on for those panels only.
+    // `at-cover`: the cover already sets the wordmark large, and the bar was repeating it
+    //   sixty pixels above. The mark steps aside until the cover has been scrolled past.
+    (function () {
+      var nav = document.getElementById('nav');
+      var hero = document.getElementById('hero');
+      var splits = [].slice.call(document.querySelectorAll('.panel.split'));
+      if (!nav) return;
+      var BAR = 80;   // roughly where the bar sits
+      var under = function (p) {
+        var r = p.getBoundingClientRect();
+        return r.top <= BAR && r.bottom > BAR;
+      };
+      function update() {
+        nav.classList.toggle('blend', splits.some(under));
+        if (hero) nav.classList.toggle('at-cover', under(hero));
+      }
+      addEventListener('scroll', update, { passive: true });
+      addEventListener('resize', update);
+      update();
+    })();
+
+    // ── copy rises as its panel arrives ─────────────────────────────────────────────
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var els = document.querySelectorAll('.panel-copy .inner, .panel-copy .wide, .loop-graph');
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('is-in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.2 });
+      els.forEach(function (el) { io.observe(el); });
+      // the cover is already on screen at load and would otherwise wait for a scroll
+      document.querySelectorAll('#hero .panel-copy .inner').forEach(function (el) { el.classList.add('is-in'); });
+    })();
+
+    // ── background clips play only while their own panel is on screen ──────────────
+    // Three of them now, and none should burn frames behind ten other panels.
+    // The cover and the argument clip run at 1.5x, the assembly clip at 2x.
+    (function () {
+      function bind(panelId, rate, start) {
+        var panel = document.getElementById(panelId);
+        var v = panel && panel.querySelector('video');
+        if (!v) return;
+        if (rate !== 1) {
+          var set = function () { v.playbackRate = rate; };
+          set();
+          v.addEventListener('loadedmetadata', set);
+          v.addEventListener('play', set);
+        }
+        if (start) {
+          // the argument clip skips its first two seconds, which open on a logo card. `loop`
+          // would drop back to zero and replay that opening every time round, so the loop is
+          // run by hand off `ended` instead.
+          v.loop = false;
+          var seek = function () { if (v.currentTime < start) v.currentTime = start; };
+          v.addEventListener('loadedmetadata', seek);
+          v.addEventListener('ended', function () { seek(); v.play().catch(function () {}); });
+          if (v.readyState >= 1) seek();
+        }
+        if (!('IntersectionObserver' in window)) return;
+        new IntersectionObserver(function (es) {
+          if (es[0].isIntersecting) { v.play().catch(function () {}); } else { v.pause(); }
+        }, { threshold: 0.25 }).observe(panel);
+      }
+      bind('hero', 1.5);
+      bind('mismatch', 1.5, 2);
+      bind('system', 2);
+    })();
+
+    // ── arrow and page keys move a panel at a time ──────────────────────────────────
+    // Scroll snapping already lands on a panel; this makes the keyboard agree with it
+    // instead of scrolling by a line and then being yanked back by the snap.
+    (function () {
+      var panels = [].slice.call(document.querySelectorAll('.panel, #footer'));
+      function current() {
+        var best = 0, bestD = Infinity;
+        panels.forEach(function (p, i) {
+          var d = Math.abs(p.getBoundingClientRect().top);
+          if (d < bestD) { bestD = d; best = i; }
+        });
+        return best;
+      }
+      document.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey) return;
+        if (document.getElementById('menu').classList.contains('open')) return;
+        var tag = (e.target.tagName || '').toLowerCase();
+        if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+        var dir = (e.key === 'ArrowDown' || e.key === 'PageDown') ? 1
+                : (e.key === 'ArrowUp' || e.key === 'PageUp') ? -1 : 0;
+        if (!dir) return;
+        var next = Math.max(0, Math.min(panels.length - 1, current() + dir));
+        e.preventDefault();
+        panels[next].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    })();
+  </script>
+
+
+</body>
+</html>

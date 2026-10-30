@@ -252,7 +252,7 @@ const GROUPS_V3 = { arch: ["landscape", "housing", "public"], tech: ["platform",
 
 /* projects hosted on their own site, no case page here, the index links straight out */
 const EXTERNAL_V3 = [
-  { title: "NEXA", url: "https://jckian.github.io/NEXA/NEXA-site.html" }
+  { title: "NEXA", url: "NEXA/NEXA-site.html" }
 ];
 
 /* case-page hero override (empty: the old hiyou entry pointed at
