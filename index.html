@@ -20,7 +20,7 @@
     <span class="v3head__label" id="projLabel" role="button" tabindex="0" aria-expanded="false">projects</span>
     <div class="v3head__main">
       <div class="v3head__identity">
-        <a href="v3.html" class="v3head__logo" id="logo">Yenhsing Cheng</a>
+        <a href="./" class="v3head__logo" id="logo">Yenhsing Cheng</a>
       </div>
       <nav class="v3head__nav">
         <a href="#" data-group="arch">arch</a>
@@ -337,7 +337,7 @@
       e.preventDefault();
       setAbout(!aboutView.classList.contains('is-open'));
     });
-    /* the case pages link here as v3.html#about */
+    /* the case pages link here as ./#about */
     if (location.hash === '#about') setAbout(true);
     /* opening the works filter or the logo closes about */
     groupLinks.forEach((a) => a.addEventListener('click', closeAbout));

@@ -1,7 +1,7 @@
 /* ============================================================
    v3.js, shared data + behaviour for the "elim" site.
    PROJECTS_V3 is copied VERBATIM from work.html (facts source).
-   Used by v3.html (home) and v3-work.html (case pages).
+   Used by index.html / v3.html (home) and v3-work.html (case pages).
    ============================================================ */
 
 /* ---- Yenhsing Cheng, selected works 2022-2025 (verbatim copy) ---- */
